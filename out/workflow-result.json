@@ -1,0 +1,3835 @@
+{
+  "discover": [
+    {
+      "subsystem": "proc",
+      "target": "/proc/consoles",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/consoles.c",
+        "line": 113,
+        "symbol": "consoles_op"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/consoles.c",
+        "registration_kind": "proc_create_seq",
+        "manual_todo": [
+          "ops symbol consoles_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/mounts",
+      "kind": "virtual_symlink",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 371,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "symlink",
+        "module_file": "fs/proc/root.c",
+        "registration_kind": "proc_symlink",
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/fs",
+      "kind": "virtual_dir",
+      "capabilities": [
+        "open",
+        "getdents64"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 374,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "dir",
+        "module_file": "fs/proc/root.c",
+        "registration_kind": "proc_mkdir",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/driver",
+      "kind": "virtual_dir",
+      "capabilities": [
+        "open",
+        "getdents64"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 375,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "dir",
+        "module_file": "fs/proc/root.c",
+        "registration_kind": "proc_mkdir",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/bus",
+      "kind": "virtual_dir",
+      "capabilities": [
+        "open",
+        "getdents64"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 382,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "dir",
+        "module_file": "fs/proc/root.c",
+        "registration_kind": "proc_mkdir",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/sys",
+      "kind": "virtual_dir",
+      "capabilities": [
+        "open",
+        "getdents64"
+      ],
+      "source": {
+        "file": "fs/proc/proc_sysctl.c",
+        "line": 1565,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "dir",
+        "module_file": "fs/proc/proc_sysctl.c",
+        "registration_kind": "proc_mkdir",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/stat",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "lseek",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/stat.c",
+        "line": 213,
+        "symbol": "stat_proc_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/stat.c",
+        "registration_kind": "proc_create",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/maps",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/nommu.c",
+        "line": 112,
+        "symbol": "proc_nommu_region_list_seqop"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/nommu.c",
+        "registration_kind": "proc_create_seq",
+        "manual_todo": [
+          "ops symbol proc_nommu_region_list_seqop was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/loadavg",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/loadavg.c",
+        "line": 33,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/loadavg.c",
+        "registration_kind": "proc_create_single",
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/bootconfig",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/bootconfig.c",
+        "line": 98,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/bootconfig.c",
+        "registration_kind": "proc_create_single",
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/cpuinfo",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "lseek",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/cpuinfo.c",
+        "line": 25,
+        "symbol": "cpuinfo_proc_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/cpuinfo.c",
+        "registration_kind": "proc_create",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/kmsg",
+      "kind": "virtual_file",
+      "capabilities": [
+        "read",
+        "poll",
+        "open",
+        "lseek"
+      ],
+      "source": {
+        "file": "fs/proc/kmsg.c",
+        "line": 60,
+        "symbol": "kmsg_proc_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/kmsg.c",
+        "registration_kind": "proc_create",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/softirqs",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/softirqs.c",
+        "line": 33,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/softirqs.c",
+        "registration_kind": "proc_create_single",
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/devices",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/devices.c",
+        "line": 60,
+        "symbol": "devinfo_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/devices.c",
+        "registration_kind": "proc_create_seq",
+        "manual_todo": [
+          "ops symbol devinfo_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/interrupts",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/interrupts.c",
+        "line": 39,
+        "symbol": "int_seq_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/interrupts.c",
+        "registration_kind": "proc_create_seq",
+        "manual_todo": [
+          "ops symbol int_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/kpagecount",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "lseek",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 292,
+        "symbol": "kpagecount_proc_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "registration_kind": "proc_create",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/kpageflags",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "lseek",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 293,
+        "symbol": "kpageflags_proc_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "registration_kind": "proc_create",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/kpagecgroup",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "lseek",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 295,
+        "symbol": "kpagecgroup_proc_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "registration_kind": "proc_create",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/meminfo",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/meminfo.c",
+        "line": 184,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/meminfo.c",
+        "registration_kind": "proc_create_single",
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/tty",
+      "kind": "virtual_dir",
+      "capabilities": [
+        "open",
+        "getdents64"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 165,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "dir",
+        "module_file": "fs/proc/proc_tty.c",
+        "registration_kind": "proc_mkdir",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/tty/ldisc",
+      "kind": "virtual_dir",
+      "capabilities": [
+        "open",
+        "getdents64"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 167,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "dir",
+        "module_file": "fs/proc/proc_tty.c",
+        "registration_kind": "proc_mkdir",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/tty/ldiscs",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 175,
+        "symbol": "tty_ldiscs_seq_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/proc_tty.c",
+        "registration_kind": "proc_create_seq",
+        "manual_todo": [
+          "ops symbol tty_ldiscs_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/tty/drivers",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 176,
+        "symbol": "tty_drivers_op"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/proc_tty.c",
+        "registration_kind": "proc_create_seq",
+        "manual_todo": [
+          "ops symbol tty_drivers_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/cmdline",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/cmdline.c",
+        "line": 19,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/cmdline.c",
+        "registration_kind": "proc_create_single",
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/vmcore",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "lseek",
+        "mmap"
+      ],
+      "source": {
+        "file": "fs/proc/vmcore.c",
+        "line": 1736,
+        "symbol": "vmcore_proc_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/vmcore.c",
+        "registration_kind": "proc_create",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/net",
+      "kind": "virtual_symlink",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/proc_net.c",
+        "line": 415,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "symlink",
+        "module_file": "fs/proc/proc_net.c",
+        "registration_kind": "proc_symlink",
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/uptime",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/uptime.c",
+        "line": 45,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/uptime.c",
+        "registration_kind": "proc_create_single",
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/version",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "read"
+      ],
+      "source": {
+        "file": "fs/proc/version.c",
+        "line": 23,
+        "symbol": null
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/version.c",
+        "registration_kind": "proc_create_single",
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/kcore",
+      "kind": "virtual_file",
+      "capabilities": [
+        "open",
+        "lseek"
+      ],
+      "source": {
+        "file": "fs/proc/kcore.c",
+        "line": 725,
+        "symbol": "kcore_proc_ops"
+      },
+      "metadata": {
+        "target_module": "fs/proc",
+        "search_method": "prefix",
+        "scan_mode": "auto",
+        "node_type": "file",
+        "module_file": "fs/proc/kcore.c",
+        "registration_kind": "proc_create",
+        "manual_todo": [],
+        "files_scanned": 34,
+        "registrations_scanned": 39
+      }
+    }
+  ],
+  "diff": {
+    "current": [
+      {
+        "subsystem": "proc",
+        "target": "/proc/consoles",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/consoles.c",
+          "line": 113,
+          "symbol": "consoles_op"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/consoles.c",
+          "registration_kind": "proc_create_seq",
+          "manual_todo": [
+            "ops symbol consoles_op was not resolved",
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/mounts",
+        "kind": "virtual_symlink",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/root.c",
+          "line": 371,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "symlink",
+          "module_file": "fs/proc/root.c",
+          "registration_kind": "proc_symlink",
+          "manual_todo": [
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/fs",
+        "kind": "virtual_dir",
+        "capabilities": [
+          "open",
+          "getdents64"
+        ],
+        "source": {
+          "file": "fs/proc/root.c",
+          "line": 374,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "dir",
+          "module_file": "fs/proc/root.c",
+          "registration_kind": "proc_mkdir",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/driver",
+        "kind": "virtual_dir",
+        "capabilities": [
+          "open",
+          "getdents64"
+        ],
+        "source": {
+          "file": "fs/proc/root.c",
+          "line": 375,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "dir",
+          "module_file": "fs/proc/root.c",
+          "registration_kind": "proc_mkdir",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bus",
+        "kind": "virtual_dir",
+        "capabilities": [
+          "open",
+          "getdents64"
+        ],
+        "source": {
+          "file": "fs/proc/root.c",
+          "line": 382,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "dir",
+          "module_file": "fs/proc/root.c",
+          "registration_kind": "proc_mkdir",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/sys",
+        "kind": "virtual_dir",
+        "capabilities": [
+          "open",
+          "getdents64"
+        ],
+        "source": {
+          "file": "fs/proc/proc_sysctl.c",
+          "line": 1565,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "dir",
+          "module_file": "fs/proc/proc_sysctl.c",
+          "registration_kind": "proc_mkdir",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/stat",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "lseek",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/stat.c",
+          "line": 213,
+          "symbol": "stat_proc_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/stat.c",
+          "registration_kind": "proc_create",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/maps",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/nommu.c",
+          "line": 112,
+          "symbol": "proc_nommu_region_list_seqop"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/nommu.c",
+          "registration_kind": "proc_create_seq",
+          "manual_todo": [
+            "ops symbol proc_nommu_region_list_seqop was not resolved",
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/loadavg",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/loadavg.c",
+          "line": 33,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/loadavg.c",
+          "registration_kind": "proc_create_single",
+          "manual_todo": [
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bootconfig",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/bootconfig.c",
+          "line": 98,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/bootconfig.c",
+          "registration_kind": "proc_create_single",
+          "manual_todo": [
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cpuinfo",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "lseek",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/cpuinfo.c",
+          "line": 25,
+          "symbol": "cpuinfo_proc_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/cpuinfo.c",
+          "registration_kind": "proc_create",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kmsg",
+        "kind": "virtual_file",
+        "capabilities": [
+          "read",
+          "poll",
+          "open",
+          "lseek"
+        ],
+        "source": {
+          "file": "fs/proc/kmsg.c",
+          "line": 60,
+          "symbol": "kmsg_proc_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/kmsg.c",
+          "registration_kind": "proc_create",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/softirqs",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/softirqs.c",
+          "line": 33,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/softirqs.c",
+          "registration_kind": "proc_create_single",
+          "manual_todo": [
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/devices",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/devices.c",
+          "line": 60,
+          "symbol": "devinfo_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/devices.c",
+          "registration_kind": "proc_create_seq",
+          "manual_todo": [
+            "ops symbol devinfo_ops was not resolved",
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/interrupts",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/interrupts.c",
+          "line": 39,
+          "symbol": "int_seq_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/interrupts.c",
+          "registration_kind": "proc_create_seq",
+          "manual_todo": [
+            "ops symbol int_seq_ops was not resolved",
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecount",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "lseek",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/page.c",
+          "line": 292,
+          "symbol": "kpagecount_proc_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/page.c",
+          "registration_kind": "proc_create",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpageflags",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "lseek",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/page.c",
+          "line": 293,
+          "symbol": "kpageflags_proc_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/page.c",
+          "registration_kind": "proc_create",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecgroup",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "lseek",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/page.c",
+          "line": 295,
+          "symbol": "kpagecgroup_proc_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/page.c",
+          "registration_kind": "proc_create",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/meminfo",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/meminfo.c",
+          "line": 184,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/meminfo.c",
+          "registration_kind": "proc_create_single",
+          "manual_todo": [
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty",
+        "kind": "virtual_dir",
+        "capabilities": [
+          "open",
+          "getdents64"
+        ],
+        "source": {
+          "file": "fs/proc/proc_tty.c",
+          "line": 165,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "dir",
+          "module_file": "fs/proc/proc_tty.c",
+          "registration_kind": "proc_mkdir",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldisc",
+        "kind": "virtual_dir",
+        "capabilities": [
+          "open",
+          "getdents64"
+        ],
+        "source": {
+          "file": "fs/proc/proc_tty.c",
+          "line": 167,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "dir",
+          "module_file": "fs/proc/proc_tty.c",
+          "registration_kind": "proc_mkdir",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldiscs",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/proc_tty.c",
+          "line": 175,
+          "symbol": "tty_ldiscs_seq_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/proc_tty.c",
+          "registration_kind": "proc_create_seq",
+          "manual_todo": [
+            "ops symbol tty_ldiscs_seq_ops was not resolved",
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/drivers",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/proc_tty.c",
+          "line": 176,
+          "symbol": "tty_drivers_op"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/proc_tty.c",
+          "registration_kind": "proc_create_seq",
+          "manual_todo": [
+            "ops symbol tty_drivers_op was not resolved",
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cmdline",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/cmdline.c",
+          "line": 19,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/cmdline.c",
+          "registration_kind": "proc_create_single",
+          "manual_todo": [
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/vmcore",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "lseek",
+          "mmap"
+        ],
+        "source": {
+          "file": "fs/proc/vmcore.c",
+          "line": 1736,
+          "symbol": "vmcore_proc_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/vmcore.c",
+          "registration_kind": "proc_create",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/net",
+        "kind": "virtual_symlink",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/proc_net.c",
+          "line": 415,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "symlink",
+          "module_file": "fs/proc/proc_net.c",
+          "registration_kind": "proc_symlink",
+          "manual_todo": [
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/uptime",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/uptime.c",
+          "line": 45,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/uptime.c",
+          "registration_kind": "proc_create_single",
+          "manual_todo": [
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/version",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "read"
+        ],
+        "source": {
+          "file": "fs/proc/version.c",
+          "line": 23,
+          "symbol": null
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/version.c",
+          "registration_kind": "proc_create_single",
+          "manual_todo": [
+            "using conservative open/read fallback because ops could not be resolved"
+          ],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kcore",
+        "kind": "virtual_file",
+        "capabilities": [
+          "open",
+          "lseek"
+        ],
+        "source": {
+          "file": "fs/proc/kcore.c",
+          "line": 725,
+          "symbol": "kcore_proc_ops"
+        },
+        "metadata": {
+          "target_module": "fs/proc",
+          "search_method": "prefix",
+          "scan_mode": "auto",
+          "node_type": "file",
+          "module_file": "fs/proc/kcore.c",
+          "registration_kind": "proc_create",
+          "manual_todo": [],
+          "files_scanned": 34,
+          "registrations_scanned": 39
+        }
+      }
+    ],
+    "existing_keys": [],
+    "new": [
+      {
+        "subsystem": "proc",
+        "target": "/proc/consoles",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/consoles.c",
+          "impl_file": "fs/proc/consoles.c",
+          "impl_line": 113,
+          "symbol": "consoles_op",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_consoles__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/consoles",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/consoles.c",
+          "impl_file": "fs/proc/consoles.c",
+          "impl_line": 113,
+          "symbol": "consoles_op",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_consoles__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/mounts",
+        "kind": "symlink",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/root.c",
+          "impl_file": "fs/proc/root.c",
+          "impl_line": 371,
+          "symbol": null,
+          "registration_kind": "proc_symlink",
+          "suggested_case_file": "proc_mounts__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/mounts",
+        "kind": "symlink",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/root.c",
+          "impl_file": "fs/proc/root.c",
+          "impl_line": 371,
+          "symbol": null,
+          "registration_kind": "proc_symlink",
+          "suggested_case_file": "proc_mounts__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/fs",
+        "kind": "dir",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/root.c",
+          "impl_file": "fs/proc/root.c",
+          "impl_line": 374,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_fs__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/fs",
+        "kind": "dir",
+        "capabilities": [
+          "getdents64"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/root.c",
+          "impl_file": "fs/proc/root.c",
+          "impl_line": 374,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_fs__getdents64.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/driver",
+        "kind": "dir",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/root.c",
+          "impl_file": "fs/proc/root.c",
+          "impl_line": 375,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_driver__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/driver",
+        "kind": "dir",
+        "capabilities": [
+          "getdents64"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/root.c",
+          "impl_file": "fs/proc/root.c",
+          "impl_line": 375,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_driver__getdents64.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bus",
+        "kind": "dir",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/root.c",
+          "impl_file": "fs/proc/root.c",
+          "impl_line": 382,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_bus__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bus",
+        "kind": "dir",
+        "capabilities": [
+          "getdents64"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/root.c",
+          "impl_file": "fs/proc/root.c",
+          "impl_line": 382,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_bus__getdents64.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/sys",
+        "kind": "dir",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_sysctl.c",
+          "impl_file": "fs/proc/proc_sysctl.c",
+          "impl_line": 1565,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_sys__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/sys",
+        "kind": "dir",
+        "capabilities": [
+          "getdents64"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_sysctl.c",
+          "impl_file": "fs/proc/proc_sysctl.c",
+          "impl_line": 1565,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_sys__getdents64.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/stat",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/stat.c",
+          "impl_file": "fs/proc/stat.c",
+          "impl_line": 213,
+          "symbol": "stat_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_stat__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/stat",
+        "kind": "file",
+        "capabilities": [
+          "lseek"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/stat.c",
+          "impl_file": "fs/proc/stat.c",
+          "impl_line": 213,
+          "symbol": "stat_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_stat__lseek.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/stat",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/stat.c",
+          "impl_file": "fs/proc/stat.c",
+          "impl_line": 213,
+          "symbol": "stat_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_stat__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/maps",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/nommu.c",
+          "impl_file": "fs/proc/nommu.c",
+          "impl_line": 112,
+          "symbol": "proc_nommu_region_list_seqop",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_maps__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/maps",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/nommu.c",
+          "impl_file": "fs/proc/nommu.c",
+          "impl_line": 112,
+          "symbol": "proc_nommu_region_list_seqop",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_maps__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/loadavg",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/loadavg.c",
+          "impl_file": "fs/proc/loadavg.c",
+          "impl_line": 33,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_loadavg__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/loadavg",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/loadavg.c",
+          "impl_file": "fs/proc/loadavg.c",
+          "impl_line": 33,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_loadavg__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bootconfig",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/bootconfig.c",
+          "impl_file": "fs/proc/bootconfig.c",
+          "impl_line": 98,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_bootconfig__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bootconfig",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/bootconfig.c",
+          "impl_file": "fs/proc/bootconfig.c",
+          "impl_line": 98,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_bootconfig__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cpuinfo",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/cpuinfo.c",
+          "impl_file": "fs/proc/cpuinfo.c",
+          "impl_line": 25,
+          "symbol": "cpuinfo_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_cpuinfo__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cpuinfo",
+        "kind": "file",
+        "capabilities": [
+          "lseek"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/cpuinfo.c",
+          "impl_file": "fs/proc/cpuinfo.c",
+          "impl_line": 25,
+          "symbol": "cpuinfo_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_cpuinfo__lseek.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cpuinfo",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/cpuinfo.c",
+          "impl_file": "fs/proc/cpuinfo.c",
+          "impl_line": 25,
+          "symbol": "cpuinfo_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_cpuinfo__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kmsg",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/kmsg.c",
+          "impl_file": "fs/proc/kmsg.c",
+          "impl_line": 60,
+          "symbol": "kmsg_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kmsg__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kmsg",
+        "kind": "file",
+        "capabilities": [
+          "poll"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/kmsg.c",
+          "impl_file": "fs/proc/kmsg.c",
+          "impl_line": 60,
+          "symbol": "kmsg_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kmsg__poll.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kmsg",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/kmsg.c",
+          "impl_file": "fs/proc/kmsg.c",
+          "impl_line": 60,
+          "symbol": "kmsg_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kmsg__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kmsg",
+        "kind": "file",
+        "capabilities": [
+          "lseek"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/kmsg.c",
+          "impl_file": "fs/proc/kmsg.c",
+          "impl_line": 60,
+          "symbol": "kmsg_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kmsg__lseek.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/softirqs",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/softirqs.c",
+          "impl_file": "fs/proc/softirqs.c",
+          "impl_line": 33,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_softirqs__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/softirqs",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/softirqs.c",
+          "impl_file": "fs/proc/softirqs.c",
+          "impl_line": 33,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_softirqs__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/devices",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/devices.c",
+          "impl_file": "fs/proc/devices.c",
+          "impl_line": 60,
+          "symbol": "devinfo_ops",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_devices__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/devices",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/devices.c",
+          "impl_file": "fs/proc/devices.c",
+          "impl_line": 60,
+          "symbol": "devinfo_ops",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_devices__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/interrupts",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/interrupts.c",
+          "impl_file": "fs/proc/interrupts.c",
+          "impl_line": 39,
+          "symbol": "int_seq_ops",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_interrupts__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/interrupts",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/interrupts.c",
+          "impl_file": "fs/proc/interrupts.c",
+          "impl_line": 39,
+          "symbol": "int_seq_ops",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_interrupts__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecount",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/page.c",
+          "impl_file": "fs/proc/page.c",
+          "impl_line": 292,
+          "symbol": "kpagecount_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kpagecount__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecount",
+        "kind": "file",
+        "capabilities": [
+          "lseek"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/page.c",
+          "impl_file": "fs/proc/page.c",
+          "impl_line": 292,
+          "symbol": "kpagecount_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kpagecount__lseek.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecount",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/page.c",
+          "impl_file": "fs/proc/page.c",
+          "impl_line": 292,
+          "symbol": "kpagecount_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kpagecount__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpageflags",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/page.c",
+          "impl_file": "fs/proc/page.c",
+          "impl_line": 293,
+          "symbol": "kpageflags_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kpageflags__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpageflags",
+        "kind": "file",
+        "capabilities": [
+          "lseek"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/page.c",
+          "impl_file": "fs/proc/page.c",
+          "impl_line": 293,
+          "symbol": "kpageflags_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kpageflags__lseek.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpageflags",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/page.c",
+          "impl_file": "fs/proc/page.c",
+          "impl_line": 293,
+          "symbol": "kpageflags_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kpageflags__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecgroup",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/page.c",
+          "impl_file": "fs/proc/page.c",
+          "impl_line": 295,
+          "symbol": "kpagecgroup_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kpagecgroup__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecgroup",
+        "kind": "file",
+        "capabilities": [
+          "lseek"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/page.c",
+          "impl_file": "fs/proc/page.c",
+          "impl_line": 295,
+          "symbol": "kpagecgroup_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kpagecgroup__lseek.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecgroup",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/page.c",
+          "impl_file": "fs/proc/page.c",
+          "impl_line": 295,
+          "symbol": "kpagecgroup_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kpagecgroup__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/meminfo",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/meminfo.c",
+          "impl_file": "fs/proc/meminfo.c",
+          "impl_line": 184,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_meminfo__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/meminfo",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/meminfo.c",
+          "impl_file": "fs/proc/meminfo.c",
+          "impl_line": 184,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_meminfo__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty",
+        "kind": "dir",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_tty.c",
+          "impl_file": "fs/proc/proc_tty.c",
+          "impl_line": 165,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_tty__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty",
+        "kind": "dir",
+        "capabilities": [
+          "getdents64"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_tty.c",
+          "impl_file": "fs/proc/proc_tty.c",
+          "impl_line": 165,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_tty__getdents64.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldisc",
+        "kind": "dir",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_tty.c",
+          "impl_file": "fs/proc/proc_tty.c",
+          "impl_line": 167,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_tty_ldisc__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldisc",
+        "kind": "dir",
+        "capabilities": [
+          "getdents64"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_tty.c",
+          "impl_file": "fs/proc/proc_tty.c",
+          "impl_line": 167,
+          "symbol": null,
+          "registration_kind": "proc_mkdir",
+          "suggested_case_file": "proc_tty_ldisc__getdents64.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldiscs",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_tty.c",
+          "impl_file": "fs/proc/proc_tty.c",
+          "impl_line": 175,
+          "symbol": "tty_ldiscs_seq_ops",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_tty_ldiscs__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldiscs",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_tty.c",
+          "impl_file": "fs/proc/proc_tty.c",
+          "impl_line": 175,
+          "symbol": "tty_ldiscs_seq_ops",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_tty_ldiscs__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/drivers",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_tty.c",
+          "impl_file": "fs/proc/proc_tty.c",
+          "impl_line": 176,
+          "symbol": "tty_drivers_op",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_tty_drivers__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/drivers",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_tty.c",
+          "impl_file": "fs/proc/proc_tty.c",
+          "impl_line": 176,
+          "symbol": "tty_drivers_op",
+          "registration_kind": "proc_create_seq",
+          "suggested_case_file": "proc_tty_drivers__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cmdline",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/cmdline.c",
+          "impl_file": "fs/proc/cmdline.c",
+          "impl_line": 19,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_cmdline__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cmdline",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/cmdline.c",
+          "impl_file": "fs/proc/cmdline.c",
+          "impl_line": 19,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_cmdline__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/vmcore",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/vmcore.c",
+          "impl_file": "fs/proc/vmcore.c",
+          "impl_line": 1736,
+          "symbol": "vmcore_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_vmcore__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/vmcore",
+        "kind": "file",
+        "capabilities": [
+          "lseek"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/vmcore.c",
+          "impl_file": "fs/proc/vmcore.c",
+          "impl_line": 1736,
+          "symbol": "vmcore_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_vmcore__lseek.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/vmcore",
+        "kind": "file",
+        "capabilities": [
+          "mmap"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/vmcore.c",
+          "impl_file": "fs/proc/vmcore.c",
+          "impl_line": 1736,
+          "symbol": "vmcore_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_vmcore__mmap.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/net",
+        "kind": "symlink",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_net.c",
+          "impl_file": "fs/proc/proc_net.c",
+          "impl_line": 415,
+          "symbol": null,
+          "registration_kind": "proc_symlink",
+          "suggested_case_file": "proc_net__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/net",
+        "kind": "symlink",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/proc_net.c",
+          "impl_file": "fs/proc/proc_net.c",
+          "impl_line": 415,
+          "symbol": null,
+          "registration_kind": "proc_symlink",
+          "suggested_case_file": "proc_net__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/uptime",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/uptime.c",
+          "impl_file": "fs/proc/uptime.c",
+          "impl_line": 45,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_uptime__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/uptime",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/uptime.c",
+          "impl_file": "fs/proc/uptime.c",
+          "impl_line": 45,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_uptime__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/version",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/version.c",
+          "impl_file": "fs/proc/version.c",
+          "impl_line": 23,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_version__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/version",
+        "kind": "file",
+        "capabilities": [
+          "read"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/version.c",
+          "impl_file": "fs/proc/version.c",
+          "impl_line": 23,
+          "symbol": null,
+          "registration_kind": "proc_create_single",
+          "suggested_case_file": "proc_version__read.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kcore",
+        "kind": "file",
+        "capabilities": [
+          "open"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/kcore.c",
+          "impl_file": "fs/proc/kcore.c",
+          "impl_line": 725,
+          "symbol": "kcore_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kcore__open.json"
+        }
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kcore",
+        "kind": "file",
+        "capabilities": [
+          "lseek"
+        ],
+        "source": null,
+        "metadata": {
+          "module_file": "fs/proc/kcore.c",
+          "impl_file": "fs/proc/kcore.c",
+          "impl_line": 725,
+          "symbol": "kcore_proc_ops",
+          "registration_kind": "proc_create",
+          "suggested_case_file": "proc_kcore__lseek.json"
+        }
+      }
+    ],
+    "new_items": [
+      {
+        "subsystem": "proc",
+        "target": "/proc/consoles",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/consoles.c",
+        "impl_file": "fs/proc/consoles.c",
+        "impl_line": 113,
+        "symbol": "consoles_op",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_consoles__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/consoles",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/consoles.c",
+        "impl_file": "fs/proc/consoles.c",
+        "impl_line": 113,
+        "symbol": "consoles_op",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_consoles__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/mounts",
+        "op": "open",
+        "node_type": "symlink",
+        "module_file": "fs/proc/root.c",
+        "impl_file": "fs/proc/root.c",
+        "impl_line": 371,
+        "symbol": null,
+        "registration_kind": "proc_symlink",
+        "suggested_case_file": "proc_mounts__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/mounts",
+        "op": "read",
+        "node_type": "symlink",
+        "module_file": "fs/proc/root.c",
+        "impl_file": "fs/proc/root.c",
+        "impl_line": 371,
+        "symbol": null,
+        "registration_kind": "proc_symlink",
+        "suggested_case_file": "proc_mounts__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/fs",
+        "op": "open",
+        "node_type": "dir",
+        "module_file": "fs/proc/root.c",
+        "impl_file": "fs/proc/root.c",
+        "impl_line": 374,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_fs__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/fs",
+        "op": "getdents64",
+        "node_type": "dir",
+        "module_file": "fs/proc/root.c",
+        "impl_file": "fs/proc/root.c",
+        "impl_line": 374,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_fs__getdents64.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/driver",
+        "op": "open",
+        "node_type": "dir",
+        "module_file": "fs/proc/root.c",
+        "impl_file": "fs/proc/root.c",
+        "impl_line": 375,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_driver__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/driver",
+        "op": "getdents64",
+        "node_type": "dir",
+        "module_file": "fs/proc/root.c",
+        "impl_file": "fs/proc/root.c",
+        "impl_line": 375,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_driver__getdents64.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bus",
+        "op": "open",
+        "node_type": "dir",
+        "module_file": "fs/proc/root.c",
+        "impl_file": "fs/proc/root.c",
+        "impl_line": 382,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_bus__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bus",
+        "op": "getdents64",
+        "node_type": "dir",
+        "module_file": "fs/proc/root.c",
+        "impl_file": "fs/proc/root.c",
+        "impl_line": 382,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_bus__getdents64.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/sys",
+        "op": "open",
+        "node_type": "dir",
+        "module_file": "fs/proc/proc_sysctl.c",
+        "impl_file": "fs/proc/proc_sysctl.c",
+        "impl_line": 1565,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_sys__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/sys",
+        "op": "getdents64",
+        "node_type": "dir",
+        "module_file": "fs/proc/proc_sysctl.c",
+        "impl_file": "fs/proc/proc_sysctl.c",
+        "impl_line": 1565,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_sys__getdents64.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/stat",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/stat.c",
+        "impl_file": "fs/proc/stat.c",
+        "impl_line": 213,
+        "symbol": "stat_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_stat__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/stat",
+        "op": "lseek",
+        "node_type": "file",
+        "module_file": "fs/proc/stat.c",
+        "impl_file": "fs/proc/stat.c",
+        "impl_line": 213,
+        "symbol": "stat_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_stat__lseek.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/stat",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/stat.c",
+        "impl_file": "fs/proc/stat.c",
+        "impl_line": 213,
+        "symbol": "stat_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_stat__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/maps",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/nommu.c",
+        "impl_file": "fs/proc/nommu.c",
+        "impl_line": 112,
+        "symbol": "proc_nommu_region_list_seqop",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_maps__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/maps",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/nommu.c",
+        "impl_file": "fs/proc/nommu.c",
+        "impl_line": 112,
+        "symbol": "proc_nommu_region_list_seqop",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_maps__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/loadavg",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/loadavg.c",
+        "impl_file": "fs/proc/loadavg.c",
+        "impl_line": 33,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_loadavg__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/loadavg",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/loadavg.c",
+        "impl_file": "fs/proc/loadavg.c",
+        "impl_line": 33,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_loadavg__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bootconfig",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/bootconfig.c",
+        "impl_file": "fs/proc/bootconfig.c",
+        "impl_line": 98,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_bootconfig__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/bootconfig",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/bootconfig.c",
+        "impl_file": "fs/proc/bootconfig.c",
+        "impl_line": 98,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_bootconfig__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cpuinfo",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/cpuinfo.c",
+        "impl_file": "fs/proc/cpuinfo.c",
+        "impl_line": 25,
+        "symbol": "cpuinfo_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_cpuinfo__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cpuinfo",
+        "op": "lseek",
+        "node_type": "file",
+        "module_file": "fs/proc/cpuinfo.c",
+        "impl_file": "fs/proc/cpuinfo.c",
+        "impl_line": 25,
+        "symbol": "cpuinfo_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_cpuinfo__lseek.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cpuinfo",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/cpuinfo.c",
+        "impl_file": "fs/proc/cpuinfo.c",
+        "impl_line": 25,
+        "symbol": "cpuinfo_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_cpuinfo__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kmsg",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/kmsg.c",
+        "impl_file": "fs/proc/kmsg.c",
+        "impl_line": 60,
+        "symbol": "kmsg_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kmsg__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kmsg",
+        "op": "poll",
+        "node_type": "file",
+        "module_file": "fs/proc/kmsg.c",
+        "impl_file": "fs/proc/kmsg.c",
+        "impl_line": 60,
+        "symbol": "kmsg_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kmsg__poll.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kmsg",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/kmsg.c",
+        "impl_file": "fs/proc/kmsg.c",
+        "impl_line": 60,
+        "symbol": "kmsg_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kmsg__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kmsg",
+        "op": "lseek",
+        "node_type": "file",
+        "module_file": "fs/proc/kmsg.c",
+        "impl_file": "fs/proc/kmsg.c",
+        "impl_line": 60,
+        "symbol": "kmsg_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kmsg__lseek.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/softirqs",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/softirqs.c",
+        "impl_file": "fs/proc/softirqs.c",
+        "impl_line": 33,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_softirqs__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/softirqs",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/softirqs.c",
+        "impl_file": "fs/proc/softirqs.c",
+        "impl_line": 33,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_softirqs__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/devices",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/devices.c",
+        "impl_file": "fs/proc/devices.c",
+        "impl_line": 60,
+        "symbol": "devinfo_ops",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_devices__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/devices",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/devices.c",
+        "impl_file": "fs/proc/devices.c",
+        "impl_line": 60,
+        "symbol": "devinfo_ops",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_devices__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/interrupts",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/interrupts.c",
+        "impl_file": "fs/proc/interrupts.c",
+        "impl_line": 39,
+        "symbol": "int_seq_ops",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_interrupts__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/interrupts",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/interrupts.c",
+        "impl_file": "fs/proc/interrupts.c",
+        "impl_line": 39,
+        "symbol": "int_seq_ops",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_interrupts__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecount",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "impl_file": "fs/proc/page.c",
+        "impl_line": 292,
+        "symbol": "kpagecount_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kpagecount__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecount",
+        "op": "lseek",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "impl_file": "fs/proc/page.c",
+        "impl_line": 292,
+        "symbol": "kpagecount_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kpagecount__lseek.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecount",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "impl_file": "fs/proc/page.c",
+        "impl_line": 292,
+        "symbol": "kpagecount_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kpagecount__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpageflags",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "impl_file": "fs/proc/page.c",
+        "impl_line": 293,
+        "symbol": "kpageflags_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kpageflags__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpageflags",
+        "op": "lseek",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "impl_file": "fs/proc/page.c",
+        "impl_line": 293,
+        "symbol": "kpageflags_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kpageflags__lseek.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpageflags",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "impl_file": "fs/proc/page.c",
+        "impl_line": 293,
+        "symbol": "kpageflags_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kpageflags__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecgroup",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "impl_file": "fs/proc/page.c",
+        "impl_line": 295,
+        "symbol": "kpagecgroup_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kpagecgroup__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecgroup",
+        "op": "lseek",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "impl_file": "fs/proc/page.c",
+        "impl_line": 295,
+        "symbol": "kpagecgroup_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kpagecgroup__lseek.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kpagecgroup",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/page.c",
+        "impl_file": "fs/proc/page.c",
+        "impl_line": 295,
+        "symbol": "kpagecgroup_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kpagecgroup__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/meminfo",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/meminfo.c",
+        "impl_file": "fs/proc/meminfo.c",
+        "impl_line": 184,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_meminfo__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/meminfo",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/meminfo.c",
+        "impl_file": "fs/proc/meminfo.c",
+        "impl_line": 184,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_meminfo__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty",
+        "op": "open",
+        "node_type": "dir",
+        "module_file": "fs/proc/proc_tty.c",
+        "impl_file": "fs/proc/proc_tty.c",
+        "impl_line": 165,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_tty__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty",
+        "op": "getdents64",
+        "node_type": "dir",
+        "module_file": "fs/proc/proc_tty.c",
+        "impl_file": "fs/proc/proc_tty.c",
+        "impl_line": 165,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_tty__getdents64.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldisc",
+        "op": "open",
+        "node_type": "dir",
+        "module_file": "fs/proc/proc_tty.c",
+        "impl_file": "fs/proc/proc_tty.c",
+        "impl_line": 167,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_tty_ldisc__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldisc",
+        "op": "getdents64",
+        "node_type": "dir",
+        "module_file": "fs/proc/proc_tty.c",
+        "impl_file": "fs/proc/proc_tty.c",
+        "impl_line": 167,
+        "symbol": null,
+        "registration_kind": "proc_mkdir",
+        "suggested_case_file": "proc_tty_ldisc__getdents64.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldiscs",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/proc_tty.c",
+        "impl_file": "fs/proc/proc_tty.c",
+        "impl_line": 175,
+        "symbol": "tty_ldiscs_seq_ops",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_tty_ldiscs__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/ldiscs",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/proc_tty.c",
+        "impl_file": "fs/proc/proc_tty.c",
+        "impl_line": 175,
+        "symbol": "tty_ldiscs_seq_ops",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_tty_ldiscs__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/drivers",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/proc_tty.c",
+        "impl_file": "fs/proc/proc_tty.c",
+        "impl_line": 176,
+        "symbol": "tty_drivers_op",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_tty_drivers__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/tty/drivers",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/proc_tty.c",
+        "impl_file": "fs/proc/proc_tty.c",
+        "impl_line": 176,
+        "symbol": "tty_drivers_op",
+        "registration_kind": "proc_create_seq",
+        "suggested_case_file": "proc_tty_drivers__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cmdline",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/cmdline.c",
+        "impl_file": "fs/proc/cmdline.c",
+        "impl_line": 19,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_cmdline__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/cmdline",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/cmdline.c",
+        "impl_file": "fs/proc/cmdline.c",
+        "impl_line": 19,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_cmdline__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/vmcore",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/vmcore.c",
+        "impl_file": "fs/proc/vmcore.c",
+        "impl_line": 1736,
+        "symbol": "vmcore_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_vmcore__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/vmcore",
+        "op": "lseek",
+        "node_type": "file",
+        "module_file": "fs/proc/vmcore.c",
+        "impl_file": "fs/proc/vmcore.c",
+        "impl_line": 1736,
+        "symbol": "vmcore_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_vmcore__lseek.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/vmcore",
+        "op": "mmap",
+        "node_type": "file",
+        "module_file": "fs/proc/vmcore.c",
+        "impl_file": "fs/proc/vmcore.c",
+        "impl_line": 1736,
+        "symbol": "vmcore_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_vmcore__mmap.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/net",
+        "op": "open",
+        "node_type": "symlink",
+        "module_file": "fs/proc/proc_net.c",
+        "impl_file": "fs/proc/proc_net.c",
+        "impl_line": 415,
+        "symbol": null,
+        "registration_kind": "proc_symlink",
+        "suggested_case_file": "proc_net__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/net",
+        "op": "read",
+        "node_type": "symlink",
+        "module_file": "fs/proc/proc_net.c",
+        "impl_file": "fs/proc/proc_net.c",
+        "impl_line": 415,
+        "symbol": null,
+        "registration_kind": "proc_symlink",
+        "suggested_case_file": "proc_net__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/uptime",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/uptime.c",
+        "impl_file": "fs/proc/uptime.c",
+        "impl_line": 45,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_uptime__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/uptime",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/uptime.c",
+        "impl_file": "fs/proc/uptime.c",
+        "impl_line": 45,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_uptime__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/version",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/version.c",
+        "impl_file": "fs/proc/version.c",
+        "impl_line": 23,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_version__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/version",
+        "op": "read",
+        "node_type": "file",
+        "module_file": "fs/proc/version.c",
+        "impl_file": "fs/proc/version.c",
+        "impl_line": 23,
+        "symbol": null,
+        "registration_kind": "proc_create_single",
+        "suggested_case_file": "proc_version__read.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kcore",
+        "op": "open",
+        "node_type": "file",
+        "module_file": "fs/proc/kcore.c",
+        "impl_file": "fs/proc/kcore.c",
+        "impl_line": 725,
+        "symbol": "kcore_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kcore__open.json"
+      },
+      {
+        "subsystem": "proc",
+        "target": "/proc/kcore",
+        "op": "lseek",
+        "node_type": "file",
+        "module_file": "fs/proc/kcore.c",
+        "impl_file": "fs/proc/kcore.c",
+        "impl_line": 725,
+        "symbol": "kcore_proc_ops",
+        "registration_kind": "proc_create",
+        "suggested_case_file": "proc_kcore__lseek.json"
+      }
+    ]
+  },
+  "generate": {
+    "generated_files": [
+      {
+        "path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+        "kind": "txt",
+        "details": {
+          "entry_count": 29
+        }
+      },
+      {
+        "path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const",
+        "kind": "txt.const",
+        "details": {
+          "entry_count": 6
+        }
+      }
+    ],
+    "units": [
+      {
+        "target": "/proc/bootconfig",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_bootconfig",
+        "open_alias": "openat$proc_proc_bootconfig",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/bus",
+        "supported_ops": [
+          "getdents64",
+          "open"
+        ],
+        "resource_name": "fd_dir",
+        "open_alias": "openat$proc_proc_bus",
+        "kind": "dir"
+      },
+      {
+        "target": "/proc/cmdline",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_cmdline",
+        "open_alias": "openat$proc_proc_cmdline",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/consoles",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_consoles",
+        "open_alias": "openat$proc_proc_consoles",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/cpuinfo",
+        "supported_ops": [
+          "lseek",
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_cpuinfo",
+        "open_alias": "openat$proc_proc_cpuinfo",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/devices",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_devices",
+        "open_alias": "openat$proc_proc_devices",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/driver",
+        "supported_ops": [
+          "getdents64",
+          "open"
+        ],
+        "resource_name": "fd_dir",
+        "open_alias": "openat$proc_proc_driver",
+        "kind": "dir"
+      },
+      {
+        "target": "/proc/fs",
+        "supported_ops": [
+          "getdents64",
+          "open"
+        ],
+        "resource_name": "fd_dir",
+        "open_alias": "openat$proc_proc_fs",
+        "kind": "dir"
+      },
+      {
+        "target": "/proc/interrupts",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_interrupts",
+        "open_alias": "openat$proc_proc_interrupts",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/kcore",
+        "supported_ops": [
+          "lseek",
+          "open"
+        ],
+        "resource_name": "fd_proc_proc_kcore",
+        "open_alias": "openat$proc_proc_kcore",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/kmsg",
+        "supported_ops": [
+          "lseek",
+          "open",
+          "poll",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_kmsg",
+        "open_alias": "openat$proc_proc_kmsg",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/kpagecgroup",
+        "supported_ops": [
+          "lseek",
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_kpagecgroup",
+        "open_alias": "openat$proc_proc_kpagecgroup",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/kpagecount",
+        "supported_ops": [
+          "lseek",
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_kpagecount",
+        "open_alias": "openat$proc_proc_kpagecount",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/kpageflags",
+        "supported_ops": [
+          "lseek",
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_kpageflags",
+        "open_alias": "openat$proc_proc_kpageflags",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/loadavg",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_loadavg",
+        "open_alias": "openat$proc_proc_loadavg",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/maps",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_maps",
+        "open_alias": "openat$proc_proc_maps",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/meminfo",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_meminfo",
+        "open_alias": "openat$proc_proc_meminfo",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/mounts",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_mounts",
+        "open_alias": "openat$proc_proc_mounts",
+        "kind": "symlink"
+      },
+      {
+        "target": "/proc/net",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_net",
+        "open_alias": "openat$proc_proc_net",
+        "kind": "symlink"
+      },
+      {
+        "target": "/proc/softirqs",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_softirqs",
+        "open_alias": "openat$proc_proc_softirqs",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/stat",
+        "supported_ops": [
+          "lseek",
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_stat",
+        "open_alias": "openat$proc_proc_stat",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/sys",
+        "supported_ops": [
+          "getdents64",
+          "open"
+        ],
+        "resource_name": "fd_dir",
+        "open_alias": "openat$proc_proc_sys",
+        "kind": "dir"
+      },
+      {
+        "target": "/proc/tty",
+        "supported_ops": [
+          "getdents64",
+          "open"
+        ],
+        "resource_name": "fd_dir",
+        "open_alias": "openat$proc_proc_tty",
+        "kind": "dir"
+      },
+      {
+        "target": "/proc/tty/drivers",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_tty_drivers",
+        "open_alias": "openat$proc_proc_tty_drivers",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/tty/ldisc",
+        "supported_ops": [
+          "getdents64",
+          "open"
+        ],
+        "resource_name": "fd_dir",
+        "open_alias": "openat$proc_proc_tty_ldisc",
+        "kind": "dir"
+      },
+      {
+        "target": "/proc/tty/ldiscs",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_tty_ldiscs",
+        "open_alias": "openat$proc_proc_tty_ldiscs",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/uptime",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_uptime",
+        "open_alias": "openat$proc_proc_uptime",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/version",
+        "supported_ops": [
+          "open",
+          "read"
+        ],
+        "resource_name": "fd_proc_proc_version",
+        "open_alias": "openat$proc_proc_version",
+        "kind": "file"
+      },
+      {
+        "target": "/proc/vmcore",
+        "supported_ops": [
+          "lseek",
+          "mmap",
+          "open"
+        ],
+        "resource_name": "fd_proc_proc_vmcore",
+        "open_alias": "openat$proc_proc_vmcore",
+        "kind": "file"
+      }
+    ],
+    "metadata": {
+      "generated_interface_count": 29,
+      "skipped_interface_count": 37,
+      "txt_path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "const_path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const"
+    }
+  },
+  "validate": {
+    "status": "passed",
+    "diagnostics": [
+      {
+        "file": "Makefile",
+        "line": 31,
+        "column": null,
+        "message": "run command via tools/syz-env for best compatibility, see:",
+        "tracked_file_hit": false
+      },
+      {
+        "file": "Makefile",
+        "line": 32,
+        "column": null,
+        "message": "https://github.com/google/syzkaller/blob/master/docs/contributing.md#using-syz-env",
+        "tracked_file_hit": false
+      }
+    ],
+    "metadata": {
+      "command": [
+        "make",
+        "descriptions"
+      ],
+      "make_target": "descriptions",
+      "timeout_sec": 300,
+      "returncode": 0,
+      "timed_out": false,
+      "duration_sec": 23.741,
+      "stdout_tail": [
+        "go list -f '{{.Stale}}' -ldflags=\"-s -w -X github.com/google/syzkaller/prog.GitRevision=a9b123cd46edf5ce26b47619c112c47f92075ef9 -X github.com/google/syzkaller/prog.gitRevisionDate=20260423-164643\"  ./sys/syz-sysgen | grep -q false || go install -ldflags=\"-s -w -X github.com/google/syzkaller/prog.GitRevision=a9b123cd46edf5ce26b47619c112c47f92075ef9 -X github.com/google/syzkaller/prog.gitRevisionDate=20260423-164643\"  ./sys/syz-sysgen",
+        "make .descriptions",
+        "bin/syz-sysgen",
+        "touch .descriptions"
+      ],
+      "stderr_tail": [
+        "Makefile:31: run command via tools/syz-env for best compatibility, see:",
+        "Makefile:32: https://github.com/google/syzkaller/blob/master/docs/contributing.md#using-syz-env",
+        "Makefile:31: run command via tools/syz-env for best compatibility, see:",
+        "Makefile:32: https://github.com/google/syzkaller/blob/master/docs/contributing.md#using-syz-env"
+      ],
+      "tracked_generated_files": [
+        "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+        "/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const"
+      ]
+    }
+  }
+}

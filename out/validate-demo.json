@@ -1,0 +1,46 @@
+{
+  "status": "passed",
+  "diagnostics": [
+    {
+      "file": "Makefile",
+      "line": 31,
+      "column": null,
+      "message": "run command via tools/syz-env for best compatibility, see:",
+      "tracked_file_hit": false
+    },
+    {
+      "file": "Makefile",
+      "line": 32,
+      "column": null,
+      "message": "https://github.com/google/syzkaller/blob/master/docs/contributing.md#using-syz-env",
+      "tracked_file_hit": false
+    }
+  ],
+  "metadata": {
+    "command": [
+      "make",
+      "descriptions"
+    ],
+    "make_target": "descriptions",
+    "timeout_sec": 300,
+    "returncode": 0,
+    "timed_out": false,
+    "duration_sec": 28.121,
+    "stdout_tail": [
+      "go list -f '{{.Stale}}' -ldflags=\"-s -w -X github.com/google/syzkaller/prog.GitRevision=a9b123cd46edf5ce26b47619c112c47f92075ef9 -X github.com/google/syzkaller/prog.gitRevisionDate=20260423-164643\"  ./sys/syz-sysgen | grep -q false || go install -ldflags=\"-s -w -X github.com/google/syzkaller/prog.GitRevision=a9b123cd46edf5ce26b47619c112c47f92075ef9 -X github.com/google/syzkaller/prog.gitRevisionDate=20260423-164643\"  ./sys/syz-sysgen",
+      "make .descriptions",
+      "bin/syz-sysgen",
+      "touch .descriptions"
+    ],
+    "stderr_tail": [
+      "Makefile:31: run command via tools/syz-env for best compatibility, see:",
+      "Makefile:32: https://github.com/google/syzkaller/blob/master/docs/contributing.md#using-syz-env",
+      "Makefile:31: run command via tools/syz-env for best compatibility, see:",
+      "Makefile:32: https://github.com/google/syzkaller/blob/master/docs/contributing.md#using-syz-env"
+    ],
+    "tracked_generated_files": [
+      "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const"
+    ]
+  }
+}

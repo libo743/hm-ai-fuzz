@@ -1,0 +1,55 @@
+{
+  "agent": "sampled-existing-fuzz-v1",
+  "sample_seed": 20260424,
+  "sample_size": 8,
+  "interfaces": [
+    {
+      "subsystem": "proc",
+      "target": "/proc/fs",
+      "op": "getdents64",
+      "module_file": "fs/proc/root.c"
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/kmsg",
+      "op": "read",
+      "module_file": "fs/proc/kmsg.c"
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/cmdline",
+      "op": "read",
+      "module_file": "fs/proc/cmdline.c"
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/kpagecount",
+      "op": "open",
+      "module_file": "fs/proc/page.c"
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/mounts",
+      "op": "read",
+      "module_file": "fs/proc/root.c"
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/loadavg",
+      "op": "read",
+      "module_file": "fs/proc/loadavg.c"
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/tty/drivers",
+      "op": "read",
+      "module_file": "fs/proc/proc_tty.c"
+    },
+    {
+      "subsystem": "proc",
+      "target": "/proc/devices",
+      "op": "read",
+      "module_file": "fs/proc/devices.c"
+    }
+  ]
+}
