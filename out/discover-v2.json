@@ -1,0 +1,4800 @@
+{
+  "schema_version": "v2",
+  "subsystem": "proc",
+  "source_root": "/home/libo/work/linux",
+  "scope": {
+    "module": "fs/proc",
+    "search_method": "prefix",
+    "scan_mode": "auto"
+  },
+  "items": [
+    {
+      "interface_id": "proc:/proc/consoles",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/consoles",
+      "access_paths": [
+        "/proc/consoles"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/consoles#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/consoles#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/consoles.c",
+        "line": 113,
+        "symbol": "consoles_op",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "consoles_op"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/consoles.c",
+        "ops_symbol": "consoles_op",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/consoles",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: consoles_op"
+        ],
+        "manual_todo": [
+          "ops symbol consoles_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol consoles_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/mounts",
+      "interface_type": "symlink_like",
+      "subsystem": "proc",
+      "display_name": "/proc/mounts",
+      "access_paths": [
+        "/proc/mounts"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/mounts#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/mounts#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 371,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_symlink",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "symlink",
+        "registration_kind": "proc_symlink",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/mounts",
+          "resolved 2 operations",
+          "registration kind: proc_symlink"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/fs",
+      "interface_type": "dir_like",
+      "subsystem": "proc",
+      "display_name": "/proc/fs",
+      "access_paths": [
+        "/proc/fs"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/fs#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/fs#getdents64",
+          "op_name": "getdents64",
+          "op_type": "dir_iter",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "getdents64",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_getdents64",
+              "call_form": "getdents64",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "dirent",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation getdents64 to syscall binding getdents64"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 374,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/fs",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/driver",
+      "interface_type": "dir_like",
+      "subsystem": "proc",
+      "display_name": "/proc/driver",
+      "access_paths": [
+        "/proc/driver"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/driver#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/driver#getdents64",
+          "op_name": "getdents64",
+          "op_type": "dir_iter",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "getdents64",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_getdents64",
+              "call_form": "getdents64",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "dirent",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation getdents64 to syscall binding getdents64"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 375,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/driver",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/bus",
+      "interface_type": "dir_like",
+      "subsystem": "proc",
+      "display_name": "/proc/bus",
+      "access_paths": [
+        "/proc/bus"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/bus#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/bus#getdents64",
+          "op_name": "getdents64",
+          "op_type": "dir_iter",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "getdents64",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_getdents64",
+              "call_form": "getdents64",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "dirent",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation getdents64 to syscall binding getdents64"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 382,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/bus",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/sys",
+      "interface_type": "dir_like",
+      "subsystem": "proc",
+      "display_name": "/proc/sys",
+      "access_paths": [
+        "/proc/sys"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/sys#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/sys#getdents64",
+          "op_name": "getdents64",
+          "op_type": "dir_iter",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "getdents64",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_getdents64",
+              "call_form": "getdents64",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "dirent",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation getdents64 to syscall binding getdents64"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/proc_sysctl.c",
+        "line": 1565,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/proc_sysctl.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/sys",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/stat",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/stat",
+      "access_paths": [
+        "/proc/stat"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/stat#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/stat#lseek",
+          "op_name": "lseek",
+          "op_type": "fd_io",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "lseek",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_lseek",
+              "call_form": "lseek",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "offset",
+                  "arg_role": "offset",
+                  "type_hint": "fileoff"
+                },
+                {
+                  "name": "whence",
+                  "arg_role": "flags",
+                  "type_hint": "seek_whence"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation lseek to syscall binding lseek"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/stat#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/stat.c",
+        "line": 213,
+        "symbol": "stat_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "stat_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/stat.c",
+        "ops_symbol": "stat_proc_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/stat",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: stat_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/maps",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/maps",
+      "access_paths": [
+        "/proc/maps"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/maps#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/maps#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/nommu.c",
+        "line": 112,
+        "symbol": "proc_nommu_region_list_seqop",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "proc_nommu_region_list_seqop"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/nommu.c",
+        "ops_symbol": "proc_nommu_region_list_seqop",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/maps",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: proc_nommu_region_list_seqop"
+        ],
+        "manual_todo": [
+          "ops symbol proc_nommu_region_list_seqop was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol proc_nommu_region_list_seqop was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/loadavg",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/loadavg",
+      "access_paths": [
+        "/proc/loadavg"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/loadavg#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/loadavg#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/loadavg.c",
+        "line": 33,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/loadavg.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/loadavg",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/bootconfig",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/bootconfig",
+      "access_paths": [
+        "/proc/bootconfig"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/bootconfig#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/bootconfig#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/bootconfig.c",
+        "line": 98,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/bootconfig.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/bootconfig",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/cpuinfo",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/cpuinfo",
+      "access_paths": [
+        "/proc/cpuinfo"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/cpuinfo#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/cpuinfo#lseek",
+          "op_name": "lseek",
+          "op_type": "fd_io",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "lseek",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_lseek",
+              "call_form": "lseek",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "offset",
+                  "arg_role": "offset",
+                  "type_hint": "fileoff"
+                },
+                {
+                  "name": "whence",
+                  "arg_role": "flags",
+                  "type_hint": "seek_whence"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation lseek to syscall binding lseek"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/cpuinfo#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/cpuinfo.c",
+        "line": 25,
+        "symbol": "cpuinfo_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "cpuinfo_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/cpuinfo.c",
+        "ops_symbol": "cpuinfo_proc_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/cpuinfo",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: cpuinfo_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/kmsg",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/kmsg",
+      "access_paths": [
+        "/proc/kmsg"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/kmsg#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kmsg#poll",
+          "op_name": "poll",
+          "op_type": "fd_poll",
+          "direction": "inout",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": true,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "poll",
+              "syscall_family": "fs_poll",
+              "syscall_nr_symbol": "__NR_poll",
+              "call_form": "poll",
+              "arguments": [
+                {
+                  "name": "ufds",
+                  "arg_role": "fd_array",
+                  "type_hint": "pollfd[]"
+                },
+                {
+                  "name": "nfds",
+                  "arg_role": "length",
+                  "type_hint": "int"
+                },
+                {
+                  "name": "timeout",
+                  "arg_role": "timeout",
+                  "type_hint": "int32"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation poll to syscall binding poll"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kmsg#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kmsg#lseek",
+          "op_name": "lseek",
+          "op_type": "fd_io",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "lseek",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_lseek",
+              "call_form": "lseek",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "offset",
+                  "arg_role": "offset",
+                  "type_hint": "fileoff"
+                },
+                {
+                  "name": "whence",
+                  "arg_role": "flags",
+                  "type_hint": "seek_whence"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation lseek to syscall binding lseek"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/kmsg.c",
+        "line": 60,
+        "symbol": "kmsg_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kmsg_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/kmsg.c",
+        "ops_symbol": "kmsg_proc_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kmsg",
+          "resolved 4 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kmsg_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/softirqs",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/softirqs",
+      "access_paths": [
+        "/proc/softirqs"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/softirqs#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/softirqs#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/softirqs.c",
+        "line": 33,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/softirqs.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/softirqs",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/devices",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/devices",
+      "access_paths": [
+        "/proc/devices"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/devices#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/devices#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/devices.c",
+        "line": 60,
+        "symbol": "devinfo_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "devinfo_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/devices.c",
+        "ops_symbol": "devinfo_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/devices",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: devinfo_ops"
+        ],
+        "manual_todo": [
+          "ops symbol devinfo_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol devinfo_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/interrupts",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/interrupts",
+      "access_paths": [
+        "/proc/interrupts"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/interrupts#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/interrupts#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/interrupts.c",
+        "line": 39,
+        "symbol": "int_seq_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "int_seq_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/interrupts.c",
+        "ops_symbol": "int_seq_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/interrupts",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: int_seq_ops"
+        ],
+        "manual_todo": [
+          "ops symbol int_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol int_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/kpagecount",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/kpagecount",
+      "access_paths": [
+        "/proc/kpagecount"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/kpagecount#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kpagecount#lseek",
+          "op_name": "lseek",
+          "op_type": "fd_io",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "lseek",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_lseek",
+              "call_form": "lseek",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "offset",
+                  "arg_role": "offset",
+                  "type_hint": "fileoff"
+                },
+                {
+                  "name": "whence",
+                  "arg_role": "flags",
+                  "type_hint": "seek_whence"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation lseek to syscall binding lseek"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kpagecount#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 292,
+        "symbol": "kpagecount_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpagecount_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpagecount_proc_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpagecount",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpagecount_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/kpageflags",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/kpageflags",
+      "access_paths": [
+        "/proc/kpageflags"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/kpageflags#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kpageflags#lseek",
+          "op_name": "lseek",
+          "op_type": "fd_io",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "lseek",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_lseek",
+              "call_form": "lseek",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "offset",
+                  "arg_role": "offset",
+                  "type_hint": "fileoff"
+                },
+                {
+                  "name": "whence",
+                  "arg_role": "flags",
+                  "type_hint": "seek_whence"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation lseek to syscall binding lseek"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kpageflags#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 293,
+        "symbol": "kpageflags_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpageflags_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpageflags_proc_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpageflags",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpageflags_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/kpagecgroup",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/kpagecgroup",
+      "access_paths": [
+        "/proc/kpagecgroup"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/kpagecgroup#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kpagecgroup#lseek",
+          "op_name": "lseek",
+          "op_type": "fd_io",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "lseek",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_lseek",
+              "call_form": "lseek",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "offset",
+                  "arg_role": "offset",
+                  "type_hint": "fileoff"
+                },
+                {
+                  "name": "whence",
+                  "arg_role": "flags",
+                  "type_hint": "seek_whence"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation lseek to syscall binding lseek"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kpagecgroup#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 295,
+        "symbol": "kpagecgroup_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpagecgroup_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpagecgroup_proc_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpagecgroup",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpagecgroup_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/meminfo",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/meminfo",
+      "access_paths": [
+        "/proc/meminfo"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/meminfo#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/meminfo#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/meminfo.c",
+        "line": 184,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/meminfo.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/meminfo",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/tty",
+      "interface_type": "dir_like",
+      "subsystem": "proc",
+      "display_name": "/proc/tty",
+      "access_paths": [
+        "/proc/tty"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/tty#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/tty#getdents64",
+          "op_name": "getdents64",
+          "op_type": "dir_iter",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "getdents64",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_getdents64",
+              "call_form": "getdents64",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "dirent",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation getdents64 to syscall binding getdents64"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 165,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/tty",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/tty/ldisc",
+      "interface_type": "dir_like",
+      "subsystem": "proc",
+      "display_name": "/proc/tty/ldisc",
+      "access_paths": [
+        "/proc/tty/ldisc"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/tty/ldisc#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/tty/ldisc#getdents64",
+          "op_name": "getdents64",
+          "op_type": "dir_iter",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "getdents64",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_getdents64",
+              "call_form": "getdents64",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "dirent",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation getdents64 to syscall binding getdents64"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 167,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": null,
+        "parent_path": "/proc/tty"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/tty/ldisc",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/tty/ldiscs",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/tty/ldiscs",
+      "access_paths": [
+        "/proc/tty/ldiscs"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/tty/ldiscs#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/tty/ldiscs#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 175,
+        "symbol": "tty_ldiscs_seq_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "tty_ldiscs_seq_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": "tty_ldiscs_seq_ops",
+        "parent_path": "/proc/tty"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/tty/ldiscs",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: tty_ldiscs_seq_ops"
+        ],
+        "manual_todo": [
+          "ops symbol tty_ldiscs_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol tty_ldiscs_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/tty/drivers",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/tty/drivers",
+      "access_paths": [
+        "/proc/tty/drivers"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/tty/drivers#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/tty/drivers#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 176,
+        "symbol": "tty_drivers_op",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "tty_drivers_op"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": "tty_drivers_op",
+        "parent_path": "/proc/tty"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/tty/drivers",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: tty_drivers_op"
+        ],
+        "manual_todo": [
+          "ops symbol tty_drivers_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol tty_drivers_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/cmdline",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/cmdline",
+      "access_paths": [
+        "/proc/cmdline"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/cmdline#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/cmdline#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/cmdline.c",
+        "line": 19,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/cmdline.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/cmdline",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/vmcore",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/vmcore",
+      "access_paths": [
+        "/proc/vmcore"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/vmcore#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/vmcore#lseek",
+          "op_name": "lseek",
+          "op_type": "fd_io",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "lseek",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_lseek",
+              "call_form": "lseek",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "offset",
+                  "arg_role": "offset",
+                  "type_hint": "fileoff"
+                },
+                {
+                  "name": "whence",
+                  "arg_role": "flags",
+                  "type_hint": "seek_whence"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation lseek to syscall binding lseek"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/vmcore#mmap",
+          "op_name": "mmap",
+          "op_type": "fd_mmap",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "mmap",
+              "syscall_family": "fs_mmap",
+              "syscall_nr_symbol": "__NR_mmap",
+              "call_form": "mmap",
+              "arguments": [
+                {
+                  "name": "addr",
+                  "arg_role": "addr",
+                  "type_hint": "vma"
+                },
+                {
+                  "name": "len",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                },
+                {
+                  "name": "prot",
+                  "arg_role": "flags",
+                  "type_hint": "mmap_prot"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "mmap_flags"
+                },
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "offset",
+                  "arg_role": "offset",
+                  "type_hint": "intptr"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation mmap to syscall binding mmap"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/vmcore.c",
+        "line": 1736,
+        "symbol": "vmcore_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "vmcore_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/vmcore.c",
+        "ops_symbol": "vmcore_proc_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/vmcore",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: vmcore_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "interface_id": "proc:/proc/net",
+      "interface_type": "symlink_like",
+      "subsystem": "proc",
+      "display_name": "/proc/net",
+      "access_paths": [
+        "/proc/net"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/net#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/net#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/proc_net.c",
+        "line": 415,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_symlink",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "symlink",
+        "registration_kind": "proc_symlink",
+        "module_file": "fs/proc/proc_net.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/net",
+          "resolved 2 operations",
+          "registration kind: proc_symlink"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/uptime",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/uptime",
+      "access_paths": [
+        "/proc/uptime"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/uptime#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/uptime#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/uptime.c",
+        "line": 45,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/uptime.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/uptime",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/version",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/version",
+      "access_paths": [
+        "/proc/version"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/version#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/version#read",
+          "op_name": "read",
+          "op_type": "fd_io",
+          "direction": "out",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "read",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_read",
+              "call_form": "read",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "buf",
+                  "arg_role": "buffer",
+                  "type_hint": "buffer[out]"
+                },
+                {
+                  "name": "count",
+                  "arg_role": "length",
+                  "type_hint": "len"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation read to syscall binding read"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/version.c",
+        "line": 23,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/version.c",
+        "ops_symbol": null,
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/version",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "interface_id": "proc:/proc/kcore",
+      "interface_type": "file_like",
+      "subsystem": "proc",
+      "display_name": "/proc/kcore",
+      "access_paths": [
+        "/proc/kcore"
+      ],
+      "operations": [
+        {
+          "op_id": "proc:/proc/kcore#open",
+          "op_name": "open",
+          "op_type": "path_open",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": false,
+            "needs_path": true,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "openat",
+              "syscall_family": "fs_path",
+              "syscall_nr_symbol": "__NR_openat",
+              "call_form": "openat",
+              "arguments": [
+                {
+                  "name": "dirfd",
+                  "arg_role": "dirfd",
+                  "type_hint": "fd_dir"
+                },
+                {
+                  "name": "file",
+                  "arg_role": "path",
+                  "type_hint": "string"
+                },
+                {
+                  "name": "flags",
+                  "arg_role": "flags",
+                  "type_hint": "open_flags"
+                },
+                {
+                  "name": "mode",
+                  "arg_role": "mode",
+                  "type_hint": "open_mode"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation open to syscall binding openat"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        },
+        {
+          "op_id": "proc:/proc/kcore#lseek",
+          "op_name": "lseek",
+          "op_type": "fd_io",
+          "direction": "none",
+          "requirements": {
+            "needs_fd": true,
+            "needs_path": false,
+            "needs_socket": false,
+            "needs_struct": false,
+            "needs_resource": true
+          },
+          "syscall_bindings": [
+            {
+              "syscall_name": "lseek",
+              "syscall_family": "fs_io",
+              "syscall_nr_symbol": "__NR_lseek",
+              "call_form": "lseek",
+              "arguments": [
+                {
+                  "name": "fd",
+                  "arg_role": "fd",
+                  "type_hint": "fd"
+                },
+                {
+                  "name": "offset",
+                  "arg_role": "offset",
+                  "type_hint": "fileoff"
+                },
+                {
+                  "name": "whence",
+                  "arg_role": "flags",
+                  "type_hint": "seek_whence"
+                }
+              ]
+            }
+          ],
+          "generation_hints": {
+            "target_style": "syzkaller_alias"
+          },
+          "analysis": {
+            "confidence": "high",
+            "evidence": [
+              "mapped operation lseek to syscall binding lseek"
+            ],
+            "manual_todo": [],
+            "warnings": []
+          }
+        }
+      ],
+      "source": {
+        "file": "fs/proc/kcore.c",
+        "line": 725,
+        "symbol": "kcore_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kcore_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/kcore.c",
+        "ops_symbol": "kcore_proc_ops",
+        "parent_path": "/proc"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kcore",
+          "resolved 2 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kcore_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    }
+  ],
+  "summary": {
+    "item_count": 29,
+    "warning_count": 21
+  }
+}

@@ -1,0 +1,5241 @@
+{
+  "schema_version": "v2",
+  "subsystem": "proc",
+  "new_items": [
+    {
+      "item_key": "proc:/proc/consoles#open",
+      "interface_id": "proc:/proc/consoles",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/consoles"
+      ],
+      "source": {
+        "file": "fs/proc/consoles.c",
+        "line": 113,
+        "symbol": "consoles_op",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "consoles_op"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/consoles.c",
+        "ops_symbol": "consoles_op",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_consoles__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/consoles",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: consoles_op"
+        ],
+        "manual_todo": [
+          "ops symbol consoles_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol consoles_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/consoles#read",
+      "interface_id": "proc:/proc/consoles",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/consoles"
+      ],
+      "source": {
+        "file": "fs/proc/consoles.c",
+        "line": 113,
+        "symbol": "consoles_op",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "consoles_op"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/consoles.c",
+        "ops_symbol": "consoles_op",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_consoles__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/consoles",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: consoles_op"
+        ],
+        "manual_todo": [
+          "ops symbol consoles_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol consoles_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/mounts#open",
+      "interface_id": "proc:/proc/mounts",
+      "subsystem": "proc",
+      "interface_type": "symlink_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/mounts"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 371,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_symlink",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "symlink",
+        "registration_kind": "proc_symlink",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_mounts__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/mounts",
+          "resolved 2 operations",
+          "registration kind: proc_symlink"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/mounts#read",
+      "interface_id": "proc:/proc/mounts",
+      "subsystem": "proc",
+      "interface_type": "symlink_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/mounts"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 371,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_symlink",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "symlink",
+        "registration_kind": "proc_symlink",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_mounts__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/mounts",
+          "resolved 2 operations",
+          "registration kind: proc_symlink"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/fs#open",
+      "interface_id": "proc:/proc/fs",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/fs"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 374,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_fs__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/fs",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/fs#getdents64",
+      "interface_id": "proc:/proc/fs",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "getdents64",
+        "op_type": "dir_iter",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "getdents64",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_getdents64",
+          "call_form": "getdents64",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "dirent",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/fs"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 374,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_fs__getdents64.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/fs",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/driver#open",
+      "interface_id": "proc:/proc/driver",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/driver"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 375,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_driver__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/driver",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/driver#getdents64",
+      "interface_id": "proc:/proc/driver",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "getdents64",
+        "op_type": "dir_iter",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "getdents64",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_getdents64",
+          "call_form": "getdents64",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "dirent",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/driver"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 375,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_driver__getdents64.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/driver",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/bus#open",
+      "interface_id": "proc:/proc/bus",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/bus"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 382,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_bus__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/bus",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/bus#getdents64",
+      "interface_id": "proc:/proc/bus",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "getdents64",
+        "op_type": "dir_iter",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "getdents64",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_getdents64",
+          "call_form": "getdents64",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "dirent",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/bus"
+      ],
+      "source": {
+        "file": "fs/proc/root.c",
+        "line": 382,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/root.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_bus__getdents64.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/bus",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/sys#open",
+      "interface_id": "proc:/proc/sys",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/sys"
+      ],
+      "source": {
+        "file": "fs/proc/proc_sysctl.c",
+        "line": 1565,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/proc_sysctl.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_sys__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/sys",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/sys#getdents64",
+      "interface_id": "proc:/proc/sys",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "getdents64",
+        "op_type": "dir_iter",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "getdents64",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_getdents64",
+          "call_form": "getdents64",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "dirent",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/sys"
+      ],
+      "source": {
+        "file": "fs/proc/proc_sysctl.c",
+        "line": 1565,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/proc_sysctl.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_sys__getdents64.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/sys",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/stat#open",
+      "interface_id": "proc:/proc/stat",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/stat"
+      ],
+      "source": {
+        "file": "fs/proc/stat.c",
+        "line": 213,
+        "symbol": "stat_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "stat_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/stat.c",
+        "ops_symbol": "stat_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_stat__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/stat",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: stat_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/stat#lseek",
+      "interface_id": "proc:/proc/stat",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "lseek",
+        "op_type": "fd_io",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "lseek",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_lseek",
+          "call_form": "lseek",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "offset",
+              "arg_role": "offset",
+              "type_hint": "fileoff"
+            },
+            {
+              "name": "whence",
+              "arg_role": "flags",
+              "type_hint": "seek_whence"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/stat"
+      ],
+      "source": {
+        "file": "fs/proc/stat.c",
+        "line": 213,
+        "symbol": "stat_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "stat_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/stat.c",
+        "ops_symbol": "stat_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_stat__lseek.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/stat",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: stat_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/stat#read",
+      "interface_id": "proc:/proc/stat",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/stat"
+      ],
+      "source": {
+        "file": "fs/proc/stat.c",
+        "line": 213,
+        "symbol": "stat_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "stat_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/stat.c",
+        "ops_symbol": "stat_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_stat__read.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/stat",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: stat_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/maps#open",
+      "interface_id": "proc:/proc/maps",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/maps"
+      ],
+      "source": {
+        "file": "fs/proc/nommu.c",
+        "line": 112,
+        "symbol": "proc_nommu_region_list_seqop",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "proc_nommu_region_list_seqop"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/nommu.c",
+        "ops_symbol": "proc_nommu_region_list_seqop",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_maps__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/maps",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: proc_nommu_region_list_seqop"
+        ],
+        "manual_todo": [
+          "ops symbol proc_nommu_region_list_seqop was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol proc_nommu_region_list_seqop was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/maps#read",
+      "interface_id": "proc:/proc/maps",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/maps"
+      ],
+      "source": {
+        "file": "fs/proc/nommu.c",
+        "line": 112,
+        "symbol": "proc_nommu_region_list_seqop",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "proc_nommu_region_list_seqop"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/nommu.c",
+        "ops_symbol": "proc_nommu_region_list_seqop",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_maps__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/maps",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: proc_nommu_region_list_seqop"
+        ],
+        "manual_todo": [
+          "ops symbol proc_nommu_region_list_seqop was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol proc_nommu_region_list_seqop was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/loadavg#open",
+      "interface_id": "proc:/proc/loadavg",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/loadavg"
+      ],
+      "source": {
+        "file": "fs/proc/loadavg.c",
+        "line": 33,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/loadavg.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_loadavg__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/loadavg",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/loadavg#read",
+      "interface_id": "proc:/proc/loadavg",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/loadavg"
+      ],
+      "source": {
+        "file": "fs/proc/loadavg.c",
+        "line": 33,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/loadavg.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_loadavg__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/loadavg",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/bootconfig#open",
+      "interface_id": "proc:/proc/bootconfig",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/bootconfig"
+      ],
+      "source": {
+        "file": "fs/proc/bootconfig.c",
+        "line": 98,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/bootconfig.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_bootconfig__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/bootconfig",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/bootconfig#read",
+      "interface_id": "proc:/proc/bootconfig",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/bootconfig"
+      ],
+      "source": {
+        "file": "fs/proc/bootconfig.c",
+        "line": 98,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/bootconfig.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_bootconfig__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/bootconfig",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/cpuinfo#open",
+      "interface_id": "proc:/proc/cpuinfo",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/cpuinfo"
+      ],
+      "source": {
+        "file": "fs/proc/cpuinfo.c",
+        "line": 25,
+        "symbol": "cpuinfo_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "cpuinfo_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/cpuinfo.c",
+        "ops_symbol": "cpuinfo_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_cpuinfo__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/cpuinfo",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: cpuinfo_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/cpuinfo#lseek",
+      "interface_id": "proc:/proc/cpuinfo",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "lseek",
+        "op_type": "fd_io",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "lseek",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_lseek",
+          "call_form": "lseek",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "offset",
+              "arg_role": "offset",
+              "type_hint": "fileoff"
+            },
+            {
+              "name": "whence",
+              "arg_role": "flags",
+              "type_hint": "seek_whence"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/cpuinfo"
+      ],
+      "source": {
+        "file": "fs/proc/cpuinfo.c",
+        "line": 25,
+        "symbol": "cpuinfo_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "cpuinfo_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/cpuinfo.c",
+        "ops_symbol": "cpuinfo_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_cpuinfo__lseek.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/cpuinfo",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: cpuinfo_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/cpuinfo#read",
+      "interface_id": "proc:/proc/cpuinfo",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/cpuinfo"
+      ],
+      "source": {
+        "file": "fs/proc/cpuinfo.c",
+        "line": 25,
+        "symbol": "cpuinfo_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "cpuinfo_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/cpuinfo.c",
+        "ops_symbol": "cpuinfo_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_cpuinfo__read.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/cpuinfo",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: cpuinfo_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kmsg#read",
+      "interface_id": "proc:/proc/kmsg",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kmsg"
+      ],
+      "source": {
+        "file": "fs/proc/kmsg.c",
+        "line": 60,
+        "symbol": "kmsg_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kmsg_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/kmsg.c",
+        "ops_symbol": "kmsg_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kmsg__read.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kmsg",
+          "resolved 4 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kmsg_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kmsg#poll",
+      "interface_id": "proc:/proc/kmsg",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "poll",
+        "op_type": "fd_poll",
+        "direction": "inout"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "poll",
+          "syscall_family": "fs_poll",
+          "syscall_nr_symbol": "__NR_poll",
+          "call_form": "poll",
+          "arguments": [
+            {
+              "name": "ufds",
+              "arg_role": "fd_array",
+              "type_hint": "pollfd[]"
+            },
+            {
+              "name": "nfds",
+              "arg_role": "length",
+              "type_hint": "int"
+            },
+            {
+              "name": "timeout",
+              "arg_role": "timeout",
+              "type_hint": "int32"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kmsg"
+      ],
+      "source": {
+        "file": "fs/proc/kmsg.c",
+        "line": 60,
+        "symbol": "kmsg_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kmsg_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/kmsg.c",
+        "ops_symbol": "kmsg_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kmsg__poll.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kmsg",
+          "resolved 4 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kmsg_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kmsg#open",
+      "interface_id": "proc:/proc/kmsg",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kmsg"
+      ],
+      "source": {
+        "file": "fs/proc/kmsg.c",
+        "line": 60,
+        "symbol": "kmsg_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kmsg_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/kmsg.c",
+        "ops_symbol": "kmsg_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kmsg__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kmsg",
+          "resolved 4 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kmsg_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kmsg#lseek",
+      "interface_id": "proc:/proc/kmsg",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "lseek",
+        "op_type": "fd_io",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "lseek",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_lseek",
+          "call_form": "lseek",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "offset",
+              "arg_role": "offset",
+              "type_hint": "fileoff"
+            },
+            {
+              "name": "whence",
+              "arg_role": "flags",
+              "type_hint": "seek_whence"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kmsg"
+      ],
+      "source": {
+        "file": "fs/proc/kmsg.c",
+        "line": 60,
+        "symbol": "kmsg_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kmsg_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/kmsg.c",
+        "ops_symbol": "kmsg_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kmsg__lseek.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kmsg",
+          "resolved 4 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kmsg_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/softirqs#open",
+      "interface_id": "proc:/proc/softirqs",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/softirqs"
+      ],
+      "source": {
+        "file": "fs/proc/softirqs.c",
+        "line": 33,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/softirqs.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_softirqs__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/softirqs",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/softirqs#read",
+      "interface_id": "proc:/proc/softirqs",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/softirqs"
+      ],
+      "source": {
+        "file": "fs/proc/softirqs.c",
+        "line": 33,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/softirqs.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_softirqs__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/softirqs",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/devices#open",
+      "interface_id": "proc:/proc/devices",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/devices"
+      ],
+      "source": {
+        "file": "fs/proc/devices.c",
+        "line": 60,
+        "symbol": "devinfo_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "devinfo_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/devices.c",
+        "ops_symbol": "devinfo_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_devices__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/devices",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: devinfo_ops"
+        ],
+        "manual_todo": [
+          "ops symbol devinfo_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol devinfo_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/devices#read",
+      "interface_id": "proc:/proc/devices",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/devices"
+      ],
+      "source": {
+        "file": "fs/proc/devices.c",
+        "line": 60,
+        "symbol": "devinfo_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "devinfo_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/devices.c",
+        "ops_symbol": "devinfo_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_devices__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/devices",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: devinfo_ops"
+        ],
+        "manual_todo": [
+          "ops symbol devinfo_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol devinfo_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/interrupts#open",
+      "interface_id": "proc:/proc/interrupts",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/interrupts"
+      ],
+      "source": {
+        "file": "fs/proc/interrupts.c",
+        "line": 39,
+        "symbol": "int_seq_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "int_seq_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/interrupts.c",
+        "ops_symbol": "int_seq_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_interrupts__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/interrupts",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: int_seq_ops"
+        ],
+        "manual_todo": [
+          "ops symbol int_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol int_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/interrupts#read",
+      "interface_id": "proc:/proc/interrupts",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/interrupts"
+      ],
+      "source": {
+        "file": "fs/proc/interrupts.c",
+        "line": 39,
+        "symbol": "int_seq_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "int_seq_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/interrupts.c",
+        "ops_symbol": "int_seq_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_interrupts__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/interrupts",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: int_seq_ops"
+        ],
+        "manual_todo": [
+          "ops symbol int_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol int_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecount#open",
+      "interface_id": "proc:/proc/kpagecount",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kpagecount"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 292,
+        "symbol": "kpagecount_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpagecount_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpagecount_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kpagecount__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpagecount",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpagecount_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecount#lseek",
+      "interface_id": "proc:/proc/kpagecount",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "lseek",
+        "op_type": "fd_io",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "lseek",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_lseek",
+          "call_form": "lseek",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "offset",
+              "arg_role": "offset",
+              "type_hint": "fileoff"
+            },
+            {
+              "name": "whence",
+              "arg_role": "flags",
+              "type_hint": "seek_whence"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kpagecount"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 292,
+        "symbol": "kpagecount_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpagecount_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpagecount_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kpagecount__lseek.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpagecount",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpagecount_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecount#read",
+      "interface_id": "proc:/proc/kpagecount",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kpagecount"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 292,
+        "symbol": "kpagecount_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpagecount_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpagecount_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kpagecount__read.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpagecount",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpagecount_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpageflags#open",
+      "interface_id": "proc:/proc/kpageflags",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kpageflags"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 293,
+        "symbol": "kpageflags_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpageflags_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpageflags_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kpageflags__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpageflags",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpageflags_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpageflags#lseek",
+      "interface_id": "proc:/proc/kpageflags",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "lseek",
+        "op_type": "fd_io",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "lseek",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_lseek",
+          "call_form": "lseek",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "offset",
+              "arg_role": "offset",
+              "type_hint": "fileoff"
+            },
+            {
+              "name": "whence",
+              "arg_role": "flags",
+              "type_hint": "seek_whence"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kpageflags"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 293,
+        "symbol": "kpageflags_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpageflags_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpageflags_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kpageflags__lseek.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpageflags",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpageflags_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpageflags#read",
+      "interface_id": "proc:/proc/kpageflags",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kpageflags"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 293,
+        "symbol": "kpageflags_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpageflags_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpageflags_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kpageflags__read.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpageflags",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpageflags_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecgroup#open",
+      "interface_id": "proc:/proc/kpagecgroup",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kpagecgroup"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 295,
+        "symbol": "kpagecgroup_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpagecgroup_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpagecgroup_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kpagecgroup__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpagecgroup",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpagecgroup_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecgroup#lseek",
+      "interface_id": "proc:/proc/kpagecgroup",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "lseek",
+        "op_type": "fd_io",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "lseek",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_lseek",
+          "call_form": "lseek",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "offset",
+              "arg_role": "offset",
+              "type_hint": "fileoff"
+            },
+            {
+              "name": "whence",
+              "arg_role": "flags",
+              "type_hint": "seek_whence"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kpagecgroup"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 295,
+        "symbol": "kpagecgroup_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpagecgroup_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpagecgroup_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kpagecgroup__lseek.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpagecgroup",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpagecgroup_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecgroup#read",
+      "interface_id": "proc:/proc/kpagecgroup",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kpagecgroup"
+      ],
+      "source": {
+        "file": "fs/proc/page.c",
+        "line": 295,
+        "symbol": "kpagecgroup_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kpagecgroup_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/page.c",
+        "ops_symbol": "kpagecgroup_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kpagecgroup__read.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kpagecgroup",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kpagecgroup_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/meminfo#open",
+      "interface_id": "proc:/proc/meminfo",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/meminfo"
+      ],
+      "source": {
+        "file": "fs/proc/meminfo.c",
+        "line": 184,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/meminfo.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_meminfo__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/meminfo",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/meminfo#read",
+      "interface_id": "proc:/proc/meminfo",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/meminfo"
+      ],
+      "source": {
+        "file": "fs/proc/meminfo.c",
+        "line": 184,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/meminfo.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_meminfo__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/meminfo",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty#open",
+      "interface_id": "proc:/proc/tty",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/tty"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 165,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_tty__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/tty",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty#getdents64",
+      "interface_id": "proc:/proc/tty",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "getdents64",
+        "op_type": "dir_iter",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "getdents64",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_getdents64",
+          "call_form": "getdents64",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "dirent",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/tty"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 165,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_tty__getdents64.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/tty",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/ldisc#open",
+      "interface_id": "proc:/proc/tty/ldisc",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/tty/ldisc"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 167,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": null,
+        "parent_path": "/proc/tty",
+        "suggested_case_file": "proc_tty_ldisc__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/tty/ldisc",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/ldisc#getdents64",
+      "interface_id": "proc:/proc/tty/ldisc",
+      "subsystem": "proc",
+      "interface_type": "dir_like",
+      "operation": {
+        "op_name": "getdents64",
+        "op_type": "dir_iter",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "getdents64",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_getdents64",
+          "call_form": "getdents64",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "dirent",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/tty/ldisc"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 167,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_mkdir",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "dir",
+        "registration_kind": "proc_mkdir",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": null,
+        "parent_path": "/proc/tty",
+        "suggested_case_file": "proc_tty_ldisc__getdents64.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/tty/ldisc",
+          "resolved 2 operations",
+          "registration kind: proc_mkdir"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/ldiscs#open",
+      "interface_id": "proc:/proc/tty/ldiscs",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/tty/ldiscs"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 175,
+        "symbol": "tty_ldiscs_seq_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "tty_ldiscs_seq_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": "tty_ldiscs_seq_ops",
+        "parent_path": "/proc/tty",
+        "suggested_case_file": "proc_tty_ldiscs__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/tty/ldiscs",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: tty_ldiscs_seq_ops"
+        ],
+        "manual_todo": [
+          "ops symbol tty_ldiscs_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol tty_ldiscs_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/ldiscs#read",
+      "interface_id": "proc:/proc/tty/ldiscs",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/tty/ldiscs"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 175,
+        "symbol": "tty_ldiscs_seq_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "tty_ldiscs_seq_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": "tty_ldiscs_seq_ops",
+        "parent_path": "/proc/tty",
+        "suggested_case_file": "proc_tty_ldiscs__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/tty/ldiscs",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: tty_ldiscs_seq_ops"
+        ],
+        "manual_todo": [
+          "ops symbol tty_ldiscs_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol tty_ldiscs_seq_ops was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/drivers#open",
+      "interface_id": "proc:/proc/tty/drivers",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/tty/drivers"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 176,
+        "symbol": "tty_drivers_op",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "tty_drivers_op"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": "tty_drivers_op",
+        "parent_path": "/proc/tty",
+        "suggested_case_file": "proc_tty_drivers__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/tty/drivers",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: tty_drivers_op"
+        ],
+        "manual_todo": [
+          "ops symbol tty_drivers_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol tty_drivers_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/drivers#read",
+      "interface_id": "proc:/proc/tty/drivers",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/tty/drivers"
+      ],
+      "source": {
+        "file": "fs/proc/proc_tty.c",
+        "line": 176,
+        "symbol": "tty_drivers_op",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create_seq",
+        "related_symbols": [
+          "tty_drivers_op"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_seq",
+        "module_file": "fs/proc/proc_tty.c",
+        "ops_symbol": "tty_drivers_op",
+        "parent_path": "/proc/tty",
+        "suggested_case_file": "proc_tty_drivers__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/tty/drivers",
+          "resolved 2 operations",
+          "registration kind: proc_create_seq",
+          "resolved ops symbol: tty_drivers_op"
+        ],
+        "manual_todo": [
+          "ops symbol tty_drivers_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "ops symbol tty_drivers_op was not resolved",
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/cmdline#open",
+      "interface_id": "proc:/proc/cmdline",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/cmdline"
+      ],
+      "source": {
+        "file": "fs/proc/cmdline.c",
+        "line": 19,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/cmdline.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_cmdline__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/cmdline",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/cmdline#read",
+      "interface_id": "proc:/proc/cmdline",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/cmdline"
+      ],
+      "source": {
+        "file": "fs/proc/cmdline.c",
+        "line": 19,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/cmdline.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_cmdline__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/cmdline",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/vmcore#open",
+      "interface_id": "proc:/proc/vmcore",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/vmcore"
+      ],
+      "source": {
+        "file": "fs/proc/vmcore.c",
+        "line": 1736,
+        "symbol": "vmcore_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "vmcore_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/vmcore.c",
+        "ops_symbol": "vmcore_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_vmcore__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/vmcore",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: vmcore_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/vmcore#lseek",
+      "interface_id": "proc:/proc/vmcore",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "lseek",
+        "op_type": "fd_io",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "lseek",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_lseek",
+          "call_form": "lseek",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "offset",
+              "arg_role": "offset",
+              "type_hint": "fileoff"
+            },
+            {
+              "name": "whence",
+              "arg_role": "flags",
+              "type_hint": "seek_whence"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/vmcore"
+      ],
+      "source": {
+        "file": "fs/proc/vmcore.c",
+        "line": 1736,
+        "symbol": "vmcore_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "vmcore_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/vmcore.c",
+        "ops_symbol": "vmcore_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_vmcore__lseek.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/vmcore",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: vmcore_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/vmcore#mmap",
+      "interface_id": "proc:/proc/vmcore",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "mmap",
+        "op_type": "fd_mmap",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "mmap",
+          "syscall_family": "fs_mmap",
+          "syscall_nr_symbol": "__NR_mmap",
+          "call_form": "mmap",
+          "arguments": [
+            {
+              "name": "addr",
+              "arg_role": "addr",
+              "type_hint": "vma"
+            },
+            {
+              "name": "len",
+              "arg_role": "length",
+              "type_hint": "len"
+            },
+            {
+              "name": "prot",
+              "arg_role": "flags",
+              "type_hint": "mmap_prot"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "mmap_flags"
+            },
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "offset",
+              "arg_role": "offset",
+              "type_hint": "intptr"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/vmcore"
+      ],
+      "source": {
+        "file": "fs/proc/vmcore.c",
+        "line": 1736,
+        "symbol": "vmcore_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "vmcore_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/vmcore.c",
+        "ops_symbol": "vmcore_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_vmcore__mmap.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/vmcore",
+          "resolved 3 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: vmcore_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/net#open",
+      "interface_id": "proc:/proc/net",
+      "subsystem": "proc",
+      "interface_type": "symlink_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/net"
+      ],
+      "source": {
+        "file": "fs/proc/proc_net.c",
+        "line": 415,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_symlink",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "symlink",
+        "registration_kind": "proc_symlink",
+        "module_file": "fs/proc/proc_net.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_net__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/net",
+          "resolved 2 operations",
+          "registration kind: proc_symlink"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/net#read",
+      "interface_id": "proc:/proc/net",
+      "subsystem": "proc",
+      "interface_type": "symlink_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/net"
+      ],
+      "source": {
+        "file": "fs/proc/proc_net.c",
+        "line": 415,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_symlink",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "symlink",
+        "registration_kind": "proc_symlink",
+        "module_file": "fs/proc/proc_net.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_net__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/net",
+          "resolved 2 operations",
+          "registration kind: proc_symlink"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/uptime#open",
+      "interface_id": "proc:/proc/uptime",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/uptime"
+      ],
+      "source": {
+        "file": "fs/proc/uptime.c",
+        "line": 45,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/uptime.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_uptime__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/uptime",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/uptime#read",
+      "interface_id": "proc:/proc/uptime",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/uptime"
+      ],
+      "source": {
+        "file": "fs/proc/uptime.c",
+        "line": 45,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/uptime.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_uptime__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/uptime",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/version#open",
+      "interface_id": "proc:/proc/version",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/version"
+      ],
+      "source": {
+        "file": "fs/proc/version.c",
+        "line": 23,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/version.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_version__open.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/version",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/version#read",
+      "interface_id": "proc:/proc/version",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "read",
+        "op_type": "fd_io",
+        "direction": "out"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "read",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_read",
+          "call_form": "read",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "buf",
+              "arg_role": "buffer",
+              "type_hint": "buffer[out]"
+            },
+            {
+              "name": "count",
+              "arg_role": "length",
+              "type_hint": "len"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/version"
+      ],
+      "source": {
+        "file": "fs/proc/version.c",
+        "line": 23,
+        "symbol": null,
+        "symbol_kind": null,
+        "source_kind": "proc_create_single",
+        "related_symbols": []
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create_single",
+        "module_file": "fs/proc/version.c",
+        "ops_symbol": null,
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_version__read.json"
+      },
+      "analysis": {
+        "confidence": "medium",
+        "evidence": [
+          "discovered proc target /proc/version",
+          "resolved 2 operations",
+          "registration kind: proc_create_single"
+        ],
+        "manual_todo": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ],
+        "warnings": [
+          "using conservative open/read fallback because ops could not be resolved"
+        ]
+      }
+    },
+    {
+      "item_key": "proc:/proc/kcore#open",
+      "interface_id": "proc:/proc/kcore",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "open",
+        "op_type": "path_open",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "openat",
+          "syscall_family": "fs_path",
+          "syscall_nr_symbol": "__NR_openat",
+          "call_form": "openat",
+          "arguments": [
+            {
+              "name": "dirfd",
+              "arg_role": "dirfd",
+              "type_hint": "fd_dir"
+            },
+            {
+              "name": "file",
+              "arg_role": "path",
+              "type_hint": "string"
+            },
+            {
+              "name": "flags",
+              "arg_role": "flags",
+              "type_hint": "open_flags"
+            },
+            {
+              "name": "mode",
+              "arg_role": "mode",
+              "type_hint": "open_mode"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kcore"
+      ],
+      "source": {
+        "file": "fs/proc/kcore.c",
+        "line": 725,
+        "symbol": "kcore_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kcore_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/kcore.c",
+        "ops_symbol": "kcore_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kcore__open.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kcore",
+          "resolved 2 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kcore_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    },
+    {
+      "item_key": "proc:/proc/kcore#lseek",
+      "interface_id": "proc:/proc/kcore",
+      "subsystem": "proc",
+      "interface_type": "file_like",
+      "operation": {
+        "op_name": "lseek",
+        "op_type": "fd_io",
+        "direction": "none"
+      },
+      "syscall_bindings": [
+        {
+          "syscall_name": "lseek",
+          "syscall_family": "fs_io",
+          "syscall_nr_symbol": "__NR_lseek",
+          "call_form": "lseek",
+          "arguments": [
+            {
+              "name": "fd",
+              "arg_role": "fd",
+              "type_hint": "fd"
+            },
+            {
+              "name": "offset",
+              "arg_role": "offset",
+              "type_hint": "fileoff"
+            },
+            {
+              "name": "whence",
+              "arg_role": "flags",
+              "type_hint": "seek_whence"
+            }
+          ]
+        }
+      ],
+      "access_paths": [
+        "/proc/kcore"
+      ],
+      "source": {
+        "file": "fs/proc/kcore.c",
+        "line": 725,
+        "symbol": "kcore_proc_ops",
+        "symbol_kind": "proc_ops",
+        "source_kind": "proc_create",
+        "related_symbols": [
+          "kcore_proc_ops"
+        ]
+      },
+      "attributes": {
+        "resource_kind": "fd",
+        "object_kind": "kernel_interface",
+        "is_virtual": true,
+        "is_path_based": true,
+        "is_fd_based": true,
+        "is_stateful": false
+      },
+      "subsystem_details": {
+        "node_type": "file",
+        "registration_kind": "proc_create",
+        "module_file": "fs/proc/kcore.c",
+        "ops_symbol": "kcore_proc_ops",
+        "parent_path": "/proc",
+        "suggested_case_file": "proc_kcore__lseek.json"
+      },
+      "analysis": {
+        "confidence": "high",
+        "evidence": [
+          "discovered proc target /proc/kcore",
+          "resolved 2 operations",
+          "registration kind: proc_create",
+          "resolved ops symbol: kcore_proc_ops"
+        ],
+        "manual_todo": [],
+        "warnings": []
+      }
+    }
+  ],
+  "summary": {
+    "current_count": 66,
+    "baseline_count": 0,
+    "new_count": 66
+  }
+}

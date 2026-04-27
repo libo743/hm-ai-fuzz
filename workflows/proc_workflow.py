@@ -6,6 +6,13 @@ from pathlib import Path
 
 from core.pipeline import WorkflowPipeline, write_json
 from core.protocols import WorkflowContext
+from core.schema_adapter_v2 import (
+    adapt_diff_proc_v2,
+    adapt_discover_proc_v2,
+    adapt_generate_proc_v2,
+    adapt_validate_proc_v2,
+    diff_v2_to_diff_result,
+)
 from extractors.proc.extractor import ProcDiscoverPlugin
 from generators.syzkaller.minimal import MinimalSyzkallerGeneratePlugin
 from modelers.simple_diff import SimpleDiffPlugin
@@ -58,11 +65,26 @@ def main(argv: list[str] | None = None) -> int:
         validate_plugin=SyzkallerBuildValidatePlugin(),
     )
     result = pipeline.run(ctx, existing)
+    discover_v2 = adapt_discover_proc_v2(result["discover"], ctx)
+    diff_v2 = adapt_diff_proc_v2(result["diff"], discover_v2)
+    generate_plugin = MinimalSyzkallerGeneratePlugin()
+    validate_plugin = SyzkallerBuildValidatePlugin()
+    generation_v2_raw = generate_plugin.generate(diff_v2_to_diff_result(diff_v2), ctx)
+    generate_v2 = adapt_generate_proc_v2(generation_v2_raw, diff_v2)
+    validate_v2 = adapt_validate_proc_v2(validate_plugin.validate(generation_v2_raw, ctx))
+    result["discover_v2"] = discover_v2
+    result["diff_v2"] = diff_v2
+    result["generate_v2"] = generate_v2
+    result["validate_v2"] = validate_v2
     output_dir = args.out_dir.resolve()
     write_json(output_dir / "discover.json", result["discover"])
+    write_json(output_dir / "discover-v2.json", discover_v2)
     write_json(output_dir / "diff.json", result["diff"])
+    write_json(output_dir / "diff-v2.json", diff_v2)
     write_json(output_dir / "generate.json", result["generate"])
+    write_json(output_dir / "generate-v2.json", generate_v2)
     write_json(output_dir / "validate.json", result["validate"])
+    write_json(output_dir / "validate-v2.json", validate_v2)
     write_json(args.out_json.resolve(), result)
     print(f"workflow result: {args.out_json.resolve()}")
     return 0

@@ -1,0 +1,687 @@
+{
+  "schema_version": "v2",
+  "subsystem": "proc",
+  "generated_files": [
+    {
+      "path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "kind": "txt",
+      "details": {
+        "entry_count": 29
+      }
+    },
+    {
+      "path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const",
+      "kind": "txt.const",
+      "details": {
+        "entry_count": 6
+      }
+    }
+  ],
+  "generated_units": [
+    {
+      "item_key": "proc:/proc/consoles#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_consoles",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/consoles"
+      }
+    },
+    {
+      "item_key": "proc:/proc/consoles#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_consoles",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/consoles"
+      }
+    },
+    {
+      "item_key": "proc:/proc/mounts#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_mounts",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/mounts"
+      }
+    },
+    {
+      "item_key": "proc:/proc/mounts#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_mounts",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/mounts"
+      }
+    },
+    {
+      "item_key": "proc:/proc/fs#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_fs",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/fs"
+      }
+    },
+    {
+      "item_key": "proc:/proc/fs#getdents64",
+      "unit_kind": "syz_alias",
+      "symbol_name": "getdents64",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "getdents64",
+        "interface_id": "proc:/proc/fs"
+      }
+    },
+    {
+      "item_key": "proc:/proc/driver#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_driver",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/driver"
+      }
+    },
+    {
+      "item_key": "proc:/proc/driver#getdents64",
+      "unit_kind": "syz_alias",
+      "symbol_name": "getdents64",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "getdents64",
+        "interface_id": "proc:/proc/driver"
+      }
+    },
+    {
+      "item_key": "proc:/proc/bus#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_bus",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/bus"
+      }
+    },
+    {
+      "item_key": "proc:/proc/bus#getdents64",
+      "unit_kind": "syz_alias",
+      "symbol_name": "getdents64",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "getdents64",
+        "interface_id": "proc:/proc/bus"
+      }
+    },
+    {
+      "item_key": "proc:/proc/sys#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_sys",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/sys"
+      }
+    },
+    {
+      "item_key": "proc:/proc/sys#getdents64",
+      "unit_kind": "syz_alias",
+      "symbol_name": "getdents64",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "getdents64",
+        "interface_id": "proc:/proc/sys"
+      }
+    },
+    {
+      "item_key": "proc:/proc/stat#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_stat",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/stat"
+      }
+    },
+    {
+      "item_key": "proc:/proc/stat#lseek",
+      "unit_kind": "syz_alias",
+      "symbol_name": "lseek$proc_proc_stat",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "lseek",
+        "interface_id": "proc:/proc/stat"
+      }
+    },
+    {
+      "item_key": "proc:/proc/stat#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_stat",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/stat"
+      }
+    },
+    {
+      "item_key": "proc:/proc/maps#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_maps",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/maps"
+      }
+    },
+    {
+      "item_key": "proc:/proc/maps#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_maps",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/maps"
+      }
+    },
+    {
+      "item_key": "proc:/proc/loadavg#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_loadavg",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/loadavg"
+      }
+    },
+    {
+      "item_key": "proc:/proc/loadavg#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_loadavg",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/loadavg"
+      }
+    },
+    {
+      "item_key": "proc:/proc/bootconfig#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_bootconfig",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/bootconfig"
+      }
+    },
+    {
+      "item_key": "proc:/proc/bootconfig#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_bootconfig",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/bootconfig"
+      }
+    },
+    {
+      "item_key": "proc:/proc/cpuinfo#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_cpuinfo",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/cpuinfo"
+      }
+    },
+    {
+      "item_key": "proc:/proc/cpuinfo#lseek",
+      "unit_kind": "syz_alias",
+      "symbol_name": "lseek$proc_proc_cpuinfo",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "lseek",
+        "interface_id": "proc:/proc/cpuinfo"
+      }
+    },
+    {
+      "item_key": "proc:/proc/cpuinfo#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_cpuinfo",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/cpuinfo"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kmsg#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_kmsg",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/kmsg"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kmsg#poll",
+      "unit_kind": "syz_alias",
+      "symbol_name": "poll$proc_proc_kmsg",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "poll",
+        "interface_id": "proc:/proc/kmsg"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kmsg#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_kmsg",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/kmsg"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kmsg#lseek",
+      "unit_kind": "syz_alias",
+      "symbol_name": "lseek$proc_proc_kmsg",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "lseek",
+        "interface_id": "proc:/proc/kmsg"
+      }
+    },
+    {
+      "item_key": "proc:/proc/softirqs#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_softirqs",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/softirqs"
+      }
+    },
+    {
+      "item_key": "proc:/proc/softirqs#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_softirqs",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/softirqs"
+      }
+    },
+    {
+      "item_key": "proc:/proc/devices#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_devices",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/devices"
+      }
+    },
+    {
+      "item_key": "proc:/proc/devices#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_devices",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/devices"
+      }
+    },
+    {
+      "item_key": "proc:/proc/interrupts#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_interrupts",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/interrupts"
+      }
+    },
+    {
+      "item_key": "proc:/proc/interrupts#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_interrupts",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/interrupts"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecount#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_kpagecount",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/kpagecount"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecount#lseek",
+      "unit_kind": "syz_alias",
+      "symbol_name": "lseek$proc_proc_kpagecount",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "lseek",
+        "interface_id": "proc:/proc/kpagecount"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecount#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_kpagecount",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/kpagecount"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpageflags#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_kpageflags",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/kpageflags"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpageflags#lseek",
+      "unit_kind": "syz_alias",
+      "symbol_name": "lseek$proc_proc_kpageflags",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "lseek",
+        "interface_id": "proc:/proc/kpageflags"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpageflags#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_kpageflags",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/kpageflags"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecgroup#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_kpagecgroup",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/kpagecgroup"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecgroup#lseek",
+      "unit_kind": "syz_alias",
+      "symbol_name": "lseek$proc_proc_kpagecgroup",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "lseek",
+        "interface_id": "proc:/proc/kpagecgroup"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kpagecgroup#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_kpagecgroup",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/kpagecgroup"
+      }
+    },
+    {
+      "item_key": "proc:/proc/meminfo#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_meminfo",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/meminfo"
+      }
+    },
+    {
+      "item_key": "proc:/proc/meminfo#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_meminfo",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/meminfo"
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_tty",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/tty"
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty#getdents64",
+      "unit_kind": "syz_alias",
+      "symbol_name": "getdents64",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "getdents64",
+        "interface_id": "proc:/proc/tty"
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/ldisc#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_tty_ldisc",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/tty/ldisc"
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/ldisc#getdents64",
+      "unit_kind": "syz_alias",
+      "symbol_name": "getdents64",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "getdents64",
+        "interface_id": "proc:/proc/tty/ldisc"
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/ldiscs#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_tty_ldiscs",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/tty/ldiscs"
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/ldiscs#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_tty_ldiscs",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/tty/ldiscs"
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/drivers#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_tty_drivers",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/tty/drivers"
+      }
+    },
+    {
+      "item_key": "proc:/proc/tty/drivers#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_tty_drivers",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/tty/drivers"
+      }
+    },
+    {
+      "item_key": "proc:/proc/cmdline#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_cmdline",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/cmdline"
+      }
+    },
+    {
+      "item_key": "proc:/proc/cmdline#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_cmdline",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/cmdline"
+      }
+    },
+    {
+      "item_key": "proc:/proc/vmcore#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_vmcore",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/vmcore"
+      }
+    },
+    {
+      "item_key": "proc:/proc/vmcore#lseek",
+      "unit_kind": "syz_alias",
+      "symbol_name": "lseek$proc_proc_vmcore",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "lseek",
+        "interface_id": "proc:/proc/vmcore"
+      }
+    },
+    {
+      "item_key": "proc:/proc/vmcore#mmap",
+      "unit_kind": "syz_alias",
+      "symbol_name": "mmap$proc_proc_vmcore",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "mmap",
+        "interface_id": "proc:/proc/vmcore"
+      }
+    },
+    {
+      "item_key": "proc:/proc/net#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_net",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/net"
+      }
+    },
+    {
+      "item_key": "proc:/proc/net#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_net",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/net"
+      }
+    },
+    {
+      "item_key": "proc:/proc/uptime#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_uptime",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/uptime"
+      }
+    },
+    {
+      "item_key": "proc:/proc/uptime#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_uptime",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/uptime"
+      }
+    },
+    {
+      "item_key": "proc:/proc/version#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_version",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/version"
+      }
+    },
+    {
+      "item_key": "proc:/proc/version#read",
+      "unit_kind": "syz_alias",
+      "symbol_name": "read$proc_proc_version",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "read",
+        "interface_id": "proc:/proc/version"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kcore#open",
+      "unit_kind": "syz_alias",
+      "symbol_name": "openat$proc_proc_kcore",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "open",
+        "interface_id": "proc:/proc/kcore"
+      }
+    },
+    {
+      "item_key": "proc:/proc/kcore#lseek",
+      "unit_kind": "syz_alias",
+      "symbol_name": "lseek$proc_proc_kcore",
+      "source_file": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "details": {
+        "operation": "lseek",
+        "interface_id": "proc:/proc/kcore"
+      }
+    }
+  ],
+  "skipped_items": [],
+  "summary": {
+    "generated_count": 66,
+    "skipped_count": 0
+  }
+}

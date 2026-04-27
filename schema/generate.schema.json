@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hm-ai-fuzz.local/schema/generate.schema.json",
+  "title": "hm-ai-fuzz Generate Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "subsystem",
+    "generated_files",
+    "generated_units",
+    "summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "./common.schema.json#/$defs/schemaVersion"
+    },
+    "subsystem": {
+      "$ref": "./common.schema.json#/$defs/subsystemName"
+    },
+    "generated_files": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/generatedFile"
+      }
+    },
+    "generated_units": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/generatedUnit"
+      }
+    },
+    "skipped_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "item_key",
+          "reason"
+        ],
+        "properties": {
+          "item_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "details": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "generated_count",
+        "skipped_count"
+      ],
+      "properties": {
+        "generated_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skipped_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

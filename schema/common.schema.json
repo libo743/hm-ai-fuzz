@@ -1,0 +1,403 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hm-ai-fuzz.local/schema/common.schema.json",
+  "title": "hm-ai-fuzz Common Definitions",
+  "type": "object",
+  "$defs": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "v2"
+    },
+    "subsystemName": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "file"
+      ],
+      "properties": {
+        "file": {
+          "type": "string",
+          "minLength": 1
+        },
+        "line": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "symbol": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "symbol_kind": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source_kind": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "related_symbols": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low"
+          ]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "manual_todo": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "resource_kind": {
+          "type": "string"
+        },
+        "object_kind": {
+          "type": "string"
+        },
+        "is_virtual": {
+          "type": "boolean"
+        },
+        "is_path_based": {
+          "type": "boolean"
+        },
+        "is_fd_based": {
+          "type": "boolean"
+        },
+        "is_stateful": {
+          "type": "boolean"
+        }
+      }
+    },
+    "syscallArgument": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "arg_role": {
+          "type": "string"
+        },
+        "type_hint": {
+          "type": "string"
+        }
+      }
+    },
+    "syscallBinding": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "syscall_name"
+      ],
+      "properties": {
+        "syscall_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "syscall_family": {
+          "type": "string"
+        },
+        "syscall_nr_symbol": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "architectures": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "call_form": {
+          "type": "string"
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/syscallArgument"
+          }
+        }
+      }
+    },
+    "operationRequirements": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "needs_fd": {
+          "type": "boolean"
+        },
+        "needs_path": {
+          "type": "boolean"
+        },
+        "needs_socket": {
+          "type": "boolean"
+        },
+        "needs_struct": {
+          "type": "boolean"
+        },
+        "needs_resource": {
+          "type": "boolean"
+        }
+      }
+    },
+    "operationDescriptor": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "op_id",
+        "op_name",
+        "op_type"
+      ],
+      "properties": {
+        "op_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "op_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "op_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "in",
+            "out",
+            "inout",
+            "none"
+          ]
+        },
+        "requirements": {
+          "$ref": "#/$defs/operationRequirements"
+        },
+        "syscall_bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/syscallBinding"
+          }
+        },
+        "generation_hints": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "analysis": {
+          "$ref": "#/$defs/analysis"
+        }
+      }
+    },
+    "interfaceType": {
+      "type": "string",
+      "enum": [
+        "file_like",
+        "dir_like",
+        "symlink_like",
+        "device_node",
+        "netlink_family",
+        "socket_endpoint",
+        "syscall_entry",
+        "fs_context",
+        "virtual_interface",
+        "namespace_interface",
+        "misc"
+      ]
+    },
+    "interfaceItem": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "interface_id",
+        "interface_type",
+        "subsystem",
+        "access_paths",
+        "operations",
+        "source"
+      ],
+      "properties": {
+        "interface_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interface_type": {
+          "$ref": "#/$defs/interfaceType"
+        },
+        "subsystem": {
+          "$ref": "#/$defs/subsystemName"
+        },
+        "display_name": {
+          "type": "string"
+        },
+        "access_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "operations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/operationDescriptor"
+          }
+        },
+        "source": {
+          "$ref": "#/$defs/sourceRef"
+        },
+        "attributes": {
+          "$ref": "#/$defs/attributes"
+        },
+        "subsystem_details": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "analysis": {
+          "$ref": "#/$defs/analysis"
+        }
+      }
+    },
+    "generatedFile": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "path",
+        "kind"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "generatedUnit": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "item_key",
+        "unit_kind",
+        "symbol_name"
+      ],
+      "properties": {
+        "item_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "unit_kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "symbol_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_file": {
+          "type": "string"
+        },
+        "details": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    },
+    "diagnostic": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "file": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "line": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "column": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "item_key": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tracked_file_hit": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

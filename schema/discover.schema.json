@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hm-ai-fuzz.local/schema/discover.schema.json",
+  "title": "hm-ai-fuzz Discover Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "subsystem",
+    "source_root",
+    "scope",
+    "items",
+    "summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "./common.schema.json#/$defs/schemaVersion"
+    },
+    "subsystem": {
+      "$ref": "./common.schema.json#/$defs/subsystemName"
+    },
+    "source_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "module"
+      ],
+      "properties": {
+        "module": {
+          "type": "string",
+          "minLength": 1
+        },
+        "search_method": {
+          "type": "string"
+        },
+        "scan_mode": {
+          "type": "string"
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/interfaceItem"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "item_count"
+      ],
+      "properties": {
+        "item_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warning_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

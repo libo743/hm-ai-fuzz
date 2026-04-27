@@ -1,4 +1,6 @@
 {
+  "schema_version": "v2",
+  "subsystem": "proc",
   "status": "passed",
   "diagnostics": [
     {
@@ -16,6 +18,10 @@
       "tracked_file_hit": false
     }
   ],
+  "summary": {
+    "returncode": 0,
+    "duration_sec": 21.068
+  },
   "metadata": {
     "command": [
       "make",
@@ -25,7 +31,7 @@
     "timeout_sec": 300,
     "returncode": 0,
     "timed_out": false,
-    "duration_sec": 23.152,
+    "duration_sec": 21.068,
     "stdout_tail": [
       "go list -f '{{.Stale}}' -ldflags=\"-s -w -X github.com/google/syzkaller/prog.GitRevision=a9b123cd46edf5ce26b47619c112c47f92075ef9 -X github.com/google/syzkaller/prog.gitRevisionDate=20260423-164643\"  ./sys/syz-sysgen | grep -q false || go install -ldflags=\"-s -w -X github.com/google/syzkaller/prog.GitRevision=a9b123cd46edf5ce26b47619c112c47f92075ef9 -X github.com/google/syzkaller/prog.gitRevisionDate=20260423-164643\"  ./sys/syz-sysgen",
       "make .descriptions",

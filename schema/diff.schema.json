@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hm-ai-fuzz.local/schema/diff.schema.json",
+  "title": "hm-ai-fuzz Diff Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "subsystem",
+    "new_items",
+    "summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "./common.schema.json#/$defs/schemaVersion"
+    },
+    "subsystem": {
+      "$ref": "./common.schema.json#/$defs/subsystemName"
+    },
+    "new_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": [
+          "item_key",
+          "interface_id",
+          "interface_type",
+          "operation",
+          "syscall_bindings",
+          "access_paths",
+          "source"
+        ],
+        "properties": {
+          "item_key": {
+            "type": "string",
+            "minLength": 1
+          },
+          "interface_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "interface_type": {
+            "$ref": "./common.schema.json#/$defs/interfaceType"
+          },
+          "operation": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+              "op_name",
+              "op_type"
+            ],
+            "properties": {
+              "op_name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "op_type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "direction": {
+                "type": "string"
+              }
+            }
+          },
+          "syscall_bindings": {
+            "type": "array",
+            "items": {
+              "$ref": "./common.schema.json#/$defs/syscallBinding"
+            }
+          },
+          "access_paths": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "source": {
+            "$ref": "./common.schema.json#/$defs/sourceRef"
+          },
+          "attributes": {
+            "$ref": "./common.schema.json#/$defs/attributes"
+          },
+          "subsystem_details": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "analysis": {
+            "$ref": "./common.schema.json#/$defs/analysis"
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "current_count",
+        "baseline_count",
+        "new_count"
+      ],
+      "properties": {
+        "current_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "baseline_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "new_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hm-ai-fuzz.local/schema/validate.schema.json",
+  "title": "hm-ai-fuzz Validate Output",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "subsystem",
+    "status",
+    "diagnostics",
+    "summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "$ref": "./common.schema.json#/$defs/schemaVersion"
+    },
+    "subsystem": {
+      "$ref": "./common.schema.json#/$defs/subsystemName"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "timeout"
+      ]
+    },
+    "diagnostics": {
+      "type": "array",
+      "items": {
+        "$ref": "./common.schema.json#/$defs/diagnostic"
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "returncode": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "duration_sec": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "command": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tracked_generated_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
