@@ -5,7 +5,7 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 
 DIFF_JSON=${1:-"$REPO_ROOT/out/diff.json"}
-SYZKALLER_DIR=${2:-/home/libo/work/syzkaller}
+SYZKALLER_DIR=${2:-"$REPO_ROOT/../syzkaller"}
 OUT_JSON=${3:-"$REPO_ROOT/out/generate.json"}
 TXT_NAME=${4:-proc_auto.txt}
 

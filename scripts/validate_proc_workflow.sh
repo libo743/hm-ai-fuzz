@@ -5,8 +5,8 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 
 WORKSPACE=${1:-"$REPO_ROOT"}
-KERNEL_SRC=${2:-/home/libo/work/linux}
-SYZKALLER_DIR=${3:-/home/libo/work/syzkaller}
+KERNEL_SRC=${2:-"$REPO_ROOT/../linux"}
+SYZKALLER_DIR=${3:-"$REPO_ROOT/../syzkaller"}
 OUT_DIR=${4:-"$REPO_ROOT/out"}
 OUT_JSON=${5:-"$OUT_DIR/workflow-result.json"}
 

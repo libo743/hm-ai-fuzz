@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 gpt.md
+scripts/llm_env.local.sh
+out/scenarios/
+out/llm/

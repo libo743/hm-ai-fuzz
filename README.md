@@ -2,6 +2,12 @@
 
 `hm-ai-fuzz` 是一个面向 Linux 接口发现、差集、syzkaller 描述生成与验证的插件化框架。
 
+默认仓库相对路径约定：
+
+- 当前仓库：`.`
+- Linux 源码：`../linux`
+- syzkaller 源码：`../syzkaller`
+
 当前目标：
 
 1. 用统一的数据模型承接不同子系统的接口发现结果。
@@ -51,9 +57,9 @@ scripts/              # 验证脚本
 ## 输入
 
 - `--kernel-src`
-  Linux 源码路径，例如 `/home/libo/work/linux`
+  Linux 源码路径，默认相对当前仓库为 `../linux`
 - `--syzkaller-dir`
-  syzkaller 仓库路径，例如 `/home/libo/work/syzkaller`
+  syzkaller 仓库路径，默认相对当前仓库为 `../syzkaller`
 - `--target-module`
   当前默认为 `fs/proc`
 - `--existing-json`
@@ -81,42 +87,71 @@ scripts/              # 验证脚本
   第 4 步 v2 协议结果
 - `out/workflow-result.json`
   四步总汇总
+- `out/llm/discover-suggestions.json`
+  第 1 步 side-channel LLM 建议
+- `out/llm/model-suggestions.json`
+  第 2 步 side-channel LLM 建议
+- `out/llm/fix-suggestions.json`
+  第 4 步 side-channel LLM 建议
+
+建议把 `out/` 分成两类理解：
+
+- 主流程默认产物
+  直接放在 `out/` 根目录，例如 `discover.json`、`workflow-result.json`
+- 场景化验证产物
+  放在 `out/scenarios/` 下，例如 fix-agent 故障注入、LLM 连通性验证
+
+这里的 `demo` 不是“另一个正式流程”，而是“为了验证某个功能故意构造的场景”。
+后续如果继续保留这些脚本，也统一落在 `out/scenarios/...`，不再在仓库根目录旁边散落多个 `out-*` 目录。
 
 syzkaller 侧产物：
 
-- `/home/libo/work/syzkaller/sys/linux/proc_auto.txt`
-- `/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const`
+- `../syzkaller/sys/linux/proc_auto.txt`
+- `../syzkaller/sys/linux/proc_auto.txt.const`
+
+说明：
+
+- `hm-ai-fuzz` 本身保存的是分析结果、生成元数据、验证结果和 LLM 建议
+- 真正新增的 fuzz 描述文件会直接写入外部 `syzkaller` 仓库
+- 当前 `/proc` 默认目标路径是 `../syzkaller/sys/linux/`
 
 ## 运行
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 python3 -m workflows.proc_workflow --help
 ```
 
 完整跑一遍：
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 python3 -m workflows.proc_workflow \
-  --workspace /home/libo/work/hm-ai-fuzz \
-  --kernel-src /home/libo/work/linux \
-  --syzkaller-dir /home/libo/work/syzkaller \
-  --out-dir /home/libo/work/hm-ai-fuzz/out \
-  --out-json /home/libo/work/hm-ai-fuzz/out/workflow-result.json
+  --workspace . \
+  --kernel-src ../linux \
+  --syzkaller-dir ../syzkaller \
+  --out-dir ./out \
+  --out-json ./out/workflow-result.json
 ```
 
 或者直接跑验证脚本：
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 bash scripts/validate_proc_workflow.sh
+```
+
+如果你要明确执行“发布到外部 syzkaller 仓并验证编译”，可以直接用：
+
+```bash
+cd ./hm-ai-fuzz
+bash scripts/publish_proc_to_syzkaller.sh
 ```
 
 如果环境里没有 `pytest`，可以直接跑内置无依赖测试：
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 bash scripts/run_proc_test_suite.sh
 ```
 
@@ -127,8 +162,47 @@ bash scripts/run_proc_test_suite.sh
 - syzkaller 生成逻辑已经会写入 `.txt` 和 `.txt.const`。
 - 编译验证逻辑已经会执行 `make descriptions` 并提取诊断。
 - `/proc` 的 v2 协议链路已经打通到 `generate_v2` 和 `validate_v2`。
-- 当前可参考 [schema/README.md](/home/libo/work/hm-ai-fuzz/schema/README.md:1) 查看统一 schema 草案。
+- 当前已接入 3 个 side-channel LLM agent：
+  - `discover_agent`
+  - `model_agent`
+  - `fix_agent`
+- 这 3 个 agent 当前都不改写主流程产物，只额外输出建议 JSON，默认可关闭。
+- 当前可参考 [schema/README.md](schema/README.md) 查看统一 schema 草案。
 - 当前不删除 `v1`，原因是它仍承担兼容输出和回归对照作用；新模块接入优先按 `v2` 设计。
+
+## LLM 开关
+
+环境变量：
+
+- `HM_AI_FUZZ_LLM_ENABLED=1`
+  打开真实 LLM 调用
+- `HM_AI_FUZZ_API_KEY`
+  默认 API Key 环境变量
+- `HM_AI_FUZZ_LLM_PROVIDER`
+  当前默认 `openai_compatible`
+- `HM_AI_FUZZ_LLM_MODEL`
+  模型名
+- `HM_AI_FUZZ_LLM_BASE_URL`
+  OpenAI-compatible 接口地址
+- `HM_AI_FUZZ_LLM_DISCOVER_ENHANCE=1`
+  输出 `discover_agent` 建议
+- `HM_AI_FUZZ_LLM_MODEL_ENHANCE=1`
+  输出 `model_agent` 建议
+- `HM_AI_FUZZ_LLM_FIX_SUGGEST=1`
+  输出 `fix_agent` 建议
+- `HM_AI_FUZZ_LLM_DEBUG_DIR=/abs/path`
+  落盘原始 LLM 请求、原始返回、解析后 JSON，便于调 prompt 和 schema
+- `HM_AI_FUZZ_LLM_DISCOVER_LIMIT=1`
+  只抽样前 N 个 discover 项做 LLM 增强，便于快速 smoke test
+- `HM_AI_FUZZ_LLM_MODEL_LIMIT=1`
+  只抽样前 N 个 diff 项做 LLM 增强，便于快速 smoke test
+
+如果只开 feature，不开 `HM_AI_FUZZ_LLM_ENABLED` 或不提供 API Key，系统会输出降级建议 JSON，并在 `warnings` 中注明当前未启用真实 LLM。
+
+建议：
+
+- 调试 prompt/schema 时，优先同时设置 `HM_AI_FUZZ_LLM_DEBUG_DIR`、`HM_AI_FUZZ_LLM_DISCOVER_LIMIT`、`HM_AI_FUZZ_LLM_MODEL_LIMIT`
+- 先跑小样本 smoke test，再决定是否跑全量 LLM 增强
 
 ## 后续扩展方向
 

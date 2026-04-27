@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 
-KERNEL_SRC=${1:-/home/libo/work/linux}
+KERNEL_SRC=${1:-"$REPO_ROOT/../linux"}
 TARGET_MODULE=${2:-fs/proc}
 SEARCH_METHOD=${3:-prefix}
 SCAN_MODE=${4:-auto}

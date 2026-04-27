@@ -13,4 +13,4 @@ dependencies = []
 hm-ai-fuzz = "workflows.proc_workflow:main"
 
 [tool.setuptools.packages.find]
-include = ["core*", "extractors*", "modelers*", "generators*", "validators*", "workflows*"]
+include = ["core*", "extractors*", "modelers*", "generators*", "validators*", "workflows*", "llm*"]

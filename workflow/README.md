@@ -13,7 +13,7 @@
 
 过程性的设计推演和实现思路保留在：
 
-- [think.md](/home/libo/work/hm-ai-fuzz/workflow/think.md)
+- [think.md](think.md)
 
 ## 2. 总体设计
 
@@ -56,21 +56,40 @@
 当前默认文件链路：
 
 - 第 1 步：
-  [discover.json](/home/libo/work/hm-ai-fuzz/out/discover.json)
-  [discover-v2.json](/home/libo/work/hm-ai-fuzz/out/discover-v2.json)
+  [discover.json](../out/discover.json)
+  [discover-v2.json](../out/discover-v2.json)
 - 第 2 步：
-  [diff.json](/home/libo/work/hm-ai-fuzz/out/diff.json)
-  [diff-v2.json](/home/libo/work/hm-ai-fuzz/out/diff-v2.json)
+  [diff.json](../out/diff.json)
+  [diff-v2.json](../out/diff-v2.json)
 - 第 3 步：
-  [generate.json](/home/libo/work/hm-ai-fuzz/out/generate.json)
-  [generate-v2.json](/home/libo/work/hm-ai-fuzz/out/generate-v2.json)
-  [proc_auto.txt](/home/libo/work/syzkaller/sys/linux/proc_auto.txt)
-  [proc_auto.txt.const](/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const)
+  [generate.json](../out/generate.json)
+  [generate-v2.json](../out/generate-v2.json)
+  `../syzkaller/sys/linux/proc_auto.txt`
+  `../syzkaller/sys/linux/proc_auto.txt.const`
 - 第 4 步：
-  [validate.json](/home/libo/work/hm-ai-fuzz/out/validate.json)
-  [validate-v2.json](/home/libo/work/hm-ai-fuzz/out/validate-v2.json)
+  [validate.json](../out/validate.json)
+  [validate-v2.json](../out/validate-v2.json)
 - 总汇总：
-  [workflow-result.json](/home/libo/work/hm-ai-fuzz/out/workflow-result.json)
+  [workflow-result.json](../out/workflow-result.json)
+
+默认外部仓相对路径约定：
+
+- 当前仓库：`.`
+- Linux 源码：`../linux`
+- syzkaller 源码：`../syzkaller`
+
+当前建议的输出目录约定：
+
+- `../out/`
+  主流程默认输出目录
+- `../out/scenarios/`
+  各种验证脚本或故障注入场景的输出目录
+
+说明：
+
+- `demo` 表示“验证场景”而不是“正式主流程结果”
+- 比如 fix-agent 的故意失败验证，应该单独放在 `out/scenarios/...`
+- 正常跑 `/proc` 主流程时，仍然优先看 `out/` 根目录下那组标准文件
 
 ## 4. 第一步：Discover
 
@@ -91,9 +110,9 @@
 ### 4.2 实现位置
 
 - 代码：
-  [extractor.py](/home/libo/work/hm-ai-fuzz/extractors/proc/extractor.py)
+  [extractor.py](../extractors/proc/extractor.py)
 - 验证脚本：
-  [validate_proc_discover.sh](/home/libo/work/hm-ai-fuzz/scripts/validate_proc_discover.sh)
+  [validate_proc_discover.sh](../scripts/validate_proc_discover.sh)
 
 ### 4.3 输入
 
@@ -118,14 +137,14 @@
 ### 4.5 验证方法
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 bash scripts/validate_proc_discover.sh
 ```
 
 无依赖测试入口：
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 bash scripts/run_proc_test_suite.sh
 ```
 
@@ -140,11 +159,11 @@ demo 阶段如果 baseline 是空 JSON，则所有接口项都视为新增。
 ### 5.2 实现位置
 
 - 代码：
-  [simple_diff.py](/home/libo/work/hm-ai-fuzz/modelers/simple_diff.py)
+  [simple_diff.py](../modelers/simple_diff.py)
 - demo 脚本：
-  [run_proc_diff_demo.sh](/home/libo/work/hm-ai-fuzz/scripts/run_proc_diff_demo.sh)
+  [run_proc_diff_demo.sh](../scripts/run_proc_diff_demo.sh)
 - 抽样验证脚本：
-  [validate_proc_diff_with_sampled_base.sh](/home/libo/work/hm-ai-fuzz/scripts/validate_proc_diff_with_sampled_base.sh)
+  [validate_proc_diff_with_sampled_base.sh](../scripts/validate_proc_diff_with_sampled_base.sh)
 
 ### 5.3 输入
 
@@ -174,14 +193,14 @@ demo 阶段如果 baseline 是空 JSON，则所有接口项都视为新增。
 空 baseline：
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 bash scripts/run_proc_diff_demo.sh
 ```
 
 抽样 baseline：
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 bash scripts/validate_proc_diff_with_sampled_base.sh
 ```
 
@@ -201,11 +220,11 @@ bash scripts/validate_proc_diff_with_sampled_base.sh
 ### 6.2 实现位置
 
 - 代码：
-  [minimal.py](/home/libo/work/hm-ai-fuzz/generators/syzkaller/minimal.py)
+  [minimal.py](../generators/syzkaller/minimal.py)
 - demo 脚本：
-  [run_proc_generate_demo.sh](/home/libo/work/hm-ai-fuzz/scripts/run_proc_generate_demo.sh)
+  [run_proc_generate_demo.sh](../scripts/run_proc_generate_demo.sh)
 - 验证脚本：
-  [validate_proc_generate.sh](/home/libo/work/hm-ai-fuzz/scripts/validate_proc_generate.sh)
+  [validate_proc_generate.sh](../scripts/validate_proc_generate.sh)
 
 ### 6.3 输入
 
@@ -216,8 +235,8 @@ bash scripts/validate_proc_diff_with_sampled_base.sh
 
 - `generate.json`
 - `generate-v2.json`
-- `/home/libo/work/syzkaller/sys/linux/proc_auto.txt`
-- `/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const`
+- `../syzkaller/sys/linux/proc_auto.txt`
+- `../syzkaller/sys/linux/proc_auto.txt.const`
 
 其中 `generate-v2.json` 会记录：
 
@@ -229,7 +248,7 @@ bash scripts/validate_proc_diff_with_sampled_base.sh
 ### 6.5 验证方法
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 bash scripts/validate_proc_generate.sh
 ```
 
@@ -242,9 +261,9 @@ bash scripts/validate_proc_generate.sh
 ### 7.2 实现位置
 
 - 代码：
-  [syzkaller_build.py](/home/libo/work/hm-ai-fuzz/validators/syzkaller_build.py)
+  [syzkaller_build.py](../validators/syzkaller_build.py)
 - demo 脚本：
-  [run_proc_validate_demo.sh](/home/libo/work/hm-ai-fuzz/scripts/run_proc_validate_demo.sh)
+  [run_proc_validate_demo.sh](../scripts/run_proc_validate_demo.sh)
 
 ### 7.3 输入
 
@@ -271,13 +290,13 @@ bash scripts/validate_proc_generate.sh
 ### 7.5 验证方法
 
 ```bash
-cd /home/libo/work/hm-ai-fuzz
+cd ./hm-ai-fuzz
 bash scripts/run_proc_validate_demo.sh
 ```
 
 ## 8. 当前真实结果
 
-在 `/home/libo/work/linux` 和 `/home/libo/work/syzkaller` 上，当前真实结果是：
+在 `../linux` 和 `../syzkaller` 上，当前真实结果是：
 
 - 第 1 步发现 `29` 个 `/proc` 节点
 - 第 2 步对空 baseline 展开得到 `66` 个新增接口项
@@ -289,7 +308,7 @@ bash scripts/run_proc_validate_demo.sh
 
 当前仓库已经提供一套面向全模块的统一 schema 草案，目录见：
 
-- [schema/README.md](/home/libo/work/hm-ai-fuzz/schema/README.md:1)
+- [schema/README.md](../schema/README.md)
 
 用于统一约束：
 

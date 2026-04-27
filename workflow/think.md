@@ -77,10 +77,10 @@
 
 这一层对应代码：
 
-- [extractor.py](/home/libo/work/hm-ai-fuzz/extractors/proc/extractor.py)
-- [source_index.py](/home/libo/work/hm-ai-fuzz/extractors/proc/source_index.py)
-- [locator.py](/home/libo/work/hm-ai-fuzz/extractors/proc/locator.py)
-- [ops.py](/home/libo/work/hm-ai-fuzz/extractors/proc/ops.py)
+- [extractor.py](../extractors/proc/extractor.py)
+- [source_index.py](../extractors/proc/source_index.py)
+- [locator.py](../extractors/proc/locator.py)
+- [ops.py](../extractors/proc/ops.py)
 
 ## 第二步：把发现结果转换成“新增接口项”
 
@@ -110,7 +110,7 @@
 
 这一层对应代码：
 
-- [simple_diff.py](/home/libo/work/hm-ai-fuzz/modelers/simple_diff.py)
+- [simple_diff.py](../modelers/simple_diff.py)
 
 ## 第三步：如何把新增接口变成 syzkaller fuzz 用例
 
@@ -165,7 +165,7 @@
 
 这一层对应代码：
 
-- [minimal.py](/home/libo/work/hm-ai-fuzz/generators/syzkaller/minimal.py)
+- [minimal.py](../generators/syzkaller/minimal.py)
 
 ## 第四步：为什么必须有编译验证
 
@@ -188,13 +188,13 @@
 
 这一层对应代码：
 
-- [syzkaller_build.py](/home/libo/work/hm-ai-fuzz/validators/syzkaller_build.py)
+- [syzkaller_build.py](../validators/syzkaller_build.py)
 
 ## 为什么保留分步骤脚本
 
 虽然已经有统一入口：
 
-- [proc_workflow.py](/home/libo/work/hm-ai-fuzz/workflows/proc_workflow.py)
+- [proc_workflow.py](../workflows/proc_workflow.py)
 
 但对 `/proc` fuzz 用例新增这类任务来说，逐步观察每一步输出仍然很重要。
 

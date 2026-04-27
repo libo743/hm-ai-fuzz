@@ -5,7 +5,7 @@ SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 REPO_ROOT=$(cd "$SCRIPT_DIR/.." && pwd)
 
 GENERATE_JSON=${1:-"$REPO_ROOT/out/generate.json"}
-SYZKALLER_DIR=${2:-/home/libo/work/syzkaller}
+SYZKALLER_DIR=${2:-"$REPO_ROOT/../syzkaller"}
 OUT_JSON=${3:-"$REPO_ROOT/out/validate.json"}
 MAKE_TARGET=${4:-descriptions}
 TIMEOUT_SEC=${5:-300}
