@@ -1,4 +1,4 @@
-# hm-ai-fuzz `/proc` 工作流说明
+# hm-ai-fuzz fuzz用例生成 工作流说明
 
 ## 1. 文档目的
 
@@ -39,18 +39,36 @@
 4. 第 3 步输出 syzkaller 描述文件和生成元数据
 5. 第 4 步执行 `make descriptions` 并输出诊断
 
+当前工作流有两条并行输出视图：
+
+- 现有运行视图：
+  `discover / diff / generate / validate`
+- v2 统一协议视图：
+  `discover_v2 / diff_v2 / generate_v2 / validate_v2`
+
+其中 v2 视图不是静态转写，已经能真实执行到生成和编译验证。
+
+当前建议的使用方式是：
+
+- `v1` 继续保留，作为当前 `/proc` 主流程的兼容视图和回归基线
+- `v2` 作为后续跨模块统一协议和新模块接入标准
+
 当前默认文件链路：
 
 - 第 1 步：
   [discover.json](/home/libo/work/hm-ai-fuzz/out/discover.json)
+  [discover-v2.json](/home/libo/work/hm-ai-fuzz/out/discover-v2.json)
 - 第 2 步：
   [diff.json](/home/libo/work/hm-ai-fuzz/out/diff.json)
+  [diff-v2.json](/home/libo/work/hm-ai-fuzz/out/diff-v2.json)
 - 第 3 步：
   [generate.json](/home/libo/work/hm-ai-fuzz/out/generate.json)
+  [generate-v2.json](/home/libo/work/hm-ai-fuzz/out/generate-v2.json)
   [proc_auto.txt](/home/libo/work/syzkaller/sys/linux/proc_auto.txt)
   [proc_auto.txt.const](/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const)
 - 第 4 步：
   [validate.json](/home/libo/work/hm-ai-fuzz/out/validate.json)
+  [validate-v2.json](/home/libo/work/hm-ai-fuzz/out/validate-v2.json)
 - 总汇总：
   [workflow-result.json](/home/libo/work/hm-ai-fuzz/out/workflow-result.json)
 
@@ -94,6 +112,8 @@
 - `capabilities`
 - `source`
 - `metadata`
+
+同时还会输出 `discover-v2.json`，用于跨模块统一协议对接。
 
 ### 4.5 验证方法
 
@@ -142,6 +162,13 @@ demo 阶段如果 baseline 是空 JSON，则所有接口项都视为新增。
 
 `new_items` 是第 3 步真正消费的新增接口项。
 
+同时还会输出 `diff-v2.json`，把新增项表示成统一的：
+
+- `item_key`
+- `interface_id`
+- `operation`
+- `syscall_bindings`
+
 ### 5.5 验证方法
 
 空 baseline：
@@ -188,8 +215,16 @@ bash scripts/validate_proc_diff_with_sampled_base.sh
 ### 6.4 输出
 
 - `generate.json`
+- `generate-v2.json`
 - `/home/libo/work/syzkaller/sys/linux/proc_auto.txt`
 - `/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const`
+
+其中 `generate-v2.json` 会记录：
+
+- `generated_files`
+- `generated_units`
+- `skipped_items`
+- `summary`
 
 ### 6.5 验证方法
 
@@ -226,6 +261,13 @@ bash scripts/validate_proc_generate.sh
 - `diagnostics`
 - `metadata`
 
+同时还会输出 `validate-v2.json`，用于统一表示：
+
+- `status`
+- `diagnostics`
+- `summary`
+- `metadata`
+
 ### 7.5 验证方法
 
 ```bash
@@ -241,8 +283,22 @@ bash scripts/run_proc_validate_demo.sh
 - 第 2 步对空 baseline 展开得到 `66` 个新增接口项
 - 第 3 步生成 `proc_auto.txt` 与 `proc_auto.txt.const`
 - 第 4 步 `make descriptions` 通过
+- v2 四步结果也已同时产出并通过编译验证
 
-## 9. 待改进点
+## 9. v2 协议说明
+
+当前仓库已经提供一套面向全模块的统一 schema 草案，目录见：
+
+- [schema/README.md](/home/libo/work/hm-ai-fuzz/schema/README.md:1)
+
+用于统一约束：
+
+- `discover_v2`
+- `diff_v2`
+- `generate_v2`
+- `validate_v2`
+
+## 10. 待改进点
 
 - 第 1 步对复杂宏、间接注册和配置依赖节点仍可能漏检
 - 第 2 步当前只按 `target + op` 去重，还没有建模参数差异

@@ -20,6 +20,22 @@
 3. 第 3 步把新增接口生成到 `syzkaller/sys/linux/proc_auto.txt` 和 `proc_auto.txt.const`。
 4. 第 4 步在 syzkaller 目录执行 `make descriptions`，检查生成描述是否可编译。
 
+当前 `/proc` 主流程同时支持两套输出：
+
+- 现有运行格式：
+  `discover.json / diff.json / generate.json / validate.json`
+- v2 统一协议格式：
+  `discover-v2.json / diff-v2.json / generate-v2.json / validate-v2.json`
+
+其中 v2 链路已经能真实跑到生成和编译验证，不只是导出 schema 样例。
+
+当前两套格式的定位是：
+
+- `v1`
+  继续保留，作为当前 `/proc` 主流程的兼容层和回归基线
+- `v2`
+  作为后续统一协议，以及其他模块负责人新增用例时的推荐接入格式
+
 ## 目录
 
 ```text
@@ -49,12 +65,20 @@ scripts/              # 验证脚本
 
 - `out/discover.json`
   第 1 步发现结果
+- `out/discover-v2.json`
+  第 1 步 v2 协议结果
 - `out/diff.json`
   第 2 步差集结果，`new_items` 是新增接口项
+- `out/diff-v2.json`
+  第 2 步 v2 协议结果
 - `out/generate.json`
   第 3 步生成结果，记录生成文件和生成单元
+- `out/generate-v2.json`
+  第 3 步 v2 协议结果
 - `out/validate.json`
   第 4 步编译验证结果
+- `out/validate-v2.json`
+  第 4 步 v2 协议结果
 - `out/workflow-result.json`
   四步总汇总
 
@@ -102,6 +126,9 @@ bash scripts/run_proc_test_suite.sh
 - 差集逻辑已经能把发现结果按 `subsystem:target:op` 维度展开。
 - syzkaller 生成逻辑已经会写入 `.txt` 和 `.txt.const`。
 - 编译验证逻辑已经会执行 `make descriptions` 并提取诊断。
+- `/proc` 的 v2 协议链路已经打通到 `generate_v2` 和 `validate_v2`。
+- 当前可参考 [schema/README.md](/home/libo/work/hm-ai-fuzz/schema/README.md:1) 查看统一 schema 草案。
+- 当前不删除 `v1`，原因是它仍承担兼容输出和回归对照作用；新模块接入优先按 `v2` 设计。
 
 ## 后续扩展方向
 
