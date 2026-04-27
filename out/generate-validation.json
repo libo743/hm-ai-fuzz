@@ -1,0 +1,322 @@
+{
+  "generated_files": [
+    {
+      "path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "kind": "txt",
+      "details": {
+        "entry_count": 29
+      }
+    },
+    {
+      "path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const",
+      "kind": "txt.const",
+      "details": {
+        "entry_count": 6
+      }
+    }
+  ],
+  "units": [
+    {
+      "target": "/proc/bootconfig",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_bootconfig",
+      "open_alias": "openat$proc_proc_bootconfig",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/bus",
+      "supported_ops": [
+        "getdents64",
+        "open"
+      ],
+      "resource_name": "fd_dir",
+      "open_alias": "openat$proc_proc_bus",
+      "kind": "dir"
+    },
+    {
+      "target": "/proc/cmdline",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_cmdline",
+      "open_alias": "openat$proc_proc_cmdline",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/consoles",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_consoles",
+      "open_alias": "openat$proc_proc_consoles",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/cpuinfo",
+      "supported_ops": [
+        "lseek",
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_cpuinfo",
+      "open_alias": "openat$proc_proc_cpuinfo",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/devices",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_devices",
+      "open_alias": "openat$proc_proc_devices",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/driver",
+      "supported_ops": [
+        "getdents64",
+        "open"
+      ],
+      "resource_name": "fd_dir",
+      "open_alias": "openat$proc_proc_driver",
+      "kind": "dir"
+    },
+    {
+      "target": "/proc/fs",
+      "supported_ops": [
+        "getdents64",
+        "open"
+      ],
+      "resource_name": "fd_dir",
+      "open_alias": "openat$proc_proc_fs",
+      "kind": "dir"
+    },
+    {
+      "target": "/proc/interrupts",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_interrupts",
+      "open_alias": "openat$proc_proc_interrupts",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/kcore",
+      "supported_ops": [
+        "lseek",
+        "open"
+      ],
+      "resource_name": "fd_proc_proc_kcore",
+      "open_alias": "openat$proc_proc_kcore",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/kmsg",
+      "supported_ops": [
+        "lseek",
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_kmsg",
+      "open_alias": "openat$proc_proc_kmsg",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/kpagecgroup",
+      "supported_ops": [
+        "lseek",
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_kpagecgroup",
+      "open_alias": "openat$proc_proc_kpagecgroup",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/kpagecount",
+      "supported_ops": [
+        "lseek",
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_kpagecount",
+      "open_alias": "openat$proc_proc_kpagecount",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/kpageflags",
+      "supported_ops": [
+        "lseek",
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_kpageflags",
+      "open_alias": "openat$proc_proc_kpageflags",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/loadavg",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_loadavg",
+      "open_alias": "openat$proc_proc_loadavg",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/maps",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_maps",
+      "open_alias": "openat$proc_proc_maps",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/meminfo",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_meminfo",
+      "open_alias": "openat$proc_proc_meminfo",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/mounts",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_mounts",
+      "open_alias": "openat$proc_proc_mounts",
+      "kind": "symlink"
+    },
+    {
+      "target": "/proc/net",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_net",
+      "open_alias": "openat$proc_proc_net",
+      "kind": "symlink"
+    },
+    {
+      "target": "/proc/softirqs",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_softirqs",
+      "open_alias": "openat$proc_proc_softirqs",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/stat",
+      "supported_ops": [
+        "lseek",
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_stat",
+      "open_alias": "openat$proc_proc_stat",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/sys",
+      "supported_ops": [
+        "getdents64",
+        "open"
+      ],
+      "resource_name": "fd_dir",
+      "open_alias": "openat$proc_proc_sys",
+      "kind": "dir"
+    },
+    {
+      "target": "/proc/tty",
+      "supported_ops": [
+        "getdents64",
+        "open"
+      ],
+      "resource_name": "fd_dir",
+      "open_alias": "openat$proc_proc_tty",
+      "kind": "dir"
+    },
+    {
+      "target": "/proc/tty/drivers",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_tty_drivers",
+      "open_alias": "openat$proc_proc_tty_drivers",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/tty/ldisc",
+      "supported_ops": [
+        "getdents64",
+        "open"
+      ],
+      "resource_name": "fd_dir",
+      "open_alias": "openat$proc_proc_tty_ldisc",
+      "kind": "dir"
+    },
+    {
+      "target": "/proc/tty/ldiscs",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_tty_ldiscs",
+      "open_alias": "openat$proc_proc_tty_ldiscs",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/uptime",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_uptime",
+      "open_alias": "openat$proc_proc_uptime",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/version",
+      "supported_ops": [
+        "open",
+        "read"
+      ],
+      "resource_name": "fd_proc_proc_version",
+      "open_alias": "openat$proc_proc_version",
+      "kind": "file"
+    },
+    {
+      "target": "/proc/vmcore",
+      "supported_ops": [
+        "lseek",
+        "open"
+      ],
+      "resource_name": "fd_proc_proc_vmcore",
+      "open_alias": "openat$proc_proc_vmcore",
+      "kind": "file"
+    }
+  ],
+  "metadata": {
+    "generated_interface_count": 29,
+    "skipped_interface_count": 37,
+    "txt_path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+    "const_path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const"
+  }
+}
