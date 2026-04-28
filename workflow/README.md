@@ -45,10 +45,11 @@
 ## 3. 端到端流程概览
 
 1. 输入 Linux 源码路径和目标模块
-2. 第 1 步分别输出 Python/规则发现结果和 LLM discover 结果
-3. 第 2 步先合并 discover，再输出新增接口项
-4. 第 3 步输出 syzkaller 描述文件和生成元数据
-5. 第 4 步执行 `make descriptions` 并输出诊断
+2. 第 1 步先执行 `discover`
+3. `discover` 内部再拆成 Python/规则发现、LLM discover 补充、merge discover
+4. 第 2 步基于 merged discover 输出新增接口项
+5. 第 3 步输出 syzkaller 描述文件和生成元数据
+6. 第 4 步执行 `make descriptions` 并输出诊断
 
 当前工作流有两条并行输出视图：
 
@@ -59,7 +60,7 @@
 
 其中 v2 视图不是静态转写，已经能真实执行到生成和编译验证。
 
-当前建议的使用方式是：
+当前两套视图的定位是：
 
 - `v1` 继续保留，作为当前 `/proc` 主流程的兼容视图和回归基线
 - `v2` 作为后续跨模块统一协议和新模块接入标准
@@ -102,9 +103,8 @@
 
 说明：
 
-- `demo` 表示“验证场景”而不是“正式主流程结果”
-- 比如 fix-agent 的故意失败验证，应该单独放在 `out/scenarios/...`
-- 正常跑 `/proc` 主流程时，仍然优先看 `out/` 根目录下那组标准文件
+- `out/` 根目录保存主流程标准产物
+- `out/scenarios/` 保存故障注入、抽样验证、LLM 小样本联调等场景化结果
 
 ## 4. 第一步：Discover
 
@@ -179,9 +179,7 @@ bash scripts/run_proc_test_suite.sh
 
 ### 5.1 目标
 
-先把 `discover.json` 和 `discover-llm.json` 合并成 `discover-merged.json`，再把 merged 结果展开成 `subsystem:target:op` 级别的接口项，与 baseline 做差。
-
-demo 阶段如果 baseline 是空 JSON，则所有接口项都视为新增。
+先把 `discover.json` 和 `discover-llm.json` 合并成 `discover-merged.json`，再把 merged 结果展开成 `subsystem:target:op` 级别的接口项，与 baseline 做差。若 baseline 是空 JSON，则所有接口项都视为新增。
 
 ### 5.2 实现位置
 
@@ -348,7 +346,7 @@ bash scripts/run_proc_validate_demo.sh
 
 用于统一约束：
 
-- `discover_v2`
+- `discover_v2 / discover_llm_v2 / discover_merged_v2`
 - `diff_v2`
 - `generate_v2`
 - `validate_v2`

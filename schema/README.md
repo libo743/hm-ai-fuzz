@@ -37,7 +37,6 @@
 
 说明：
 
-- 这是协议草案，不要求当前 `/proc` 实现立刻完全满足
 - 这套 schema 的重点是为后续各模块负责人定义统一交付物
 - 当前 `/proc` 实现已经能同时导出并执行 `discover_v2 / discover_llm_v2 / discover_merged_v2 / diff_v2 / generate_v2 / validate_v2`
-- 后续其他模块负责人可以直接按这套 schema 设计各自的 discover/diff/generate/validate 交付物
+- 当前 schema 仍然是面向全模块扩展的协议草案，后续接入新模块时允许继续细化字段和约束
