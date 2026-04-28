@@ -8,6 +8,18 @@
 - 同时覆盖 `/proc`、`sysfs`、文件系统、网络、设备节点和直接 syscall
 - 把“接口对象层”和“syscall 绑定层”明确拆开
 
+当前 `/proc` 流程的 discover 阶段已经进一步拆成：
+
+- base discover
+- llm discover
+- merged discover
+
+因此统一协议后续也需要能容纳：
+
+- `discover_v2`
+- `discover_llm_v2`
+- `discover_merged_v2`
+
 文件说明：
 
 - [common.schema.json](/home/libo/work/hm-ai-fuzz/schema/common.schema.json)
@@ -27,5 +39,5 @@
 
 - 这是协议草案，不要求当前 `/proc` 实现立刻完全满足
 - 这套 schema 的重点是为后续各模块负责人定义统一交付物
-- 当前 `/proc` 实现已经能同时导出并执行 `discover_v2 / diff_v2 / generate_v2 / validate_v2`
+- 当前 `/proc` 实现已经能同时导出并执行 `discover_v2 / discover_llm_v2 / discover_merged_v2 / diff_v2 / generate_v2 / validate_v2`
 - 后续其他模块负责人可以直接按这套 schema 设计各自的 discover/diff/generate/validate 交付物

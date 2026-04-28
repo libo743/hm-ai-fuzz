@@ -31,20 +31,31 @@
 - 每一步都可以单独执行和单独验证
 - 第 3 步生成与第 4 步编译诊断分离
 
+当前版本里，第 1 步 `discover` 已经演进成内部三段式：
+
+- `discover.json`
+  Python/规则基础发现结果
+- `discover-llm.json`
+  LLM 补充发现结果
+- `discover-merged.json`
+  供第 2 步真正消费的 discover 权威结果
+
+因此，新设计不是“LLM 只给建议”，而是“LLM 结果先独立落盘，再 merge 后进入 diff”。
+
 ## 3. 端到端流程概览
 
 1. 输入 Linux 源码路径和目标模块
-2. 第 1 步输出 `/proc` 节点发现结果
-3. 第 2 步输出新增接口项
+2. 第 1 步分别输出 Python/规则发现结果和 LLM discover 结果
+3. 第 2 步先合并 discover，再输出新增接口项
 4. 第 3 步输出 syzkaller 描述文件和生成元数据
 5. 第 4 步执行 `make descriptions` 并输出诊断
 
 当前工作流有两条并行输出视图：
 
 - 现有运行视图：
-  `discover / diff / generate / validate`
+  `discover / discover_llm / discover_merged / diff / generate / validate`
 - v2 统一协议视图：
-  `discover_v2 / diff_v2 / generate_v2 / validate_v2`
+  `discover_v2 / discover_llm_v2 / discover_merged_v2 / diff_v2 / generate_v2 / validate_v2`
 
 其中 v2 视图不是静态转写，已经能真实执行到生成和编译验证。
 
@@ -57,7 +68,11 @@
 
 - 第 1 步：
   [discover.json](../out/discover.json)
+  [discover-llm.json](../out/discover-llm.json)
+  [discover-merged.json](../out/discover-merged.json)
   [discover-v2.json](../out/discover-v2.json)
+  [discover-llm-v2.json](../out/discover-llm-v2.json)
+  [discover-merged-v2.json](../out/discover-merged-v2.json)
 - 第 2 步：
   [diff.json](../out/diff.json)
   [diff-v2.json](../out/diff-v2.json)
@@ -106,6 +121,7 @@
 - `getdents64`
 - `ioctl`
 - `mmap`
+- `poll`
 
 ### 4.2 实现位置
 
@@ -123,7 +139,7 @@
 
 ### 4.4 输出
 
-输出为 `discover.json`，每项是一个统一的 `InterfaceSpec`：
+输出为 `discover.json`，表示 Python/规则发现结果；每项是一个统一的 `InterfaceSpec`：
 
 - `subsystem`
 - `target`
@@ -132,7 +148,18 @@
 - `source`
 - `metadata`
 
-同时还会输出 `discover-v2.json`，用于跨模块统一协议对接。
+如果启用 LLM discover，还会额外输出：
+
+- `discover-llm.json`
+  只包含 LLM 补充发现的操作/节点
+- `discover-merged.json`
+  供第 2 步真正消费的 merged discover 结果
+
+同时还会输出对应的 v2 视图：
+
+- `discover-v2.json`
+- `discover-llm-v2.json`
+- `discover-merged-v2.json`
 
 ### 4.5 验证方法
 
@@ -152,7 +179,7 @@ bash scripts/run_proc_test_suite.sh
 
 ### 5.1 目标
 
-把第 1 步发现结果展开成 `subsystem:target:op` 级别的接口项，再与 baseline 做差。
+先把 `discover.json` 和 `discover-llm.json` 合并成 `discover-merged.json`，再把 merged 结果展开成 `subsystem:target:op` 级别的接口项，与 baseline 做差。
 
 demo 阶段如果 baseline 是空 JSON，则所有接口项都视为新增。
 
@@ -167,7 +194,7 @@ demo 阶段如果 baseline 是空 JSON，则所有接口项都视为新增。
 
 ### 5.3 输入
 
-- `discover.json`
+- `discover-merged.json`
 - baseline JSON
 
 ### 5.4 输出
@@ -180,6 +207,7 @@ demo 阶段如果 baseline 是空 JSON，则所有接口项都视为新增。
 - `new_items`
 
 `new_items` 是第 3 步真正消费的新增接口项。
+当前 `/proc` 流程里，这些新增项来自 `discover-merged.json`，不是只来自 base discover。
 
 同时还会输出 `diff-v2.json`，把新增项表示成统一的：
 
@@ -303,6 +331,14 @@ bash scripts/run_proc_validate_demo.sh
 - 第 3 步生成 `proc_auto.txt` 与 `proc_auto.txt.const`
 - 第 4 步 `make descriptions` 通过
 - v2 四步结果也已同时产出并通过编译验证
+
+当前还补充验证过一条 LLM smoke 路径：
+
+- 开启 LLM discover 后，`discover-llm.json` 可产生额外操作
+- 这些操作会进入 `discover-merged.json`
+- `diff.json` 的新增接口项数量会真实变化
+- 生成和 `make descriptions` 仍可通过
+- 已验证示例中，`/proc/consoles` 的 `lseek` 由 LLM discover 补充进入 merged，再进入 diff 和生成链路
 
 ## 9. v2 协议说明
 

@@ -32,6 +32,16 @@
 - 单独替换实现
 - 在第 3 步和第 4 步之间形成明确的文件接口
 
+在当前版本里，这 4 步虽然保留不变，但第 1 步的内部已经从“单一 discover”演进成“三段式 discover”：
+
+1. `discover.base`
+2. `discover.llm`
+3. `discover.merged`
+
+也就是说，真正进入第 2 步做差集的，不再只是 Python/规则发现结果，而是合并后的 discover 结果。
+
+这也是当前新设计最重要的变化。
+
 ## 为什么新增 `/proc` fuzz 用例不能一步完成
 
 新增 `/proc` fuzz 用例表面上看只是“生成一个 `.txt`”，但实际至少涉及这几层信息：
@@ -63,6 +73,46 @@
 - `mmap`
 - `poll`
 
+### 为什么第 1 步要拆成 base / llm / merged
+
+如果只靠 Python/规则实现 discover，它的优点是：
+
+- 稳定
+- 可回放
+- 输出结构固定
+- 适合做默认基线
+
+但缺点也很明显：
+
+- 对复杂间接引用不敏感
+- 对上下文语义推断有限
+- 对“源码里没有直接写全，但语义上应该支持的能力”补充不足
+
+如果直接让 LLM 替代第 1 步，又会引入另外一类问题：
+
+- 输出不稳定
+- 同一次输入可能给出不同补充项
+- 很难直接作为唯一真值来源
+
+所以当前更稳妥的设计是：
+
+- `discover.json` 作为 deterministic base
+- `discover-llm.json` 作为 LLM 补充发现
+- `discover-merged.json` 作为真正进入第 2 步的输入
+
+这样做的好处是：
+
+- 保留一份稳定可复现的机器基线
+- 保留一份独立的 LLM 增量结果，便于审计
+- LLM 补充不会被“只做展示不参与后续”浪费掉
+- 第 2 步可以明确地基于 merged 结果求差集
+
+当前对应的三个输出文件分别是：
+
+- `out/discover.json`
+- `out/discover-llm.json`
+- `out/discover-merged.json`
+
 实现重点：
 
 - 先建立源码索引
@@ -81,6 +131,17 @@
 - [source_index.py](../extractors/proc/source_index.py)
 - [locator.py](../extractors/proc/locator.py)
 - [ops.py](../extractors/proc/ops.py)
+- [discover_agent.py](../llm/agents/discover_agent.py)
+
+### 第 1 步的新结论
+
+在现在这套实现里，第 1 步已经不是“纯 Python 发现”，而是：
+
+1. Python 先给出基础 discover
+2. LLM 在结构化 schema 约束下补充 discover
+3. 工作流再做 merge，生成最终 discover
+
+这个 merge 不是文档层合并，而是实际进入第 2 步的生产输入。
 
 ## 第二步：把发现结果转换成“新增接口项”
 
@@ -97,6 +158,19 @@
 
 再与 baseline 做差。
 
+这里当前和老版本最大的区别是：
+
+- 老思路：对 `discover.json` 直接做差
+- 新思路：先把 `discover.json` 和 `discover-llm.json` 合并成 `discover-merged.json`，再对 merged 结果做差
+
+这样设计的原因是：
+
+- 不把 LLM discover 只当作旁路建议
+- 让第 1 步 LLM 的有效补充真实影响新增接口集合
+- 仍然保留 base / llm / merged 三份文件，便于解释“新增项到底从哪来”
+
+也就是说，第 2 步本身除了“展开 + 求差集”，还承担了“消费 merged discover 作为权威输入”的职责。
+
 这里采用的差集键是：
 
 - `subsystem:target:op`
@@ -111,6 +185,20 @@
 这一层对应代码：
 
 - [simple_diff.py](../modelers/simple_diff.py)
+
+### 一个已经验证过的例子
+
+当前已经验证过一条真实的 LLM discover 补充路径：
+
+- Python base discover 识别 `/proc/consoles` 支持 `open`、`read`
+- LLM discover 补充了 `lseek`
+- merge 后 `/proc/consoles` 的能力集合变成 `open`、`read`、`lseek`
+- `diff.json` 的新增接口数从 `66` 变成 `67`
+
+这说明：
+
+- LLM discover 输出没有停留在“附加建议”
+- 它已经真实进入 diff 阶段并改变第 3 步的生成输入
 
 ## 第三步：如何把新增接口变成 syzkaller fuzz 用例
 
@@ -166,6 +254,7 @@
 这一层对应代码：
 
 - [minimal.py](../generators/syzkaller/minimal.py)
+- [model_agent.py](../llm/agents/model_agent.py)
 
 ## 第四步：为什么必须有编译验证
 
@@ -186,9 +275,17 @@
 - 第 4 步可以专注报错归因
 - 后续如果引入自动修复，也应该优先放在第 4 步之后
 
+当前第 4 步之后还预留了一条 LLM 修复建议能力：
+
+- `fix_agent` 不直接替代编译器
+- 它消费编译失败诊断，为第 3 步回改提供结构化修复建议
+
+这样能避免把“生成逻辑”和“报错解释逻辑”硬耦合在一个大 agent 里。
+
 这一层对应代码：
 
 - [syzkaller_build.py](../validators/syzkaller_build.py)
+- [fix_agent.py](../llm/agents/fix_agent.py)
 
 ## 为什么保留分步骤脚本
 
@@ -216,10 +313,25 @@
 
 当前 `/proc` 流程已经形成一条稳定的新增用例链路：
 
-1. 从 Linux 源码发现 `/proc` 节点和操作能力
-2. 将结果展开成接口项并与 baseline 做差
-3. 生成 syzkaller 描述文件
-4. 用编译验证生成结果是否有效
+1. 从 Linux 源码做基础 discover
+2. 用 LLM 对 discover 结果做补充
+3. 合并 base discover 与 llm discover
+4. 将 merged discover 展开成接口项并与 baseline 做差
+5. 生成 syzkaller 描述文件
+6. 用编译验证生成结果是否有效
+
+如果按外部可见的四步来理解，仍然可以写成：
+
+1. `discover`
+2. `diff`
+3. `generate`
+4. `validate`
+
+但第 1 步内部已经明确变成：
+
+- `discover.base`
+- `discover.llm`
+- `discover.merged`
 
 并且当前已经同时具备两套可执行输出：
 
@@ -245,3 +357,16 @@
 
 - 让第 1 步识别更多真实的复杂 `/proc` 操作节点
 - 让第 3 步从“最小模板生成”逐步走向“复杂参数建模”
+
+再往后，如果要从 `/proc` 扩展到其他模块，这套设计也更容易复用：
+
+- 第 1 步替换成对应模块自己的 extractor + discover agent
+- 第 2 步继续统一做 merge 和 diff
+- 第 3 步换成对应 syscall family 的 generator / model agent
+- 第 4 步继续统一保留编译和诊断接口
+
+也就是说，未来真正可复用的不是“/proc 模板”本身，而是：
+
+- 分步工作流
+- 结构化中间结果
+- Python 基线 + LLM 补充 + merge 后再 diff 的组合方式
