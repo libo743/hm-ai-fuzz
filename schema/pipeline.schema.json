@@ -3,24 +3,62 @@
   "$id": "https://hm-ai-fuzz.local/schema/pipeline.schema.json",
   "title": "hm-ai-fuzz Full Pipeline Output",
   "type": "object",
-  "additionalProperties": false,
+  "additionalProperties": true,
   "required": [
-    "discover",
-    "diff",
-    "generate",
-    "validate"
+    "discover_v2",
+    "discover_llm_v2",
+    "discover_merged_v2",
+    "diff_v2",
+    "generate_v2",
+    "validate_v2"
   ],
   "properties": {
     "discover": {
-      "$ref": "./discover.schema.json"
+      "type": "array"
+    },
+    "discover_llm": {
+      "type": "array"
+    },
+    "discover_merged": {
+      "type": "array"
     },
     "diff": {
-      "$ref": "./diff.schema.json"
+      "type": "object"
     },
     "generate": {
-      "$ref": "./generate.schema.json"
+      "type": "object"
     },
     "validate": {
+      "type": "object"
+    },
+    "publish": {
+      "type": "object"
+    },
+    "llm_discover_suggestions": {
+      "type": "object"
+    },
+    "llm_model_suggestions": {
+      "type": "object"
+    },
+    "llm_fix_suggestions": {
+      "type": "object"
+    },
+    "discover_v2": {
+      "$ref": "./discover.schema.json"
+    },
+    "discover_llm_v2": {
+      "$ref": "./discover.schema.json"
+    },
+    "discover_merged_v2": {
+      "$ref": "./discover.schema.json"
+    },
+    "diff_v2": {
+      "$ref": "./diff.schema.json"
+    },
+    "generate_v2": {
+      "$ref": "./generate.schema.json"
+    },
+    "validate_v2": {
       "$ref": "./validate.schema.json"
     }
   }

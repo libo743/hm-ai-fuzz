@@ -7,7 +7,7 @@ import re
 from pathlib import Path
 from typing import Any
 
-from core.pipeline import WorkflowPipeline, write_json
+from core.pipeline import write_json
 from core.protocols import WorkflowContext
 from core.schema_adapter_v2 import (
     adapt_diff_proc_v2,
@@ -16,6 +16,7 @@ from core.schema_adapter_v2 import (
     adapt_validate_proc_v2,
     diff_v2_to_diff_result,
 )
+from core.schemas import InterfaceSpec, SourceRef, to_jsonable
 from extractors.proc.extractor import ProcDiscoverPlugin
 from generators.syzkaller.minimal import MinimalSyzkallerGeneratePlugin
 from llm.agents.discover_agent import DiscoverAgent
@@ -69,24 +70,19 @@ def main(argv: list[str] | None = None) -> int:
             "timeout_sec": args.timeout_sec,
         },
     )
-    pipeline = WorkflowPipeline(
-        discover_plugin=ProcDiscoverPlugin(),
-        diff_plugin=SimpleDiffPlugin(),
-        generate_plugin=MinimalSyzkallerGeneratePlugin(),
-        validate_plugin=SyzkallerBuildValidatePlugin(),
-    )
-    result = pipeline.run(ctx, existing)
-    discover_v2 = adapt_discover_proc_v2(result["discover"], ctx)
-    diff_v2 = adapt_diff_proc_v2(result["diff"], discover_v2)
+    discover_plugin = ProcDiscoverPlugin()
+    diff_plugin = SimpleDiffPlugin()
     generate_plugin = MinimalSyzkallerGeneratePlugin()
     validate_plugin = SyzkallerBuildValidatePlugin()
-    generation_v2_raw = generate_plugin.generate(diff_v2_to_diff_result(diff_v2), ctx)
-    generate_v2 = adapt_generate_proc_v2(generation_v2_raw, diff_v2)
-    validate_v2 = adapt_validate_proc_v2(validate_plugin.validate(generation_v2_raw, ctx))
-    publish = _build_publish_summary(generation_v2_raw, validate_v2, ctx)
+
+    base_specs = discover_plugin.discover(ctx)
+    discover_base = to_jsonable(base_specs)
+    discover_base_v2 = adapt_discover_proc_v2(discover_base, ctx)
+
     llm_config = load_config_from_env()
     llm_client = LLMClient(llm_config)
     prompt_dir = ctx.workspace / "llm" / "prompts"
+
     discover_suggestions = {
         "enabled": llm_config.enabled and llm_config.features.discover_enhance,
         "status": "skipped",
@@ -95,13 +91,31 @@ def main(argv: list[str] | None = None) -> int:
     }
     if llm_config.features.discover_enhance:
         discover_suggestions = _run_discover_agent_side_channel(
-            discover_v2=discover_v2,
+            discover_v2=discover_base_v2,
             ctx=ctx,
             client=llm_client,
             prompt_dir=prompt_dir,
             llm_enabled=llm_config.enabled,
             limit=_env_int("HM_AI_FUZZ_LLM_DISCOVER_LIMIT"),
         )
+
+    discover_llm_v2 = _build_discover_llm_v2(discover_base_v2, discover_suggestions)
+    discover_merged_v2 = _merge_discover_v2(discover_base_v2, discover_llm_v2)
+    discover_llm = _discover_v2_to_json_specs(discover_llm_v2)
+    merged_specs = _discover_v2_to_specs(discover_merged_v2)
+    discover_merged = to_jsonable(merged_specs)
+
+    diff_result = diff_plugin.diff(merged_specs, existing, ctx)
+    diff_json = to_jsonable(diff_result)
+    diff_v2 = adapt_diff_proc_v2(diff_json, discover_merged_v2)
+    generation_v2_raw = generate_plugin.generate(diff_result, ctx)
+    generate_json = to_jsonable(generation_v2_raw)
+    generate_v2 = adapt_generate_proc_v2(generation_v2_raw, diff_v2)
+    validation_result = validate_plugin.validate(generation_v2_raw, ctx)
+    validate_json = to_jsonable(validation_result)
+    validate_v2 = adapt_validate_proc_v2(validation_result)
+    publish = _build_publish_summary(generation_v2_raw, validate_v2, ctx)
+
     model_suggestions = {
         "enabled": llm_config.enabled and llm_config.features.model_enhance,
         "status": "skipped",
@@ -146,22 +160,36 @@ def main(argv: list[str] | None = None) -> int:
                 "reason": str(exc),
                 "suggestions": [],
             }
-    result["discover_v2"] = discover_v2
-    result["diff_v2"] = diff_v2
-    result["generate_v2"] = generate_v2
-    result["validate_v2"] = validate_v2
-    result["publish"] = publish
-    result["llm_discover_suggestions"] = discover_suggestions
-    result["llm_model_suggestions"] = model_suggestions
-    result["llm_fix_suggestions"] = fix_suggestions
+    result = {
+        "discover": discover_base,
+        "discover_llm": discover_llm,
+        "discover_merged": discover_merged,
+        "diff": diff_json,
+        "generate": generate_json,
+        "validate": validate_json,
+        "discover_v2": discover_base_v2,
+        "discover_llm_v2": discover_llm_v2,
+        "discover_merged_v2": discover_merged_v2,
+        "diff_v2": diff_v2,
+        "generate_v2": generate_v2,
+        "validate_v2": validate_v2,
+        "publish": publish,
+        "llm_discover_suggestions": discover_suggestions,
+        "llm_model_suggestions": model_suggestions,
+        "llm_fix_suggestions": fix_suggestions,
+    }
     output_dir = args.out_dir.resolve()
-    write_json(output_dir / "discover.json", result["discover"])
-    write_json(output_dir / "discover-v2.json", discover_v2)
-    write_json(output_dir / "diff.json", result["diff"])
+    write_json(output_dir / "discover.json", discover_base)
+    write_json(output_dir / "discover-llm.json", discover_llm)
+    write_json(output_dir / "discover-merged.json", discover_merged)
+    write_json(output_dir / "discover-v2.json", discover_base_v2)
+    write_json(output_dir / "discover-llm-v2.json", discover_llm_v2)
+    write_json(output_dir / "discover-merged-v2.json", discover_merged_v2)
+    write_json(output_dir / "diff.json", diff_json)
     write_json(output_dir / "diff-v2.json", diff_v2)
-    write_json(output_dir / "generate.json", result["generate"])
+    write_json(output_dir / "generate.json", generate_json)
     write_json(output_dir / "generate-v2.json", generate_v2)
-    write_json(output_dir / "validate.json", result["validate"])
+    write_json(output_dir / "validate.json", validate_json)
     write_json(output_dir / "validate-v2.json", validate_v2)
     write_json(output_dir / "publish.json", publish)
     write_json(output_dir / "llm" / "discover-suggestions.json", discover_suggestions)
@@ -170,6 +198,214 @@ def main(argv: list[str] | None = None) -> int:
     write_json(args.out_json.resolve(), result)
     print(f"workflow result: {args.out_json.resolve()}")
     return 0
+
+
+def _build_discover_llm_v2(discover_v2: dict[str, Any], discover_suggestions: dict[str, Any]) -> dict[str, Any]:
+    base_by_id = {
+        item["interface_id"]: item
+        for item in discover_v2.get("items", [])
+        if isinstance(item, dict) and isinstance(item.get("interface_id"), str)
+    }
+    llm_items: list[dict[str, Any]] = []
+    suggestions = discover_suggestions.get("suggestions")
+    if not isinstance(suggestions, list):
+        suggestions = []
+    for suggestion in suggestions:
+        if not isinstance(suggestion, dict):
+            continue
+        interface_id = suggestion.get("interface_id")
+        if not isinstance(interface_id, str):
+            continue
+        base_item = base_by_id.get(interface_id)
+        if not isinstance(base_item, dict):
+            continue
+        suggested_ops = _normalize_llm_operations(suggestion.get("suggested_operations"))
+        existing_ops = {
+            str(op.get("op_name"))
+            for op in base_item.get("operations", [])
+            if isinstance(op, dict) and isinstance(op.get("op_name"), str)
+        }
+        new_ops = [op for op in suggested_ops if op not in existing_ops]
+        if not new_ops:
+            continue
+        item = {
+            **base_item,
+            "operations": [_op_descriptor_from_name(interface_id, op) for op in new_ops],
+            "analysis": {
+                "confidence": suggestion.get("confidence", "medium"),
+                "evidence": list(suggestion.get("evidence", [])) if isinstance(suggestion.get("evidence"), list) else [],
+                "manual_todo": ["llm_discovered_operation"],
+                "warnings": list(suggestion.get("warnings", [])) if isinstance(suggestion.get("warnings"), list) else [],
+            },
+            "llm_details": {
+                "raw_suggested_operations": list(suggestion.get("suggested_operations", [])) if isinstance(suggestion.get("suggested_operations"), list) else [],
+                "normalized_operations": new_ops,
+            },
+        }
+        llm_items.append(item)
+    return {
+        "schema_version": "v2",
+        "subsystem": "proc",
+        "source_root": discover_v2.get("source_root", ""),
+        "scope": dict(discover_v2.get("scope", {})),
+        "items": llm_items,
+        "summary": {
+            "item_count": len(llm_items),
+            "operation_count": sum(len(item.get("operations", [])) for item in llm_items),
+        },
+    }
+
+
+def _merge_discover_v2(base_v2: dict[str, Any], llm_v2: dict[str, Any]) -> dict[str, Any]:
+    merged_items: list[dict[str, Any]] = []
+    llm_by_id = {
+        item["interface_id"]: item
+        for item in llm_v2.get("items", [])
+        if isinstance(item, dict) and isinstance(item.get("interface_id"), str)
+    }
+    for base_item in base_v2.get("items", []):
+        if not isinstance(base_item, dict):
+            continue
+        interface_id = base_item.get("interface_id")
+        if not isinstance(interface_id, str):
+            continue
+        llm_item = llm_by_id.get(interface_id)
+        base_ops = list(base_item.get("operations", [])) if isinstance(base_item.get("operations"), list) else []
+        merged_ops = list(base_ops)
+        seen = {
+            str(op.get("op_name"))
+            for op in merged_ops
+            if isinstance(op, dict) and isinstance(op.get("op_name"), str)
+        }
+        llm_ops_added: list[str] = []
+        if isinstance(llm_item, dict):
+            for op in llm_item.get("operations", []):
+                if not isinstance(op, dict):
+                    continue
+                op_name = op.get("op_name")
+                if not isinstance(op_name, str) or op_name in seen:
+                    continue
+                seen.add(op_name)
+                merged_ops.append(op)
+                llm_ops_added.append(op_name)
+        merged_analysis = dict(base_item.get("analysis", {})) if isinstance(base_item.get("analysis"), dict) else {}
+        base_evidence = list(merged_analysis.get("evidence", [])) if isinstance(merged_analysis.get("evidence"), list) else []
+        base_warnings = list(merged_analysis.get("warnings", [])) if isinstance(merged_analysis.get("warnings"), list) else []
+        manual_todo = list(merged_analysis.get("manual_todo", [])) if isinstance(merged_analysis.get("manual_todo"), list) else []
+        if isinstance(llm_item, dict):
+            llm_analysis = llm_item.get("analysis", {})
+            if isinstance(llm_analysis, dict):
+                llm_evidence = llm_analysis.get("evidence", [])
+                if isinstance(llm_evidence, list):
+                    base_evidence.extend(str(item) for item in llm_evidence if isinstance(item, str))
+                llm_warnings = llm_analysis.get("warnings", [])
+                if isinstance(llm_warnings, list):
+                    base_warnings.extend(str(item) for item in llm_warnings if isinstance(item, str))
+            if llm_ops_added:
+                manual_todo.append("merged_llm_operations")
+        merged_item = {
+            **base_item,
+            "operations": merged_ops,
+            "analysis": {
+                **merged_analysis,
+                "evidence": _unique_strings(base_evidence),
+                "warnings": _unique_strings(base_warnings),
+                "manual_todo": _unique_strings(manual_todo),
+            },
+            "merge_details": {
+                "llm_operations_added": llm_ops_added,
+                "sources": ["python"] + (["llm"] if llm_ops_added else []),
+            },
+        }
+        merged_items.append(merged_item)
+    return {
+        "schema_version": "v2",
+        "subsystem": "proc",
+        "source_root": base_v2.get("source_root", ""),
+        "scope": dict(base_v2.get("scope", {})),
+        "items": merged_items,
+        "summary": {
+            "item_count": len(merged_items),
+            "operation_count": sum(len(item.get("operations", [])) for item in merged_items),
+        },
+    }
+
+
+def _discover_v2_to_specs(discover_v2: dict[str, Any]) -> list[InterfaceSpec]:
+    specs: list[InterfaceSpec] = []
+    for item in discover_v2.get("items", []):
+        if not isinstance(item, dict):
+            continue
+        interface_id = item.get("interface_id")
+        if not isinstance(interface_id, str):
+            continue
+        target = interface_id.split(":", 1)[1] if ":" in interface_id else interface_id
+        operations = [
+            str(op.get("op_name"))
+            for op in item.get("operations", [])
+            if isinstance(op, dict) and isinstance(op.get("op_name"), str)
+        ]
+        source = item.get("source", {}) if isinstance(item.get("source"), dict) else {}
+        subsystem_details = item.get("subsystem_details", {}) if isinstance(item.get("subsystem_details"), dict) else {}
+        analysis = item.get("analysis", {}) if isinstance(item.get("analysis"), dict) else {}
+        specs.append(
+            InterfaceSpec(
+                subsystem=str(item.get("subsystem", "proc")),
+                target=target,
+                kind=str(item.get("interface_type", "misc")),
+                capabilities=operations,
+                source=SourceRef(
+                    file=str(source.get("file", "")),
+                    line=source.get("line") if isinstance(source.get("line"), int) else None,
+                    symbol=str(source.get("symbol")) if isinstance(source.get("symbol"), str) else None,
+                ),
+                metadata={
+                    "node_type": subsystem_details.get("node_type"),
+                    "module_file": subsystem_details.get("module_file"),
+                    "registration_kind": subsystem_details.get("registration_kind"),
+                    "manual_todo": list(analysis.get("manual_todo", [])) if isinstance(analysis.get("manual_todo"), list) else [],
+                },
+            )
+        )
+    return specs
+
+
+def _discover_v2_to_json_specs(discover_v2: dict[str, Any]) -> list[dict[str, Any]]:
+    return to_jsonable(_discover_v2_to_specs(discover_v2))
+
+
+def _normalize_llm_operations(value: object) -> list[str]:
+    allowed = {"open", "read", "write", "lseek", "getdents64", "ioctl", "mmap", "poll"}
+    synonyms = {
+        "llseek": "lseek",
+        "seek": "lseek",
+        "readdir": "getdents64",
+    }
+    result: list[str] = []
+    if not isinstance(value, list):
+        return result
+    for item in value:
+        if not isinstance(item, str):
+            continue
+        normalized = synonyms.get(item.strip().lower(), item.strip().lower())
+        if normalized in allowed and normalized not in result:
+            result.append(normalized)
+    return result
+
+
+def _op_descriptor_from_name(interface_id: str, op_name: str) -> dict[str, Any]:
+    target = interface_id.split(":", 1)[1] if ":" in interface_id else interface_id
+    from core.schema_adapter_v2 import _op_descriptor  # local import to avoid wider refactor
+
+    return _op_descriptor("proc", target, op_name)
+
+
+def _unique_strings(items: list[str]) -> list[str]:
+    result: list[str] = []
+    for item in items:
+        if item not in result:
+            result.append(item)
+    return result
 
 
 def _run_discover_agent_side_channel(
