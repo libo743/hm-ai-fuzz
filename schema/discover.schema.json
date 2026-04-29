@@ -28,12 +28,33 @@
       "type": "object",
       "additionalProperties": true,
       "required": [
-        "module"
+        "target_subsystem"
       ],
       "properties": {
-        "module": {
+        "target_subsystem": {
           "type": "string",
           "minLength": 1
+        },
+        "scope_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "scope_strategy": {
+          "type": "string",
+          "enum": [
+            "path_first",
+            "semantic_first",
+            "hybrid"
+          ]
+        },
+        "semantic_signals": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "search_method": {
           "type": "string"

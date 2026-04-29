@@ -17,13 +17,18 @@ class ProcDiscoverPlugin:
     def discover(self, ctx: WorkflowContext) -> list[InterfaceSpec]:
         if ctx.kernel_src is None:
             raise ValueError("kernel_src is required for proc discovery")
-        target_module = str(ctx.config.get("target_module", "fs/proc"))
+        target_subsystem = str(ctx.config.get("target_subsystem", "proc"))
+        scope_path = _normalize_optional_scope_path(
+            ctx.config.get("scope_path", ctx.config.get("target_module", "fs/proc"))
+        )
         search_method = str(ctx.config.get("search_method", "prefix"))
         scan_mode = str(ctx.config.get("scan_mode", "auto"))
+        scope_strategy = str(ctx.config.get("scope_strategy", "hybrid"))
+        semantic_signals = _normalize_semantic_signals(ctx.config.get("semantic_signals", []))
 
         index = _build_target_index(
             kernel_src=ctx.kernel_src,
-            target_module=target_module,
+            scope_path=scope_path,
             search_method=search_method,
             scan_mode=scan_mode,
         )
@@ -31,12 +36,13 @@ class ProcDiscoverPlugin:
         locator.resolve_registration_paths()
         ops = OpsResolver(index)
 
-        normalized_target = target_module.strip().strip("/")
-        matched_regs = [
-            reg
-            for reg in index.registrations
-            if reg.resolved_path and _matches_module(reg.file, normalized_target, search_method)
-        ]
+        matched_regs = [reg for reg in index.registrations if reg.resolved_path]
+        if scope_path is not None:
+            matched_regs = [
+                reg
+                for reg in matched_regs
+                if _matches_module(reg.file, scope_path, search_method)
+            ]
 
         specs: list[InterfaceSpec] = []
         seen: set[str] = set()
@@ -59,9 +65,12 @@ class ProcDiscoverPlugin:
                         symbol=node.ops_symbol,
                     ),
                     metadata={
-                        "target_module": target_module,
+                        "target_subsystem": target_subsystem,
+                        "scope_path": scope_path,
                         "search_method": search_method,
                         "scan_mode": scan_mode,
+                        "scope_strategy": scope_strategy,
+                        "semantic_signals": semantic_signals,
                         "node_type": node.node_type,
                         "module_file": node.module_file or reg.file,
                         "registration_kind": node.registration_kind or reg.kind,
@@ -94,8 +103,30 @@ def _spec_kind(node_type: str) -> str:
     return mapping.get(node_type, node_type)
 
 
-def _build_target_index(*, kernel_src: Path, target_module: str, search_method: str, scan_mode: str) -> SourceIndex:
-    module_root = kernel_src / target_module
+def _normalize_optional_scope_path(value: object) -> str | None:
+    if value is None:
+        return None
+    text = str(value).strip().strip("/")
+    return text or None
+
+
+def _normalize_semantic_signals(value: object) -> list[str]:
+    if not isinstance(value, list):
+        return []
+    result: list[str] = []
+    for item in value:
+        if not isinstance(item, str):
+            continue
+        normalized = item.strip()
+        if normalized and normalized not in result:
+            result.append(normalized)
+    return result
+
+
+def _build_target_index(*, kernel_src: Path, scope_path: str | None, search_method: str, scan_mode: str) -> SourceIndex:
+    if scope_path is None:
+        return SourceIndex(kernel_src, scan_mode=scan_mode).build()
+    module_root = kernel_src / scope_path
     if search_method in {"exact", "prefix"} and module_root.exists():
         narrow = SourceIndex(kernel_src, scan_mode=scan_mode)
         for path in _iter_target_files(module_root):

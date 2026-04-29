@@ -42,14 +42,26 @@
 
 因此，新设计不是“LLM 只给建议”，而是“LLM 结果先独立落盘，再 merge 后进入 diff”。
 
+另外，第 1 步的输入契约也已经从“路径主导”调整成“语义目标主导”：
+
+- `target_subsystem`
+  discover 的主目标，例如 `proc`
+- `scope_path`
+  可选的路径缩小提示，例如 `fs/proc`
+- `semantic_signals`
+  可选的语义信号，例如注册函数、ops 结构体、关键宏
+
+也就是说，路径现在只是 discover 的限界条件，不再是 discover 正确性的前提。
+
 ## 3. 端到端流程概览
 
-1. 输入 Linux 源码路径和目标模块
-2. 第 1 步先执行 `discover`
-3. `discover` 内部再拆成 Python/规则发现、LLM discover 补充、merge discover
-4. 第 2 步基于 merged discover 输出新增接口项
-5. 第 3 步输出 syzkaller 描述文件和生成元数据
-6. 第 4 步执行 `make descriptions` 并输出诊断
+1. 输入 Linux 源码路径和目标子系统
+2. 指定 `target_subsystem`，可选提供 `scope_path` 与 `semantic_signals`
+3. 第 1 步先执行 `discover`
+4. `discover` 内部再拆成 Python/规则发现、LLM discover 补充、merge discover
+5. 第 2 步基于 merged discover 输出新增接口项
+6. 第 3 步输出 syzkaller 描述文件和生成元数据
+7. 第 4 步执行 `make descriptions` 并输出诊断
 
 当前工作流有两条并行输出视图：
 
@@ -133,7 +145,9 @@
 ### 4.3 输入
 
 - `kernel_src`
-- `target_module`
+- `target_subsystem`
+- `scope_path`
+- `semantic_signals`
 - `search_method`
 - `scan_mode`
 

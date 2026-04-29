@@ -114,12 +114,17 @@ _OP_TO_TYPE = {
 
 def adapt_discover_proc_v2(discover: list[dict[str, Any]], ctx: WorkflowContext) -> dict[str, Any]:
     items = [_discover_item_to_v2(item) for item in discover]
+    scope_path = ctx.config.get("scope_path", ctx.config.get("target_module", "fs/proc"))
+    semantic_signals = ctx.config.get("semantic_signals", [])
     return {
         "schema_version": "v2",
         "subsystem": "proc",
         "source_root": str(ctx.kernel_src) if ctx.kernel_src is not None else "",
         "scope": {
-            "module": str(ctx.config.get("target_module", "fs/proc")),
+            "target_subsystem": str(ctx.config.get("target_subsystem", "proc")),
+            "scope_path": str(scope_path) if scope_path not in {None, ""} else None,
+            "scope_strategy": str(ctx.config.get("scope_strategy", "hybrid")),
+            "semantic_signals": list(semantic_signals) if isinstance(semantic_signals, list) else [],
             "search_method": str(ctx.config.get("search_method", "prefix")),
             "scan_mode": str(ctx.config.get("scan_mode", "auto")),
         },

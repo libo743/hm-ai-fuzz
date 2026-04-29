@@ -20,6 +20,13 @@
 - `discover_llm_v2`
 - `discover_merged_v2`
 
+同时 discover 的 `scope` 已经从“路径主导”调整成“语义目标主导”，当前建议至少表达：
+
+- `target_subsystem`
+- `scope_path`
+- `scope_strategy`
+- `semantic_signals`
+
 文件说明：
 
 - [common.schema.json](/home/libo/work/hm-ai-fuzz/schema/common.schema.json)

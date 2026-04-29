@@ -3,7 +3,7 @@
     {
       "subsystem": "proc",
       "target": "/proc/consoles",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -14,24 +14,19 @@
         "symbol": "consoles_op"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/consoles.c",
         "registration_kind": "proc_create_seq",
         "manual_todo": [
           "ops symbol consoles_op was not resolved",
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/mounts",
-      "kind": "virtual_symlink",
+      "kind": "symlink_like",
       "capabilities": [
         "open",
         "read"
@@ -42,23 +37,18 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "symlink",
         "module_file": "fs/proc/root.c",
         "registration_kind": "proc_symlink",
         "manual_todo": [
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/fs",
-      "kind": "virtual_dir",
+      "kind": "dir_like",
       "capabilities": [
         "open",
         "getdents64"
@@ -69,21 +59,16 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "dir",
         "module_file": "fs/proc/root.c",
         "registration_kind": "proc_mkdir",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/driver",
-      "kind": "virtual_dir",
+      "kind": "dir_like",
       "capabilities": [
         "open",
         "getdents64"
@@ -94,21 +79,16 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "dir",
         "module_file": "fs/proc/root.c",
         "registration_kind": "proc_mkdir",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/bus",
-      "kind": "virtual_dir",
+      "kind": "dir_like",
       "capabilities": [
         "open",
         "getdents64"
@@ -119,21 +99,16 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "dir",
         "module_file": "fs/proc/root.c",
         "registration_kind": "proc_mkdir",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/sys",
-      "kind": "virtual_dir",
+      "kind": "dir_like",
       "capabilities": [
         "open",
         "getdents64"
@@ -144,21 +119,16 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "dir",
         "module_file": "fs/proc/proc_sysctl.c",
         "registration_kind": "proc_mkdir",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/stat",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "lseek",
@@ -170,21 +140,16 @@
         "symbol": "stat_proc_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/stat.c",
         "registration_kind": "proc_create",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/maps",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -195,24 +160,19 @@
         "symbol": "proc_nommu_region_list_seqop"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/nommu.c",
         "registration_kind": "proc_create_seq",
         "manual_todo": [
           "ops symbol proc_nommu_region_list_seqop was not resolved",
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/loadavg",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -223,23 +183,18 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/loadavg.c",
         "registration_kind": "proc_create_single",
         "manual_todo": [
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/bootconfig",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -250,23 +205,18 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/bootconfig.c",
         "registration_kind": "proc_create_single",
         "manual_todo": [
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/cpuinfo",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "lseek",
@@ -278,21 +228,16 @@
         "symbol": "cpuinfo_proc_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/cpuinfo.c",
         "registration_kind": "proc_create",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/kmsg",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "read",
         "poll",
@@ -305,21 +250,16 @@
         "symbol": "kmsg_proc_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/kmsg.c",
         "registration_kind": "proc_create",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/softirqs",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -330,23 +270,18 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/softirqs.c",
         "registration_kind": "proc_create_single",
         "manual_todo": [
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/devices",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -357,24 +292,19 @@
         "symbol": "devinfo_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/devices.c",
         "registration_kind": "proc_create_seq",
         "manual_todo": [
           "ops symbol devinfo_ops was not resolved",
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/interrupts",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -385,24 +315,19 @@
         "symbol": "int_seq_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/interrupts.c",
         "registration_kind": "proc_create_seq",
         "manual_todo": [
           "ops symbol int_seq_ops was not resolved",
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/kpagecount",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "lseek",
@@ -414,21 +339,16 @@
         "symbol": "kpagecount_proc_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/page.c",
         "registration_kind": "proc_create",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/kpageflags",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "lseek",
@@ -440,21 +360,16 @@
         "symbol": "kpageflags_proc_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/page.c",
         "registration_kind": "proc_create",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/kpagecgroup",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "lseek",
@@ -466,21 +381,16 @@
         "symbol": "kpagecgroup_proc_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/page.c",
         "registration_kind": "proc_create",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/meminfo",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -491,23 +401,18 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/meminfo.c",
         "registration_kind": "proc_create_single",
         "manual_todo": [
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/tty",
-      "kind": "virtual_dir",
+      "kind": "dir_like",
       "capabilities": [
         "open",
         "getdents64"
@@ -518,21 +423,16 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "dir",
         "module_file": "fs/proc/proc_tty.c",
         "registration_kind": "proc_mkdir",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/tty/ldisc",
-      "kind": "virtual_dir",
+      "kind": "dir_like",
       "capabilities": [
         "open",
         "getdents64"
@@ -543,21 +443,16 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "dir",
         "module_file": "fs/proc/proc_tty.c",
         "registration_kind": "proc_mkdir",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/tty/ldiscs",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -568,24 +463,19 @@
         "symbol": "tty_ldiscs_seq_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/proc_tty.c",
         "registration_kind": "proc_create_seq",
         "manual_todo": [
           "ops symbol tty_ldiscs_seq_ops was not resolved",
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/tty/drivers",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -596,24 +486,19 @@
         "symbol": "tty_drivers_op"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/proc_tty.c",
         "registration_kind": "proc_create_seq",
         "manual_todo": [
           "ops symbol tty_drivers_op was not resolved",
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/cmdline",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -624,23 +509,18 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/cmdline.c",
         "registration_kind": "proc_create_single",
         "manual_todo": [
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/vmcore",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "lseek",
@@ -652,21 +532,16 @@
         "symbol": "vmcore_proc_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/vmcore.c",
         "registration_kind": "proc_create",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/net",
-      "kind": "virtual_symlink",
+      "kind": "symlink_like",
       "capabilities": [
         "open",
         "read"
@@ -677,23 +552,18 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "symlink",
         "module_file": "fs/proc/proc_net.c",
         "registration_kind": "proc_symlink",
         "manual_todo": [
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/uptime",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -704,23 +574,18 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/uptime.c",
         "registration_kind": "proc_create_single",
         "manual_todo": [
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/version",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "read"
@@ -731,23 +596,18 @@
         "symbol": null
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/version.c",
         "registration_kind": "proc_create_single",
         "manual_todo": [
           "using conservative open/read fallback because ops could not be resolved"
-        ],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        ]
       }
     },
     {
       "subsystem": "proc",
       "target": "/proc/kcore",
-      "kind": "virtual_file",
+      "kind": "file_like",
       "capabilities": [
         "open",
         "lseek"
@@ -758,15 +618,10 @@
         "symbol": "kcore_proc_ops"
       },
       "metadata": {
-        "target_module": "fs/proc",
-        "search_method": "prefix",
-        "scan_mode": "auto",
         "node_type": "file",
         "module_file": "fs/proc/kcore.c",
         "registration_kind": "proc_create",
-        "manual_todo": [],
-        "files_scanned": 34,
-        "registrations_scanned": 39
+        "manual_todo": []
       }
     }
   ],

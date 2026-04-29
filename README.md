@@ -28,6 +28,12 @@
 - LLM discover 已经参与真实差集
 - 第 2 步已经会把 LLM discover 结果并入 merged 结果，再求差集
 
+当前 discover 输入契约里：
+
+- `target_subsystem` 是主语义目标
+- `scope_path` 只是可选的路径缩小提示
+- 即使不给路径，`/proc` 流程也可以基于语义模式做全量扫描
+
 默认相对路径约定：
 
 - 当前仓库：`.`
@@ -96,7 +102,9 @@ scripts/              # 验证脚本
 输入：
 
 - `--kernel-src`
-- `--target-module`
+- `--target-subsystem`
+- `--scope-path`
+- `--semantic-signal`
 - `--search-method`
 - `--scan-mode`
 - 可选 LLM 配置

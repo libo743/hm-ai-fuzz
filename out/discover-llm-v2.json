@@ -1,0 +1,15 @@
+{
+  "schema_version": "v2",
+  "subsystem": "proc",
+  "source_root": "/home/libo/work/linux",
+  "scope": {
+    "module": "fs/proc",
+    "search_method": "prefix",
+    "scan_mode": "auto"
+  },
+  "items": [],
+  "summary": {
+    "item_count": 0,
+    "operation_count": 0
+  }
+}

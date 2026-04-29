@@ -1,0 +1,22 @@
+{
+  "schema_version": "v1",
+  "target_repo": "/home/libo/work/syzkaller",
+  "target_subdir": "/home/libo/work/syzkaller/sys/linux",
+  "generated_files": [
+    {
+      "path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt",
+      "kind": "txt",
+      "exists": true,
+      "repo": "syzkaller"
+    },
+    {
+      "path": "/home/libo/work/syzkaller/sys/linux/proc_auto.txt.const",
+      "kind": "txt.const",
+      "exists": true,
+      "repo": "syzkaller"
+    }
+  ],
+  "validate_status": "passed",
+  "make_target": "descriptions",
+  "published": true
+}

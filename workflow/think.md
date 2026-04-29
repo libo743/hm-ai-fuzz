@@ -113,6 +113,61 @@
 - `out/discover-llm.json`
 - `out/discover-merged.json`
 
+### 为什么 discover 不能把路径当成主依据
+
+`/proc` 这个 demo 一开始比较容易写成“给一个目录路径，然后在这个目录下面扫”，例如：
+
+- `fs/proc`
+
+这种做法对当前 Linux `/proc` 例子是方便的，但它不应该成为 discover 的主逻辑。原因很直接：
+
+- 如果代码目录换了，路径规则就失效
+- 如果迁移到别的内核，代码组织方式可能完全不同
+- 即使是同一个内核，不同版本也可能重构目录或拆分文件
+
+所以更稳妥的做法是把 discover 的输入拆成两类：
+
+- 语义目标
+- 范围提示
+
+当前已经按这个思路调整成：
+
+- `target_subsystem`
+  discover 的主目标，例如 `proc`
+- `scope_path`
+  可选路径提示，例如 `fs/proc`
+- `semantic_signals`
+  可选语义信号，例如注册函数、ops 结构体、关键宏
+- `scope_strategy`
+  控制更偏路径缩小还是更偏语义优先
+
+这里最重要的原则是：
+
+- 路径只用于缩小搜索范围
+- 语义模式才是 discover 的真正依据
+
+对当前 `/proc` 来说，真正应该依赖的是这类语义信息：
+
+- `proc_create`
+- `proc_create_data`
+- `proc_create_seq`
+- `proc_mkdir`
+- `proc_ops`
+- `file_operations`
+
+也就是说，后续如果把这套流程扩展到别的内核，或者扩展到 sysfs、文件系统、网络、设备节点，也不应该要求负责人先告诉系统“代码在哪个目录”，而应该优先告诉系统：
+
+- 目标子系统是什么
+- 关键注册语义是什么
+- 路径是否只是一个可选的缩小提示
+
+当前实现已经支持：
+
+- 给 `scope_path` 时做窄化扫描
+- 不给 `scope_path` 时做全量 discover
+
+这一步是为了把 discover 从“目录驱动脚本”逐步调整成“语义驱动发现器”。
+
 实现重点：
 
 - 先建立源码索引

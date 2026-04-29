@@ -39,9 +39,23 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--workspace", type=Path, default=Path.cwd(), help="project workspace")
     parser.add_argument("--kernel-src", type=Path, default=DEFAULT_EXTERNAL_ROOT / "linux", help="Linux source root")
     parser.add_argument("--syzkaller-dir", type=Path, default=DEFAULT_EXTERNAL_ROOT / "syzkaller", help="syzkaller root")
-    parser.add_argument("--target-module", default="fs/proc", help="subsystem module scope")
+    parser.add_argument("--target-subsystem", default="proc", help="semantic subsystem target, e.g. proc")
+    parser.add_argument("--scope-path", default="fs/proc", help="optional path scope hint used to narrow scanning")
+    parser.add_argument("--target-module", default=None, help="deprecated alias of --scope-path")
     parser.add_argument("--search-method", choices=("exact", "prefix", "substring"), default="prefix")
     parser.add_argument("--scan-mode", choices=("auto", "full"), default="auto")
+    parser.add_argument(
+        "--scope-strategy",
+        choices=("path_first", "semantic_first", "hybrid"),
+        default="hybrid",
+        help="discover scope strategy; path is an optional hint while semantic subsystem stays primary",
+    )
+    parser.add_argument(
+        "--semantic-signal",
+        action="append",
+        default=[],
+        help="repeatable semantic hint such as registration symbol, ops struct, or key macro",
+    )
     parser.add_argument("--out-dir", type=Path, default=Path("out"), help="output directory")
     parser.add_argument("--existing-json", type=Path, help="optional baseline json")
     parser.add_argument("--out-json", type=Path, default=Path("out/workflow-result.json"), help="workflow result json")
@@ -52,6 +66,9 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
+    scope_path = args.scope_path
+    if args.target_module:
+        scope_path = args.target_module
     existing = {}
     if args.existing_json and args.existing_json.is_file():
         existing = json.loads(args.existing_json.read_text(encoding="utf-8"))
@@ -62,9 +79,13 @@ def main(argv: list[str] | None = None) -> int:
         kernel_src=args.kernel_src.resolve(),
         syzkaller_dir=args.syzkaller_dir.resolve(),
         config={
-            "target_module": args.target_module,
+            "target_subsystem": args.target_subsystem,
+            "scope_path": scope_path,
+            "target_module": scope_path,
             "search_method": args.search_method,
             "scan_mode": args.scan_mode,
+            "scope_strategy": args.scope_strategy,
+            "semantic_signals": list(args.semantic_signal),
             "txt_name": "proc_auto.txt",
             "make_target": args.make_target,
             "timeout_sec": args.timeout_sec,
@@ -75,9 +96,11 @@ def main(argv: list[str] | None = None) -> int:
     generate_plugin = MinimalSyzkallerGeneratePlugin()
     validate_plugin = SyzkallerBuildValidatePlugin()
 
+    _progress("step1/discover", "starting base discover")
     base_specs = discover_plugin.discover(ctx)
     discover_base = to_jsonable(base_specs)
     discover_base_v2 = adapt_discover_proc_v2(discover_base, ctx)
+    _progress("step1/discover", f"base discover completed: {len(base_specs)} interfaces")
 
     llm_config = load_config_from_env()
     llm_client = LLMClient(llm_config)
@@ -90,6 +113,7 @@ def main(argv: list[str] | None = None) -> int:
         "suggestions": [],
     }
     if llm_config.features.discover_enhance:
+        _progress("step1/discover", "running llm discover enhancement")
         discover_suggestions = _run_discover_agent_side_channel(
             discover_v2=discover_base_v2,
             ctx=ctx,
@@ -98,23 +122,36 @@ def main(argv: list[str] | None = None) -> int:
             llm_enabled=llm_config.enabled,
             limit=_env_int("HM_AI_FUZZ_LLM_DISCOVER_LIMIT"),
         )
+        _progress(
+            "step1/discover",
+            f"llm discover completed: {len(discover_suggestions.get('suggestions', []))} suggestions",
+        )
 
     discover_llm_v2 = _build_discover_llm_v2(discover_base_v2, discover_suggestions)
     discover_merged_v2 = _merge_discover_v2(discover_base_v2, discover_llm_v2)
     discover_llm = _discover_v2_to_json_specs(discover_llm_v2)
     merged_specs = _discover_v2_to_specs(discover_merged_v2)
     discover_merged = to_jsonable(merged_specs)
+    _progress("step1/discover", f"merged discover ready: {len(merged_specs)} interfaces")
 
+    _progress("step2/diff", "starting diff against baseline")
     diff_result = diff_plugin.diff(merged_specs, existing, ctx)
     diff_json = to_jsonable(diff_result)
     diff_v2 = adapt_diff_proc_v2(diff_json, discover_merged_v2)
+    _progress("step2/diff", f"diff completed: {len(diff_result.new_items)} new items")
+
+    _progress("step3/generate", "starting syzkaller description generation")
     generation_v2_raw = generate_plugin.generate(diff_result, ctx)
     generate_json = to_jsonable(generation_v2_raw)
     generate_v2 = adapt_generate_proc_v2(generation_v2_raw, diff_v2)
+    _progress("step3/generate", f"generation completed: {len(generation_v2_raw.generated_files)} files")
+
+    _progress("step4/validate", "starting syzkaller validation")
     validation_result = validate_plugin.validate(generation_v2_raw, ctx)
     validate_json = to_jsonable(validation_result)
     validate_v2 = adapt_validate_proc_v2(validation_result)
     publish = _build_publish_summary(generation_v2_raw, validate_v2, ctx)
+    _progress("step4/validate", f"validation completed: status={validation_result.status}")
 
     model_suggestions = {
         "enabled": llm_config.enabled and llm_config.features.model_enhance,
@@ -123,6 +160,7 @@ def main(argv: list[str] | None = None) -> int:
         "suggestions": [],
     }
     if llm_config.features.model_enhance:
+        _progress("llm/model", "running model suggestions")
         model_suggestions = _run_model_agent_side_channel(
             diff_v2=diff_v2,
             ctx=ctx,
@@ -131,6 +169,7 @@ def main(argv: list[str] | None = None) -> int:
             llm_enabled=llm_config.enabled,
             limit=_env_int("HM_AI_FUZZ_LLM_MODEL_LIMIT"),
         )
+        _progress("llm/model", f"model suggestions completed: {len(model_suggestions.get('suggestions', []))} suggestions")
     fix_suggestions = {
         "enabled": llm_config.enabled and llm_config.features.fix_suggest,
         "status": "skipped",
@@ -138,6 +177,7 @@ def main(argv: list[str] | None = None) -> int:
         "suggestions": [],
     }
     if llm_config.features.fix_suggest:
+        _progress("llm/fix", "running fix suggestions")
         fix_agent = FixAgent(llm_client, prompt_dir)
         failed_unit = _select_failed_unit(generate_v2, validate_v2)
         source_fragment = _source_fragment_for_failed_unit(generate_v2, ctx)
@@ -153,6 +193,7 @@ def main(argv: list[str] | None = None) -> int:
                 "reason": None,
                 "suggestions": [suggestion],
             }
+            _progress("llm/fix", "fix suggestions completed: 1 suggestion")
         except Exception as exc:
             fix_suggestions = {
                 "enabled": llm_config.enabled,
@@ -160,6 +201,7 @@ def main(argv: list[str] | None = None) -> int:
                 "reason": str(exc),
                 "suggestions": [],
             }
+            _progress("llm/fix", f"fix suggestions failed: {exc}")
     result = {
         "discover": discover_base,
         "discover_llm": discover_llm,
@@ -196,8 +238,13 @@ def main(argv: list[str] | None = None) -> int:
     write_json(output_dir / "llm" / "model-suggestions.json", model_suggestions)
     write_json(output_dir / "llm" / "fix-suggestions.json", fix_suggestions)
     write_json(args.out_json.resolve(), result)
+    _progress("workflow", f"results written: {args.out_json.resolve()}")
     print(f"workflow result: {args.out_json.resolve()}")
     return 0
+
+
+def _progress(stage: str, message: str) -> None:
+    print(f"[hm-ai-fuzz] {stage}: {message}", flush=True)
 
 
 def _build_discover_llm_v2(discover_v2: dict[str, Any], discover_suggestions: dict[str, Any]) -> dict[str, Any]:
