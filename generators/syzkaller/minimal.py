@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import re
+from pathlib import Path
 
+from core.pipeline import write_json
 from core.protocols import WorkflowContext
 from core.schemas import DiffResult, GeneratedFile, GenerationResult
 
@@ -32,17 +34,21 @@ class MinimalSyzkallerGeneratePlugin:
         entries = _collect_entries(diff.new_items)
         txt_path.write_text(render_proc_auto_txt(entries), encoding="utf-8")
         const_path.write_text(PROC_AUTO_CONST_TEXT, encoding="utf-8")
+        case_files = _write_proc_case_files(diff.new_items, ctx.output_dir)
 
         metadata = {
             "generated_interface_count": len(entries),
             "skipped_interface_count": max(0, len(diff.new_items) - len(entries)),
             "txt_path": str(txt_path),
             "const_path": str(const_path),
+            "case_dir": str((ctx.output_dir / "cases" / "proc").resolve()),
+            "generated_case_count": len(case_files),
         }
         return GenerationResult(
             generated_files=[
                 GeneratedFile(path=str(txt_path), kind="txt", details={"entry_count": len(entries)}),
                 GeneratedFile(path=str(const_path), kind="txt.const", details={"entry_count": 6}),
+                *case_files,
             ],
             units=[
                 {
@@ -56,6 +62,108 @@ class MinimalSyzkallerGeneratePlugin:
             ],
             metadata=metadata,
         )
+
+
+def _write_proc_case_files(new_items: list[dict[str, object]], output_dir: Path) -> list[GeneratedFile]:
+    case_dir = output_dir / "cases" / "proc"
+    generated: list[GeneratedFile] = []
+    seen_paths: set[Path] = set()
+    for item in new_items:
+        case_name = _case_file_name(item)
+        if not isinstance(case_name, str) or not case_name:
+            continue
+        path = case_dir / case_name
+        if path in seen_paths:
+            continue
+        seen_paths.add(path)
+        payload = _build_proc_case_payload(item)
+        write_json(path, payload)
+        generated.append(
+            GeneratedFile(
+                path=str(path),
+                kind="case.json",
+                details={
+                    "subsystem": payload["subsystem"],
+                    "target": payload["target"],
+                    "op": payload["op"],
+                },
+            )
+        )
+    return generated
+
+
+def _case_file_name(item: dict[str, object]) -> str | None:
+    existing = item.get("suggested_case_file")
+    if isinstance(existing, str) and existing:
+        return existing
+    target = item.get("target")
+    op = item.get("op")
+    if not isinstance(target, str) or not isinstance(op, str):
+        return None
+    return f"{_safe_case_token(target)}__{_safe_case_token(op)}.json"
+
+
+def _build_proc_case_payload(item: dict[str, object]) -> dict[str, object]:
+    subsystem = str(item.get("subsystem", "proc"))
+    target = str(item["target"])
+    op = str(item["op"])
+    node_type = str(item.get("node_type", "unknown"))
+    symbol = item.get("symbol")
+    return {
+        "schema_version": 1,
+        "subsystem": subsystem,
+        "target": target,
+        "op": op,
+        "case_id": f"{subsystem}:{target}:{op}",
+        "title": f"{target} {op} fuzz case",
+        "node_type": node_type,
+        "resource_kind": "fd_dir" if node_type == "dir" or op == "getdents64" else "fd",
+        "open_variant": f"openat$proc_{_safe_name(target)}",
+        "source": {
+            "module_file": item.get("module_file"),
+            "impl_file": item.get("impl_file"),
+            "impl_line": item.get("impl_line"),
+            "symbol": symbol,
+            "registration_kind": item.get("registration_kind"),
+        },
+        "seed_actions": _seed_actions_for_case(target, op),
+        "notes": _notes_for_case(op, node_type, symbol),
+    }
+
+
+def _seed_actions_for_case(target: str, op: str) -> list[dict[str, object]]:
+    actions: list[dict[str, object]] = [
+        {
+            "action": "open",
+            "syscall": f"openat$proc_{_safe_name(target)}",
+            "args": {"path": target},
+        }
+    ]
+    if op != "open":
+        actions.append(
+            {
+                "action": op,
+                "syscall": f"{op}$proc_{_safe_name(target)}",
+            }
+        )
+    return actions
+
+
+def _notes_for_case(op: str, node_type: str, symbol: object) -> list[str]:
+    notes = [
+        "Auto-generated from diff new_items; verify argument semantics before promoting to a richer model.",
+    ]
+    if node_type == "dir":
+        notes.append("Directory-like proc nodes should prefer open plus getdents64 coverage.")
+    if op in {"ioctl", "mmap", "poll"}:
+        notes.append(f"{op} is modeled conservatively and may need a dedicated generator extension.")
+    if not isinstance(symbol, str) or not symbol:
+        notes.append("Source symbol was not resolved; case is based on the flattened diff item metadata.")
+    return notes
+
+
+def _safe_case_token(value: str) -> str:
+    return re.sub(r"[^A-Za-z0-9_.-]+", "_", value.strip("/")) or "target"
 
 def _collect_entries(new_items: list[dict[str, object]]) -> list[dict[str, object]]:
     by_target: dict[str, dict[str, object]] = {}
