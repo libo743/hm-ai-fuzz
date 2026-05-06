@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from pathlib import Path
 
 from core.pipeline import WorkflowPipeline
@@ -153,6 +154,8 @@ def test_generate_plugin_writes_minimal_proc_auto_txt(tmp_path: Path) -> None:
 
     txt = (syzkaller / "sys" / "linux" / "proc_auto.txt").read_text(encoding="utf-8")
     const = (syzkaller / "sys" / "linux" / "proc_auto.txt.const").read_text(encoding="utf-8")
+    alpha_case = json.loads((tmp_path / "out" / "cases" / "proc" / "proc_alpha__open.json").read_text(encoding="utf-8"))
+    vmcore_case = json.loads((tmp_path / "out" / "cases" / "proc" / "proc_vmcore__mmap.json").read_text(encoding="utf-8"))
     assert "resource fd_proc_proc_alpha[fd]" in txt
     assert 'openat$proc_proc_alpha(fd const[AT_FDCWD], file ptr[in, string["/proc/alpha"]]' in txt
     assert "read$proc_proc_alpha(fd fd_proc_proc_alpha, buf buffer[out], count len[buf])" in txt
@@ -165,6 +168,17 @@ def test_generate_plugin_writes_minimal_proc_auto_txt(tmp_path: Path) -> None:
     assert "arches = 386, amd64, arm, arm64, mips64le, ppc64le, riscv64, s390x" in const
     assert "__NR_openat =" in const
     assert generation.metadata["generated_interface_count"] == 3
+    assert generation.metadata["generated_case_count"] == 9
+    assert alpha_case["case_id"] == "proc:/proc/alpha:open"
+    assert alpha_case["seed_actions"] == [
+        {
+            "action": "open",
+            "syscall": "openat$proc_proc_alpha",
+            "args": {"path": "/proc/alpha"},
+        }
+    ]
+    assert vmcore_case["seed_actions"][-1]["syscall"] == "mmap$proc_proc_vmcore"
+    assert any(item.kind == "case.json" for item in generation.generated_files)
 
 
 def test_validate_plugin_reports_success(tmp_path: Path) -> None:

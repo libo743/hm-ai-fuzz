@@ -53,7 +53,61 @@
 
 也就是说，路径现在只是 discover 的限界条件，不再是 discover 正确性的前提。
 
-## 3. 端到端流程概览
+## 3. Skill 与执行入口
+
+当前仓库中，`SKILL.md` 和 workflow / 脚本入口是分工关系，不是替代关系：
+
+- `SKILL.md`
+  用于指导模型如何分析目标接口、如何按 `discover -> diff -> generate -> validate` 四步组织工作，以及如何判断“新增用例是否真正进入 syzkaller 仓库”
+- Python workflow 与 shell 脚本
+  用于真正执行四步流程、生成 JSON、写入外部 `syzkaller` 仓库并完成验证
+
+也就是说：
+
+- `SKILL.md` 是操作规程
+- `workflows/*.py` 和 `scripts/*.sh` 是实际执行入口
+
+如果借助模型新增用例，推荐顺序是：
+
+1. 先按 `SKILL.md` 分析目标接口和源码证据
+2. 再调用现有 workflow 或脚本执行四步流程
+3. 查看 `discover / diff / generate / validate` 输出
+4. 必要时修改代码并重新执行
+
+## 4. 脚本入口与四步流程对应关系
+
+当前 `/proc` 的主要执行入口如下：
+
+- 顶层 Python workflow：
+  `python3 -m workflows.proc_workflow`
+- 端到端验证脚本：
+  `bash scripts/validate_proc_workflow.sh`
+
+按四步拆开看：
+
+- Step 1 `discover`
+  代码入口：`extractors/proc/extractor.py`
+  验证脚本：`bash scripts/validate_proc_discover.sh`
+- Step 2 `diff`
+  代码入口：`modelers/simple_diff.py`
+  demo 脚本：`bash scripts/run_proc_diff_demo.sh`
+  抽样验证脚本：`bash scripts/validate_proc_diff_with_sampled_base.sh`
+- Step 3 `generate`
+  代码入口：`generators/syzkaller/minimal.py`
+  demo 脚本：`bash scripts/run_proc_generate_demo.sh`
+  验证脚本：`bash scripts/validate_proc_generate.sh`
+- Step 4 `validate`
+  代码入口：`validators/syzkaller_build.py`
+  demo 脚本：`bash scripts/run_proc_validate_demo.sh`
+
+辅助入口：
+
+- 内置无依赖测试：
+  `bash scripts/run_proc_test_suite.sh`
+- 发布到外部 `syzkaller` 仓库并验证：
+  `bash scripts/publish_proc_to_syzkaller.sh`
+
+## 5. 端到端流程概览
 
 1. 输入 Linux 源码路径和目标子系统
 2. 指定 `target_subsystem`，可选提供 `scope_path` 与 `semantic_signals`
@@ -118,7 +172,7 @@
 - `out/` 根目录保存主流程标准产物
 - `out/scenarios/` 保存故障注入、抽样验证、LLM 小样本联调等场景化结果
 
-## 4. 第一步：Discover
+## 6. 第一步：Discover
 
 ### 4.1 目标
 
@@ -189,7 +243,7 @@ cd ./hm-ai-fuzz
 bash scripts/run_proc_test_suite.sh
 ```
 
-## 5. 第二步：Diff
+## 7. 第二步：Diff
 
 ### 5.1 目标
 
@@ -244,7 +298,7 @@ cd ./hm-ai-fuzz
 bash scripts/validate_proc_diff_with_sampled_base.sh
 ```
 
-## 6. 第三步：Generate
+## 8. 第三步：Generate
 
 ### 6.1 目标
 
@@ -292,7 +346,7 @@ cd ./hm-ai-fuzz
 bash scripts/validate_proc_generate.sh
 ```
 
-## 7. 第四步：Validate
+## 9. 第四步：Validate
 
 ### 7.1 目标
 
@@ -334,7 +388,7 @@ cd ./hm-ai-fuzz
 bash scripts/run_proc_validate_demo.sh
 ```
 
-## 8. 当前真实结果
+## 10. 当前真实结果
 
 在 `../linux` 和 `../syzkaller` 上，当前真实结果是：
 
@@ -352,7 +406,7 @@ bash scripts/run_proc_validate_demo.sh
 - 生成和 `make descriptions` 仍可通过
 - 已验证示例中，`/proc/consoles` 的 `lseek` 由 LLM discover 补充进入 merged，再进入 diff 和生成链路
 
-## 9. v2 协议说明
+## 11. v2 协议说明
 
 当前仓库已经提供一套面向全模块的统一 schema 草案，目录见：
 

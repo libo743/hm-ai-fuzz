@@ -196,6 +196,60 @@ syzkaller 侧产物：
 - `../syzkaller/sys/linux/proc_auto.txt`
 - `../syzkaller/sys/linux/proc_auto.txt.const`
 
+## Skill 与脚本入口的关系
+
+当前仓库中，`SKILL.md` 和脚本入口不是互相替代关系，而是分工关系：
+
+- `SKILL.md`
+  用于指导模型如何分析目标、如何按 `discover -> diff -> generate -> validate` 四步组织工作，以及如何判断“新增用例是否真正进入 syzkaller 仓库”
+- `workflows/*.py` 和 `scripts/*.sh`
+  用于真正执行四步流程、产出 JSON、写入外部 `syzkaller` 仓库并完成验证
+
+也就是说：
+
+- `SKILL.md` 是操作规程
+- Python workflow 和 shell 脚本是实际执行入口
+
+如果通过模型协助新增用例，推荐顺序是：
+
+1. 先按 `SKILL.md` 分析目标接口和源码证据
+2. 再用现有 workflow 或脚本执行四步流程
+3. 查看 `discover / diff / generate / validate` 输出
+4. 必要时修改代码并重新执行
+
+## 脚本入口与四步流程对应关系
+
+当前 `/proc` 的主要执行入口如下：
+
+- 顶层 Python workflow：
+  `python3 -m workflows.proc_workflow`
+- 端到端验证脚本：
+  `bash scripts/validate_proc_workflow.sh`
+
+按四步拆开看：
+
+- Step 1 `discover`
+  代码入口：`extractors/proc/extractor.py`
+  验证脚本：`bash scripts/validate_proc_discover.sh`
+- Step 2 `diff`
+  代码入口：`modelers/simple_diff.py`
+  demo 脚本：`bash scripts/run_proc_diff_demo.sh`
+  抽样验证脚本：`bash scripts/validate_proc_diff_with_sampled_base.sh`
+- Step 3 `generate`
+  代码入口：`generators/syzkaller/minimal.py`
+  demo 脚本：`bash scripts/run_proc_generate_demo.sh`
+  验证脚本：`bash scripts/validate_proc_generate.sh`
+- Step 4 `validate`
+  代码入口：`validators/syzkaller_build.py`
+  demo 脚本：`bash scripts/run_proc_validate_demo.sh`
+
+辅助入口：
+
+- 内置无依赖测试：
+  `bash scripts/run_proc_test_suite.sh`
+- 发布到外部 `syzkaller` 仓库并验证：
+  `bash scripts/publish_proc_to_syzkaller.sh`
+
 ## 运行
 
 ```bash
